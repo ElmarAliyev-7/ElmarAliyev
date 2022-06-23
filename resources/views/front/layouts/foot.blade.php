@@ -4,7 +4,7 @@
   
 <script src="front/assets/vendor/owl-carousel/owl.carousel.min.js"></script>
   
-<script src="front/assets/vendor/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+{{-- <script src="front/assets/vendor/perfect-scrollbar/js/perfect-scrollbar.js"></script> --}}
   
 <script src="front/assets/vendor/isotope/isotope.pkgd.min.js"></script>
   

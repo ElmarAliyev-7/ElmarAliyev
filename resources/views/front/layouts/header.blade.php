@@ -8,7 +8,7 @@
   
   <meta name="copyright" content="MACode ID, https://www.macodeid.com/">
   
-  <title>Virtual Folio - Portfolio HTML5 Template</title>
+  <title>@yield('title', 'Elmar Aliyev')</title>
 
   <link rel="shortcut icon" href="front/assets/favicon.ico" type="image/x-icon">
   
@@ -20,7 +20,7 @@
   
   <link rel="stylesheet" type="text/css" href="front/assets/vendor/owl-carousel/owl.carousel.css">
   
-  <link rel="stylesheet" type="text/css" href="front/assets/vendor/perfect-scrollbar/css/perfect-scrollbar.css">
+  {{-- <link rel="stylesheet" type="text/css" href="front/assets/vendor/perfect-scrollbar/css/perfect-scrollbar.css"> --}}
   
   <link rel="stylesheet" type="text/css" href="front/assets/vendor/nice-select/css/nice-select.css">
   
@@ -29,6 +29,7 @@
   <link rel="stylesheet" type="text/css" href="front/assets/css/virtual.css">
   
   <link rel="stylesheet" type="text/css" href="front/assets/css/topbar.virtual.css">
+
 </head>
 <body class="theme-red">
   
@@ -61,31 +62,35 @@
     <!-- Navbar -->
     <div class="navbar navbar-expand-lg navbar-dark sticky" data-offset="500">
       <div class="container">
-        <a href="" class="navbar-brand">V-Folio</a>
+        <a href="{{route('home')}}" class="navbar-brand">Elmar Aliyev</a>
         <button class="navbar-toggler" data-toggle="collapse" data-target="#main-navbar" aria-expanded="true">
           <span class="ti-menu"></span>
         </button>
         <div class="collapse navbar-collapse" id="main-navbar">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a href="#home" class="nav-link" data-animate="scrolling">Home</a>
+              <a href="{{route('home')}}" class="nav-link" data-animate="scrolling">Home</a>
             </li>
             <li class="nav-item">
-              <a href="#about" class="nav-link" data-animate="scrolling">About</a>
+              <a href="{{route('about')}}" class="nav-link" data-animate="scrolling">About</a>
             </li>
             <li class="nav-item">
-              <a href="#portfolio" class="nav-link" data-animate="scrolling">Portfolio</a>
+              <a href="{{route('projects')}}" class="nav-link" data-animate="scrolling">Portfolio</a>
             </li>
             <li class="nav-item">
-              <a href="#blog" class="nav-link" data-animate="scrolling">Blog</a>
+              <a href="{{route('blogs')}}" class="nav-link" data-animate="scrolling">Blog</a>
             </li>
             <li class="nav-item">
-              <a href="#contact" class="nav-link" data-animate="scrolling">Contact</a>
+              <a href="{{route('contact')}}" class="nav-link" data-animate="scrolling">Contact</a>
             </li>
           </ul>
           <ul class="nav ml-auto">
             <li class="nav-item">
-              <button class="btn btn-fab btn-theme no-shadow">En</button>
+              <button class="btn btn-fab btn-theme no-shadow">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-palette-fill" viewBox="0 0 16 16">
+                  <path d="M12.433 10.07C14.133 10.585 16 11.15 16 8a8 8 0 1 0-8 8c1.996 0 1.826-1.504 1.649-3.08-.124-1.101-.252-2.237.351-2.92.465-.527 1.42-.237 2.433.07zM8 5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm4.5 3a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zM5 6.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm.5 6.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                </svg>
+              </button>
             </li>
           </ul>
         </div>
