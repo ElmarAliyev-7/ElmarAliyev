@@ -1,0 +1,11 @@
+@extends('layouts.master')
+@section('content')
+    @include('caption_header')
+    @include('about')
+    @include('service')
+    @include('funfact')
+    @include('portfolio')
+    @include('testimonial')
+    @include('blog')
+    @include('contact')
+@endsection
