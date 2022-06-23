@@ -72,7 +72,7 @@
         </div>
       </div> <!-- End gridder -->
       <div class="text-center wow fadeInUp">
-        <a href="javascript:void(0)" class="btn btn-theme">Load More</a>
+        <a href="{{route('projects')}}" class="btn btn-theme">Load More</a>
       </div>
     </div>
   </div> 

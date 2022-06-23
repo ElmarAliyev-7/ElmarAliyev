@@ -1,0 +1,11 @@
+@extends('front.layouts.master')
+@section('content')
+    @include('front.widgets.caption_header')
+    @include('front.widgets.about')
+    @include('front.widgets.service')
+    @include('front.widgets.funfact')
+    @include('front.widgets.portfolio')
+    @include('front.widgets.testimonial')
+    @include('front.widgets.blog')
+    @include('front.widgets.contact')
+@endsection
