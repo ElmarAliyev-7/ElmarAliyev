@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Back;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Admin;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -16,7 +15,8 @@ class AuthController extends Controller
 
     public function loginPost(Request $request)
     {
-        $auth = Auth::guard('admins')->attempt($request->only(['name', 'password']));
+        //$auth = Auth::guard('admins')->attempt($request->only(['name', 'password']));
+        $auth = Auth::attempt($request->only(['name', 'password']));
 
         if ($auth) {
             return redirect()->route('admin.dashboard');
