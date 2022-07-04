@@ -16,11 +16,16 @@ Route::post('/register', [HomeController::class, 'registerPost'])->name('registe
 
 //Back Routes
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+
     Route::group(['middleware' => 'notLogin'], function () {
-        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/',     [DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/home', [DashboardController::class, 'home'])->name('home');
     });
+
     Route::group(['middleware' => 'isLogin'], function () {
         Route::get('/login',         [AuthController::class, 'login'])->name('login');
         Route::post('/login-submit', [AuthController::class, 'loginPost'])->name('login-submit');
     });
+
+    Route::get('/logout',               [AuthController::class, 'logOut'])->name('logout');
 });

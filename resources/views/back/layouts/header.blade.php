@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>@yield('title','Satgetsin Admin Paneli')</title>
+    <title>@yield('title','Admin Panel')</title>
 
     <!-- Custom fonts for this template-->
     <link href="back/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
