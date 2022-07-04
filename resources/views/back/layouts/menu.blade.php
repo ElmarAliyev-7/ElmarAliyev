@@ -49,60 +49,6 @@
             </div>
         </li>
 
-        <!-- Cities -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#cityPages"
-                aria-expanded="true" aria-controls="cityPages">
-                <i class="fas fa-fw fa-folder"></i>
-                <span>Cities</span>
-            </a>
-            <div id="cityPages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Cities</h6>
-                    @can('Create City')
-                        <a class="collapse-item" href="{{route('admin.dashboard')}}">Create City</a>
-                    @endcan
-                    <a class="collapse-item" href="{{route('admin.dashboard')}}">Cities</a>
-                </div>
-            </div>
-        </li>
-
-        <!-- Adverts -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#advertPages"
-                aria-expanded="true" aria-controls="advertPages">
-                <i class="fas fa-fw fa-folder"></i>
-                <span>Adverts</span>
-            </a>
-            <div id="advertPages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Adverts</h6>
-                    @can('Create Advert')
-                        <a class="collapse-item" href="{{route('admin.dashboard')}}">Create Advert</a>
-                    @endcan
-                    <a class="collapse-item" href="{{route('admin.dashboard')}}">Adverts</a>
-                </div>
-            </div>
-        </li>
-
-        <!-- Categories -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#categoryPages"
-                aria-expanded="true" aria-controls="categoryPages">
-                <i class="fas fa-fw fa-folder"></i>
-                <span>Categories</span>
-            </a>
-            <div id="categoryPages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Categories</h6>
-                    @can('Create Category')
-                        <a class="collapse-item" href="{{route('admin.dashboard')}}">Create Category</a>
-                    @endcan
-                    <a class="collapse-item" href="{{route('admin.dashboard')}}">Categories</a>
-                </div>
-            </div>
-        </li>
-        
         <!-- Divider -->
         <hr class="sidebar-divider">
         
