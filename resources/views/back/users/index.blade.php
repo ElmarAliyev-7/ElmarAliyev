@@ -16,7 +16,9 @@
       <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">FullnName</th>
+          <th scope="col">Name</th>
+          <th scope="col">Surname</th>
+          <th scope="col">Username</th>
           <th scope="col">Email</th>
           <th scope="col">Actions</th>
         </tr>
@@ -26,6 +28,8 @@
           <tr>
               <th>{{$loop->iteration}}</th>
               <td>{{$user->name}}</td>
+              <td>{{$user->surname}}</td>
+              <td class="text-danger">{{$user->username}}</td>
               <td>{{$user->email}}</td>
               <td>
                 <a href="#" class="btn btn-primary btn-circle btn-sm">

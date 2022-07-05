@@ -15,8 +15,8 @@ class AuthController extends Controller
 
     public function loginPost(Request $request)
     {
-        //$auth = Auth::guard('admins')->attempt($request->only(['name', 'password']));
-        $auth = Auth::attempt($request->only(['name', 'password']));
+        //$auth = Auth::guard('admins')->attempt($request->only(['username', 'password']));
+        $auth = Auth::attempt($request->only(['username', 'password']));
 
         if ($auth) {
             return redirect()->route('admin.dashboard');

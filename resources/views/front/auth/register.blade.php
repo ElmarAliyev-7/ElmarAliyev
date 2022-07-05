@@ -14,8 +14,16 @@
         </div>  
     @endif
     <div class="form-group">
-      <label for="exampleInputName">FullName</label>
-      <input type="text" name="name" class="form-control" id="exampleInputName" placeholder="Enter fullname">
+      <label for="exampleInputName">Name</label>
+      <input type="text" name="name" class="form-control" id="exampleInputName" placeholder="Enter Name">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputSurname">Surname</label>
+      <input type="text" name="surname" class="form-control" id="exampleInputSurname" placeholder="Enter Surname">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputUserame">Userame</label>
+      <input type="text" name="username" class="form-control" id="exampleInputUserame" placeholder="Enter Username">
     </div>
     <div class="form-group">
       <label for="exampleInputEmail">Email address</label>
