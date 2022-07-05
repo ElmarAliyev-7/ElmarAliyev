@@ -42,6 +42,7 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Users</h6>
                     <a class="collapse-item" href="{{route('admin.users')}}">Users</a>
+                    <a class="collapse-item" href="{{route('admin.create-user')}}">Create User</a>
                 </div>
             </div>
         </li>
@@ -59,6 +60,18 @@
 
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
+
+        @if(auth()->user()->username === 'admin')
+         <!-- Nav Item - HomePage -->
+         <li class="nav-item">
+            <a class="nav-link" href="{{route("admin.permissions")}}">
+                <span>Give Permission to Role</span>
+            </a>
+        </li>
+        
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+        @endif
         
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">
@@ -181,7 +194,7 @@
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small"> Elmar ALiyev</span>
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{auth()->user()->username}}</span>
                         </a>
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

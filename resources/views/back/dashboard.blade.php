@@ -10,7 +10,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 Users</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">5</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$user_count}}</div>
                         </div>
                         <div class="col-auto">
                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
@@ -24,15 +24,15 @@
             </div>
         </div>
 
-         <!-- Adverts -->
+         <!-- Blogs -->
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                Adverts</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">4</div>
+                                Blogs</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
                         </div>
                         <div class="col-auto">
                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-badge-ad" viewBox="0 0 16 16">
@@ -45,17 +45,17 @@
             </div>
         </div>
 
-        <!-- Categories -->
+        <!-- Projects -->
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Categories
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Projects
                             </div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">3</div>
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">0</div>
                                 </div>
                                 <div class="col">
                                     <div class="progress progress-sm mr-2">
@@ -82,8 +82,8 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                Cities</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">3</div>
+                                Messages</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
                         </div>
                         <div class="col-auto">
                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-building" viewBox="0 0 16 16">

@@ -31,7 +31,7 @@ class AuthController extends Controller
                 return redirect()->back()->with('success', 'User register successfully');
             } catch (\Exception $e) {
 
-                return redirect()->back()->with('error', 'This email already exists'); //$e->getMessage()
+                return redirect()->back()->with('error', 'This email or username already exists'); //$e->getMessage()
             }
         }
     }

@@ -15,8 +15,15 @@ class AuthController extends Controller
 
     public function loginPost(Request $request)
     {
-        //$auth = Auth::guard('admins')->attempt($request->only(['username', 'password']));
-        $auth = Auth::attempt($request->only(['username', 'password']));
+        $username = $request->username;
+        $password = $request->password;
+        $auth = Auth::attempt([
+            'username' => $username,
+            'password' => $password,
+            'role'     => function ($query) {
+                $query->where('role_id', '!=', 3); // Standart user can't login to admin panel
+            }
+        ]);
 
         if ($auth) {
             return redirect()->route('admin.dashboard');

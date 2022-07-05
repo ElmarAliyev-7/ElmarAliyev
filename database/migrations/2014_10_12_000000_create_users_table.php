@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('surname');
             $table->string('username')->unique();
+            $table->integer('role_id')->default(3); //3 - Standart User Role (id)
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

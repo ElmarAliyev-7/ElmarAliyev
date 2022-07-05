@@ -19,6 +19,7 @@
           <th scope="col">Name</th>
           <th scope="col">Surname</th>
           <th scope="col">Username</th>
+          <th scope="col">Role</th>
           <th scope="col">Email</th>
           <th scope="col">Actions</th>
         </tr>
@@ -30,12 +31,19 @@
               <td>{{$user->name}}</td>
               <td>{{$user->surname}}</td>
               <td class="text-danger">{{$user->username}}</td>
+              <td>
+                @foreach($roles as $role)
+                  @if($user->role_id == $role->id)
+                    {{$role->name}}
+                  @endif
+                @endforeach
+              </td>
               <td>{{$user->email}}</td>
               <td>
                 <a href="#" class="btn btn-primary btn-circle btn-sm">
                   <i class="fas fa-edit"></i>
                 </a>
-                <a href="#" class="btn btn-danger btn-circle btn-sm">
+                <a href="{{route('admin.delete-user',$user->id)}}" class="btn btn-danger btn-circle btn-sm">
                   <i class="fas fa-trash"></i>
                 </a>
               </td>
