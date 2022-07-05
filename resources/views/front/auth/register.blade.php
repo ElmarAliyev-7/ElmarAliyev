@@ -1,4 +1,35 @@
 @extends('front.layouts.master')
 @section('content')
-Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequatur accusamus, tempore accusantium eius quo doloremque adipisci? Culpa alias consectetur id eius aspernatur perspiciatis ipsa aliquam dolores, in saepe unde sequi!
+@include('front.layouts.navbar')
+<div class="container">
+  <form action="{{route('register-post')}}" method="POST">
+    @csrf
+    @if(Session::has('error'))
+        <div class="alert alert-danger">
+            {{ Session::get('error')}}
+        </div>  
+    @elseif(Session::has('success'))
+        <div class="alert alert-success">
+            {{ Session::get('success')}}
+        </div>  
+    @endif
+    <div class="form-group">
+      <label for="exampleInputName">FullName</label>
+      <input type="text" name="name" class="form-control" id="exampleInputName" placeholder="Enter fullname">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail">Email address</label>
+      <input type="email" name="email" class="form-control" id="exampleInputEmail" placeholder="Enter email">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword2">Password Confirmation</label>
+      <input type="password" name="password_confirmation" class="form-control" id="exampleInputPassword2" placeholder="Password Confirmation">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
 @endsection

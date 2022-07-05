@@ -20,6 +20,9 @@
       <li class="nav-item">
         <a class="nav-link" href="{{route('contact')}}">Contact</a>
       </li>
+      <li class="nav-item">
+          <a class="nav-link" href="{{route('register')}}" data-animate="scrolling">Qeydiyyatdan keç</a>
+      </li>
     </ul>
   </div>
 </nav>

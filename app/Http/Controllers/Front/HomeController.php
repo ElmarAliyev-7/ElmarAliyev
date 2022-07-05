@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -30,15 +29,5 @@ class HomeController extends Controller
     public function contact()
     {
         return view('front.pages.contact');
-    }
-
-    public function register()
-    {
-        return view('front.auth.register');
-    }
-
-    public function registerPost(Request $request)
-    {
-        return $request;
     }
 }
