@@ -11,7 +11,7 @@
       {{ Session::get('success')}}
     </div>
   @endif
-
+    <a href="{{route('admin.create-user')}}">Create One</a>
   <table class="table table-bordered">
       <thead>
         <tr>

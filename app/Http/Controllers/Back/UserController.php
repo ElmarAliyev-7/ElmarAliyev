@@ -15,7 +15,7 @@ class UserController extends Controller
         if (auth()->user()->username == "admin") {
             $roles = Role::where('name', '!=', 'admin')->orderBy('id', 'DESC')->get();
         } else {
-            $roles = Role::find(3); // Standart user
+            $roles = Role::where('name', 'Standart user')->orderBy('id', 'DESC')->get();
         }
         return view('back.users.create', compact('roles'));
     }

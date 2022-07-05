@@ -32,8 +32,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
             Route::post('/add-permission/{id}', [PermissionController::class, 'submitPermission'])->name('submit-permission');
         });
         //If User have Create User Permission
+        // Route::group(['middleware' => 'CreateUserPermission'], function () {
         Route::get('/create-user',      [UserController::class, 'create'])->name('create-user');
         Route::post('/create-user',     [UserController::class, 'createPost'])->name('create-user-post');
+        // });
         //If User have Update User Permission
         Route::get('/update-user/{id}',    [UserController::class, 'update'])->name('update-user');
         Route::post('/update-user/{id}',   [UserController::class, 'updatePost'])->name('update-user-post');
