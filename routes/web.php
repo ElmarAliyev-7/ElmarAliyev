@@ -27,5 +27,5 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::post('/login-submit', [AuthController::class, 'loginPost'])->name('login-submit');
     });
 
-    Route::get('/logout',               [AuthController::class, 'logOut'])->name('logout');
+    Route::get('/logout', [AuthController::class, 'logOut'])->name('logout');
 });
