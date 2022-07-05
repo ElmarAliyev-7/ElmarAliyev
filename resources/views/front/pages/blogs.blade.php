@@ -1,5 +1,6 @@
 @extends('front.layouts.master')
 @section('content')
+@include('front.layouts.navbar')
 <div class="vg-page page-blog" id="blog">
     <div class="container">
         <div class="text-center">
