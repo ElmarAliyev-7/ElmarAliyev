@@ -26,6 +26,14 @@
       <input type="text" name="username" class="form-control" id="exampleInputUserame" placeholder="Enter Username">
     </div>
     <div class="form-group">
+      <label for="exampleSelect">Select Role</label>
+      <select class="form-control" id="exampleSelect" name="role_id">
+        @foreach ($roles as $role)
+          <option value="{{$role->id}}">{{$role->name}}</option>
+        @endforeach
+      </select>
+    </div>
+    <div class="form-group">
       <label for="exampleInputEmail">Email address</label>
       <input type="email" name="email" class="form-control" id="exampleInputEmail" placeholder="Enter email">
     </div>

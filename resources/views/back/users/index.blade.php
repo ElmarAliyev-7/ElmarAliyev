@@ -40,7 +40,7 @@
               </td>
               <td>{{$user->email}}</td>
               <td>
-                <a href="#" class="btn btn-primary btn-circle btn-sm">
+                <a href="{{route('admin.update-user',$user->id)}}" class="btn btn-primary btn-circle btn-sm">
                   <i class="fas fa-edit"></i>
                 </a>
                 <a href="{{route('admin.delete-user',$user->id)}}" class="btn btn-danger btn-circle btn-sm">
@@ -52,5 +52,5 @@
         @endforeach
       </tbody>
   </table>
-  {!! $users->links() !!}
+  {{ $users->links() }}
 @endsection

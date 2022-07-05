@@ -31,10 +31,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
             Route::get('/add-permission/{id}',  [PermissionController::class, 'addPermission'])->name('add-permission');
             Route::post('/add-permission/{id}', [PermissionController::class, 'submitPermission'])->name('submit-permission');
         });
-        //Create User
+        //If User have Create User Permission
         Route::get('/create-user',      [UserController::class, 'create'])->name('create-user');
         Route::post('/create-user',     [UserController::class, 'createPost'])->name('create-user-post');
-        //Delete User
+        //If User have Update User Permission
+        Route::get('/update-user/{id}',    [UserController::class, 'update'])->name('update-user');
+        Route::post('/update-user/{id}',   [UserController::class, 'updatePost'])->name('update-user-post');
+        //If User have Delete User Permission
         Route::get('/delete-user/{id}', [UserController::class, 'delete'])->name('delete-user');
     });
 
