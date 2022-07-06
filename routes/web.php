@@ -31,16 +31,20 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
             Route::get('/add-permission/{id}',  [PermissionController::class, 'addPermission'])->name('add-permission');
             Route::post('/add-permission/{id}', [PermissionController::class, 'submitPermission'])->name('submit-permission');
         });
-        //If User have Create User Permission
-        // Route::group(['middleware' => 'CreateUserPermission'], function () {
-        Route::get('/create-user',      [UserController::class, 'create'])->name('create-user');
-        Route::post('/create-user',     [UserController::class, 'createPost'])->name('create-user-post');
-        // });
-        //If User have Update User Permission
-        Route::get('/update-user/{id}',    [UserController::class, 'update'])->name('update-user');
-        Route::post('/update-user/{id}',   [UserController::class, 'updatePost'])->name('update-user-post');
-        //If User have Delete User Permission
-        Route::get('/delete-user/{id}', [UserController::class, 'delete'])->name('delete-user');
+        //Create User Permission
+        Route::group(['middleware' => 'CreateUser'], function () {
+            Route::get('/create-user',  [UserController::class, 'create'])->name('create-user');
+            Route::post('/create-user', [UserController::class, 'createPost'])->name('create-user-post');
+        });
+        //Update User Permission
+        Route::group(['middleware' => 'UpdateUser'], function () {
+            Route::get('/update-user/{id}',    [UserController::class, 'update'])->name('update-user');
+            Route::post('/update-user/{id}',   [UserController::class, 'updatePost'])->name('update-user-post');
+        });
+        //Delete User Permission
+        Route::group(['middleware' => 'DeleteUser'], function () {
+            Route::get('/delete-user/{id}', [UserController::class, 'delete'])->name('delete-user');
+        });
     });
 
     Route::group(['middleware' => 'isLogin'], function () {

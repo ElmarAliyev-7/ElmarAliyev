@@ -66,5 +66,8 @@ class Kernel extends HttpKernel
         'isLogin' => \App\Http\Middleware\isLogin::class,
         'notLogin' => \App\Http\Middleware\notLogin::class,
         'isAdmin' => \App\Http\Middleware\isAdmin::class,
+        'CreateUser' => \App\Http\Middleware\CreateUser::class,
+        'UpdateUser' => \App\Http\Middleware\UpdateUser::class,
+        'DeleteUser' => \App\Http\Middleware\DeleteUser::class,
     ];
 }
