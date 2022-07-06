@@ -27,27 +27,32 @@
       <tbody>
           @foreach ($users as $user)
           <tr>
-              <th>{{$loop->iteration}}</th>
-              <td>{{$user->name}}</td>
-              <td>{{$user->surname}}</td>
-              <td class="text-danger">{{$user->username}}</td>
-              <td>
-                @foreach($roles as $role)
-                  @if($user->role_id == $role->id)
-                    {{$role->name}}
-                  @endif
-                @endforeach
-              </td>
-              <td>{{$user->email}}</td>
-              <td>
-                <a href="{{route('admin.update-user',$user->id)}}" class="btn btn-primary btn-circle btn-sm">
-                  <i class="fas fa-edit"></i>
-                </a>
-                <a href="{{route('admin.delete-user',$user->id)}}" class="btn btn-danger btn-circle btn-sm">
-                  <i class="fas fa-trash"></i>
-                </a>
-              </td>
-              
+            <th>{{$loop->iteration}}</th>
+            <td>{{$user->name}}</td>
+            <td>{{$user->surname}}</td>
+            <td class="text-danger">{{$user->username}}</td>
+            <td>
+              @foreach($roles as $role)
+                @if($user->role_id == $role->id)
+                  {{$role->name}}
+                @endif
+              @endforeach
+            </td>
+            <td>{{$user->email}}</td>
+            <td>
+              @foreach ($auth_user_perms as $auth_user_perm)
+                @if($auth_user_perm->permission_id === 2)
+                  <a href="{{route('admin.update-user',$user->id)}}" class="btn btn-primary btn-circle btn-sm">
+                    <i class="fas fa-edit"></i>
+                  </a>
+                @endif
+                @if($auth_user_perm->permission_id === 3)
+                  <a href="{{route('admin.delete-user',$user->id)}}" class="btn btn-danger btn-circle btn-sm">
+                    <i class="fas fa-trash"></i>
+                  </a>
+                @endif
+              @endforeach
+            </td>
           </tr>
         @endforeach
       </tbody>

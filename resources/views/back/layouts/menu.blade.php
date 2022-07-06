@@ -42,7 +42,11 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Users</h6>
                     <a class="collapse-item" href="{{route('admin.users')}}">Users</a>
-                    <a class="collapse-item" href="{{route('admin.create-user')}}">Create User</a>
+                    @foreach ($auth_user_perms as $auth_user_perm)
+                        @if($auth_user_perm->permission_id === 1)
+                            <a class="collapse-item" href="{{route('admin.create-user')}}">Create User</a>
+                        @endif
+                    @endforeach
                 </div>
             </div>
         </li>
@@ -61,7 +65,7 @@
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
 
-        @if(auth()->user()->username === 'admin')
+        @if(auth()->user()->id === 1)
          <!-- Nav Item - HomePage -->
          <li class="nav-item">
             <a class="nav-link" href="{{route("admin.permissions")}}">
