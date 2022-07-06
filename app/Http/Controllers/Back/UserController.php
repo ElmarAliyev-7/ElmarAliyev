@@ -47,7 +47,7 @@ class UserController extends Controller
     public function update($id)
     {
         $user = User::find($id);
-        if (auth()->user()->username == "admin") {
+        if (auth()->user()->id === 1) {
             $roles = Role::where('name', '!=', 'admin')->orderBy('id', 'DESC')->get();
         } else {
             $roles = Role::find(3); // Standart user
@@ -57,6 +57,7 @@ class UserController extends Controller
 
     public function updatePost(RegisterRequest $request, $id)
     {
+        return 1;
         $user = User::findOrFail($id);
         $user->name     = $request->name;
         $user->surname  = $request->surname;
