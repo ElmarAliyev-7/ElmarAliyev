@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -14,7 +15,7 @@ class AuthController extends Controller
         return view('front.auth.register');
     }
 
-    public function registerPost(Request $request)
+    public function registerPost(RegisterRequest $request)
     {
         if ($request->password != $request->password_confirmation) {
             return redirect()->back()->with('error', 'Password doesn\'t match');

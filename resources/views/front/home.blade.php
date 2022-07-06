@@ -28,7 +28,7 @@
                 </ul>
                 <ul class="nav ml-auto">
                 <li class="nav-item">
-                    <a href="{{route('register')}}" data-animate="scrolling">Qeydiyyatdan keç</a>
+                    <a href="{{route('register')}}" data-animate="scrolling">Daxil ol\Qeydiyyatdan keç</a>
                 </li>
                 </ul>
             </div>

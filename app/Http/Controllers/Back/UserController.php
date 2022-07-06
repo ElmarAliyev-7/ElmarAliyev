@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Back;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
@@ -20,7 +21,7 @@ class UserController extends Controller
         return view('back.users.create', compact('roles'));
     }
 
-    public function createPost(Request $request)
+    public function createPost(RegisterRequest $request)
     {
         if ($request->password != $request->password_confirmation) {
             return redirect()->back()->with('error', 'Password doesn\'t match');
@@ -54,7 +55,7 @@ class UserController extends Controller
         return view('back.users.update', compact('user', 'roles'));
     }
 
-    public function updatePost(Request $request, $id)
+    public function updatePost(RegisterRequest $request, $id)
     {
         $user = User::findOrFail($id);
         $user->name     = $request->name;
