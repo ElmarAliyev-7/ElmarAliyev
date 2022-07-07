@@ -20,15 +20,15 @@
     @endif
     <div class="form-group">
       <label for="exampleInputName">Name</label>
-      <input type="text" name="name" class="form-control" id="exampleInputName" placeholder="Enter Name">
+      <input type="text" name="name" class="form-control" id="exampleInputName" placeholder="Enter Name" value="{{old('name')}}">
     </div>
     <div class="form-group">
       <label for="exampleInputSurname">Surname</label>
-      <input type="text" name="surname" class="form-control" id="exampleInputSurname" placeholder="Enter Surname">
+      <input type="text" name="surname" class="form-control" id="exampleInputSurname" placeholder="Enter Surname" value="{{old('surname')}}">
     </div>
     <div class="form-group">
       <label for="exampleInputUserame">Userame</label>
-      <input type="text" name="username" class="form-control" id="exampleInputUserame" placeholder="Enter Username">
+      <input type="text" name="username" class="form-control" id="exampleInputUserame" placeholder="Enter Username" value="{{old('username')}}">
     </div>
     <div class="form-group">
       <label for="exampleSelect">Select Role</label>
@@ -40,7 +40,7 @@
     </div>
     <div class="form-group">
       <label for="exampleInputEmail">Email address</label>
-      <input type="email" name="email" class="form-control" id="exampleInputEmail" placeholder="Enter email">
+      <input type="email" name="email" class="form-control" id="exampleInputEmail" placeholder="Enter email" value="{{old('email')}}">
     </div>
     <div class="form-group">
       <label for="exampleInputPassword1">Password</label>

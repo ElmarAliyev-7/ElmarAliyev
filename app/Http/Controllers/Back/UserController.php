@@ -55,9 +55,8 @@ class UserController extends Controller
         return view('back.users.update', compact('user', 'roles'));
     }
 
-    public function updatePost(RegisterRequest $request, $id)
+    public function updatePost(Request $request, $id)
     {
-        return 1;
         $user = User::findOrFail($id);
         $user->name     = $request->name;
         $user->surname  = $request->surname;
