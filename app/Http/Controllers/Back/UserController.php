@@ -63,9 +63,13 @@ class UserController extends Controller
         $user->username = $request->username;
         $user->role_id  = $request->role_id;
         $user->email    = $request->email;
-        $user->save();
 
-        return redirect()->back()->with('success', 'User updated successfully');
+        try {
+            $user->save();
+            return redirect()->back()->with('success', 'User updated successfully');
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
     }
 
     public function delete($id)

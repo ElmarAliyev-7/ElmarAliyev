@@ -1,19 +1,20 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Front\HomeController;
+use App\Http\Controllers\Front\HomeController as FrontHomeController;
 use App\Http\Controllers\Back\DashboardController;
 use App\Http\Controllers\Back\AuthController as BackAuthController;
 use App\Http\Controllers\Front\AuthController as FrontAuthController;
 use App\Http\Controllers\Back\PermissionController;
 use App\Http\Controllers\Back\UserController;
+use App\Http\Controllers\Back\HomeController as BackHomeController;
 
 //Front Routes
-Route::get('/',          [HomeController::class, 'index'])->name('home');
-Route::get('/about',     [HomeController::class, 'about'])->name('about');
-Route::get('/projects',  [HomeController::class, 'projects'])->name('projects');
-Route::get('/blogs',     [HomeController::class, 'blogs'])->name('blogs');
-Route::get('/contact',   [HomeController::class, 'contact'])->name('contact');
+Route::get('/',          [FrontHomeController::class, 'index'])->name('home');
+Route::get('/about',     [FrontHomeController::class, 'about'])->name('about');
+Route::get('/projects',  [FrontHomeController::class, 'projects'])->name('projects');
+Route::get('/blogs',     [FrontHomeController::class, 'blogs'])->name('blogs');
+Route::get('/contact',   [FrontHomeController::class, 'contact'])->name('contact');
 Route::get('/register',  [FrontAuthController::class, 'register'])->name('register');
 Route::post('/register', [FrontAuthController::class, 'registerPost'])->name('register-post');
 
@@ -24,6 +25,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         //Public routes for admins
         Route::get('/',            [DashboardController::class, 'index'])->name('dashboard');
         Route::get('/home',        [DashboardController::class, 'home'])->name('home');
+        Route::post('/home',       [BackHomeController::class, 'index'])->name('home-page');
         Route::get('/users',       [DashboardController::class, 'users'])->name('users');
         //Permission routes for SuperAdmin
         Route::group(['middleware' => 'isAdmin'], function () {

@@ -3,7 +3,7 @@
 @include('front.layouts.navbar')
 <div class="container">
   <div class="sing row justify-content-center p-2">
-    <button onclick="showSignUp()" class="btn btn-light" id="sing-up-button">Sing-up</button>
+    <button onclick="showSignUp()" class="btn btn-light" id="sing-up-button" style="display: none;">Sing-up</button>
     <button onclick="showSignIn()" class="btn btn-dark" id="sing-in-button">Sing-in</button>
   </div>
   @if ($errors->any())
