@@ -29,7 +29,8 @@
   <link rel="stylesheet" type="text/css" href="front/assets/css/virtual.css">
   
   <link rel="stylesheet" type="text/css" href="front/assets/css/topbar.virtual.css">
-
+  
+  @stack('css')
 </head>
 <body class="theme-red">
   
