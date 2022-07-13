@@ -27,6 +27,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('/',            [DashboardController::class, 'index'])->name('dashboard');
         Route::get('/home',        [DashboardController::class, 'home'])->name('home');
         Route::post('/home',       [BackHomeController::class, 'index'])->name('home-page');
+        Route::get('/about',       [DashboardController::class, 'about'])->name('about');
+        Route::post('/about',      [BackHomeController::class, 'about'])->name('about-post');
         Route::get('/users',       [DashboardController::class, 'users'])->name('users');
         //Permission routes for SuperAdmin
         Route::group(['middleware' => 'isAdmin'], function () {

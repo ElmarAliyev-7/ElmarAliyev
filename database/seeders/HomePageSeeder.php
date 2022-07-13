@@ -17,7 +17,7 @@ class HomePageSeeder extends Seeder
     {
         HomePage::create([
             'title' => 'Welcome',
-            'subtitle' => 'Elmar Aliyev',
+            'subtitle' => 'I\'m Elmar Aliyev',
             'duty' => 'Backend Developer',
             'background' => 'front/assets/img/bg_image_1.jpg'
         ]);

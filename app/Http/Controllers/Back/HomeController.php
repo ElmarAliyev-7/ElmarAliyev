@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Back;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\HomePage;
+use App\Models\About;
 use Illuminate\Support\Facades\File;
 
 class HomeController extends Controller
@@ -22,7 +23,7 @@ class HomeController extends Controller
                 request()->validate([
                     'background' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 ]);
-                $image_path = public_path("images/$data->background");
+                $image_path = public_path($data->background);
                 if (File::exists($image_path)) {
                     File::delete($image_path);
                 }
@@ -33,6 +34,59 @@ class HomeController extends Controller
             }
             $data->save();
             return redirect()->back()->with("success", "HomePage's data updated successfully");
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('error', $exception->getMessage());
+        };
+    }
+
+    public function about(Request $request)
+    {
+        $data = About::find(1);
+
+        $data->fullname    = $request->fullname;
+        $data->duty        = $request->duty;
+        $data->description = $request->description;
+        $data->from        = $request->from;
+        $data->lives_in    = $request->lives_in;
+        $data->age         = $request->age;
+        $data->gender      = $request->gender;
+
+        try {
+            if ($files = $request->file('cv')) {
+                request()->validate([
+                    'cv' => 'required|mimes:pdf|max:10000',
+                ]);
+                $cv_path = public_path($data->cv);
+                if (File::exists($cv_path)) {
+                    File::delete($cv_path);
+                }
+                $destinationPath = public_path('/cv/');
+                $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
+                $files->move($destinationPath, $profileImage);
+                $data->cv = 'images/' . $profileImage;
+            }
+            $data->save();
+            return redirect()->back()->with("success", "AboutPage's data updated successfully");
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('error', $exception->getMessage());
+        };
+
+        try {
+            if ($files = $request->file('image')) {
+                request()->validate([
+                    'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                ]);
+                $image_path = public_path($data->image);
+                if (File::exists($image_path)) {
+                    File::delete($image_path);
+                }
+                $destinationPath = public_path('/images/');
+                $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
+                $files->move($destinationPath, $profileImage);
+                $data->image = 'images/' . $profileImage;
+            }
+            $data->save();
+            return redirect()->back()->with("success", "AboutPage's data updated successfully");
         } catch (\Exception $exception) {
             return redirect()->back()->with('error', $exception->getMessage());
         };

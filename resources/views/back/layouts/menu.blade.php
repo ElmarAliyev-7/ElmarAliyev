@@ -54,11 +54,20 @@
         <!-- Divider -->
         <hr class="sidebar-divider">
         
-        
         <!-- Nav Item - HomePage -->
         <li class="nav-item">
             <a class="nav-link" href="{{route("admin.home")}}">
                 <span>HomePage</span>
+            </a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+        
+        <!-- Nav Item - HomePage -->
+        <li class="nav-item">
+            <a class="nav-link" href="{{route("admin.about")}}">
+                <span>About</span>
             </a>
         </li>
 

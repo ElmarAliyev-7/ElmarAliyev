@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\HomePage;
+use App\Models\About;
 
 class DashboardController extends Controller
 {
@@ -20,6 +21,12 @@ class DashboardController extends Controller
     {
         $data = HomePage::find(1);
         return view('back.home', compact('data'));
+    }
+
+    public function about()
+    {
+        $data = About::find(1);
+        return view('back.about', compact('data'));
     }
 
     public function users()
