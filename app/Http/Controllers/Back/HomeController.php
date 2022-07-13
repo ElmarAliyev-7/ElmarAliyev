@@ -56,9 +56,8 @@ class HomeController extends Controller
                 request()->validate([
                     'cv' => 'required|mimes:pdf|max:10000',
                 ]);
-                $cv_path = public_path('cv/').$data->cv;
-                if (File::exists($cv_path)) {
-                    File::delete($cv_path);
+                if (File::exists($data->cv)) {
+                    File::delete($data->cv);
                 }
                 $cv_destinationPath = public_path('cv/');
                 $cv_profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
