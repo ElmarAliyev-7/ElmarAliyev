@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Response;
 
 class HomeController extends Controller
 {
@@ -29,5 +30,11 @@ class HomeController extends Controller
     public function contact()
     {
         return view('front.pages.contact');
+    }
+
+    public function downloadCv()
+    {
+        $filepath = public_path('cv.pdf');
+        return Response::download($filepath);
     }
 }

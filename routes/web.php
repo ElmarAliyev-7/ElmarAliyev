@@ -17,6 +17,7 @@ Route::get('/blogs',     [FrontHomeController::class, 'blogs'])->name('blogs');
 Route::get('/contact',   [FrontHomeController::class, 'contact'])->name('contact');
 Route::get('/register',  [FrontAuthController::class, 'register'])->name('register');
 Route::post('/register', [FrontAuthController::class, 'registerPost'])->name('register-post');
+Route::get('download-cv', [FrontHomeController::class, 'downloadCv'])->name('download-cv');
 
 //Back Routes
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
