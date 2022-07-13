@@ -35,8 +35,7 @@ class HomeController extends Controller
 
     public function downloadCv()
     {
-        $cv = About::find(1)->cv;
-        $filepath = public_path('cv/').$cv;
+        $filepath = About::find(1)->cv;
         return Response::download($filepath);
     }
 }

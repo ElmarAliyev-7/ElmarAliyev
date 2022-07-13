@@ -52,8 +52,10 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="exampleInputCv">Cv</label>
-      <a href="{{route('download-cv')}}" class="btn btn-warning btn-sm float-right">Download CV</a>
+      <label for="exampleInputCv">Cv</label>   
+        <a href="{{route('download-cv')}}" class="btn btn-warning btn-sm float-right">
+          Download CV
+        </a>
       <input type="file" name="cv" class="form-control" id="exampleInputCv">
     </div>
     <div class="form-group">

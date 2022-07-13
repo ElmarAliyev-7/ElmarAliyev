@@ -63,7 +63,7 @@ class HomeController extends Controller
                 $cv_destinationPath = public_path('cv/');
                 $cv_profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
                 $files->move($cv_destinationPath, $cv_profileImage);
-                $data->cv = $cv_profileImage;
+                $data->cv = public_path('cv/').$cv_profileImage;
             }
 
             if ($files = $request->file('image')) {

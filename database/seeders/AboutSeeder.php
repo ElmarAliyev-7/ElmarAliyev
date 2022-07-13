@@ -23,7 +23,7 @@ class AboutSeeder extends Seeder
             'lives_in'    => 'Yeni Yasamal',
             'age'         => 20,
             'gender'      => 'male',
-            'cv'          => public_path('cv.pdf'),
+            'cv'          => public_path('cv/cv.pdf'),
             'image'       => 'front/assets/img/elmar.jpg',
         ]);
     }
