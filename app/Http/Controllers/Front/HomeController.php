@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Response;
+use App\Models\About;
 
 class HomeController extends Controller
 {
@@ -34,7 +35,8 @@ class HomeController extends Controller
 
     public function downloadCv()
     {
-        $filepath = public_path('cv.pdf');
+        $cv = About::find(1)->cv;
+        $filepath = public_path('cv/').$cv;
         return Response::download($filepath);
     }
 }

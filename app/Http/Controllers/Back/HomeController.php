@@ -56,22 +56,16 @@ class HomeController extends Controller
                 request()->validate([
                     'cv' => 'required|mimes:pdf|max:10000',
                 ]);
-                $cv_path = public_path($data->cv);
+                $cv_path = public_path('cv/').$data->cv;
                 if (File::exists($cv_path)) {
                     File::delete($cv_path);
                 }
-                $destinationPath = public_path('/cv/');
-                $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
-                $files->move($destinationPath, $profileImage);
-                $data->cv = 'images/' . $profileImage;
+                $cv_destinationPath = public_path('cv/');
+                $cv_profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
+                $files->move($cv_destinationPath, $cv_profileImage);
+                $data->cv = $cv_profileImage;
             }
-            $data->save();
-            return redirect()->back()->with("success", "AboutPage's data updated successfully");
-        } catch (\Exception $exception) {
-            return redirect()->back()->with('error', $exception->getMessage());
-        };
 
-        try {
             if ($files = $request->file('image')) {
                 request()->validate([
                     'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
