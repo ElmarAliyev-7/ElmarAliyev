@@ -19,15 +19,17 @@
             <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Parent_id</th>
+            <th scope="col">Percent</th>
             <th scope="col">Actions</th>
         </tr>
         </thead>
         <tbody>
         @foreach ($skills as $skill)
             <tr>
-                <th>{{$loop->iteration}}</th>
-                <td>{{$skill->name}}</td>
+                <th>{{$skill->id}}</th>
+                <td @if($skill->parent_id == 0) class="text-danger" @endif>{{$skill->name}}</td>
                 <td>{{$skill->parent_id}}</td>
+                <td>{{$skill->percent}}</td>
                 <td>
                     <a href="{{route('admin.delete-skill',$skill->id)}}" class="btn btn-danger btn-circle btn-sm">
                         <i class="fas fa-trash"></i>

@@ -10,7 +10,7 @@ class SkillController extends Controller
 {
     public function create()
     {
-        $skills = MySkill::select('id','name','parent_id')->get();
+        $skills = MySkill::select('id','name','parent_id')->where('parent_id',0)->get();
         return view('back.my-skills.create',compact('skills'));
     }
 
