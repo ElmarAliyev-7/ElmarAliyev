@@ -43,6 +43,11 @@ class DashboardController extends Controller
         return view('back.my-skills.index',compact('skills'));
     }
 
+    public function experience()
+    {
+        return view('back.experience.index');
+    }
+
     public function permissions()
     {
         $roles = Role::select('id', 'name')->where('name', '!=', 'admin')->get();

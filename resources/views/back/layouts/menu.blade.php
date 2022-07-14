@@ -92,6 +92,16 @@
         </li>
 
         <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Nav Item - About -->
+        <li class="nav-item">
+            <a class="nav-link" href="{{route("admin.experience")}}">
+                <span>Experience</span>
+            </a>
+        </li>
+
+        <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
 
         @if(auth()->user()->id === 1)

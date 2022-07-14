@@ -30,6 +30,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('/users',       [DashboardController::class, 'users'])->name('users');
         Route::get('/skills',      [DashboardController::class, 'skills'])->name('skills');
         Route::get('/about',       [DashboardController::class, 'about'])->name('about');
+        Route::get('/experience',  [DashboardController::class, 'experience'])->name('experience');
         Route::post('/home',       [BackHomeController::class, 'index'])->name('home-page');
         Route::post('/about',      [BackHomeController::class, 'about'])->name('about-post');
         //Skills
