@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\HomePage;
 use App\Models\About;
+use App\Models\MySkill;
 use Illuminate\Support\Facades\File;
 
 class HomeController extends Controller

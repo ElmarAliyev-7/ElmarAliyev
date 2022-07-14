@@ -8,6 +8,7 @@ use App\Http\Controllers\Front\AuthController as FrontAuthController;
 use App\Http\Controllers\Back\PermissionController;
 use App\Http\Controllers\Back\UserController;
 use App\Http\Controllers\Back\HomeController as BackHomeController;
+use App\Http\Controllers\Back\SkillController;
 
 //Front Routes
 Route::get('/',          [FrontHomeController::class, 'index'])->name('home');
@@ -26,10 +27,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         //Public routes for admins
         Route::get('/',            [DashboardController::class, 'index'])->name('dashboard');
         Route::get('/home',        [DashboardController::class, 'home'])->name('home');
-        Route::post('/home',       [BackHomeController::class, 'index'])->name('home-page');
-        Route::get('/about',       [DashboardController::class, 'about'])->name('about');
-        Route::post('/about',      [BackHomeController::class, 'about'])->name('about-post');
         Route::get('/users',       [DashboardController::class, 'users'])->name('users');
+        Route::get('/skills',      [DashboardController::class, 'skills'])->name('skills');
+        Route::get('/about',       [DashboardController::class, 'about'])->name('about');
+        Route::post('/home',       [BackHomeController::class, 'index'])->name('home-page');
+        Route::post('/about',      [BackHomeController::class, 'about'])->name('about-post');
+        //Skills
+        Route::get('/my-skills',        [SkillController::class, 'create'])->name('my-skills');
+        Route::post('my-skills',        [SkillController::class, 'createPost'])->name('skill-post');
+        Route::get('delete-skill/{id}', [SkillController::class,'delete'])->name('delete-skill');
+
         //Permission routes for SuperAdmin
         Route::group(['middleware' => 'isAdmin'], function () {
             Route::get('/permissions',          [DashboardController::class, 'permissions'])->name('permissions');

@@ -51,9 +51,29 @@
             </div>
         </li>
 
+        <!-- Myskills -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#skillsPages"
+               aria-expanded="true" aria-controls="userPages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>My Skills</span>
+            </a>
+            <div id="skillsPages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">My Skills</h6>
+                    <a class="collapse-item" href="{{route('admin.skills')}}">Skills</a>
+                    @foreach ($auth_user_perms as $auth_user_perm)
+                        @if($auth_user_perm->permission_id === 1)
+                            <a class="collapse-item" href="{{route("admin.my-skills")}}">Add Skill</a>
+                        @endif
+                    @endforeach
+                </div>
+            </div>
+        </li>
+
         <!-- Divider -->
         <hr class="sidebar-divider">
-        
+
         <!-- Nav Item - HomePage -->
         <li class="nav-item">
             <a class="nav-link" href="{{route("admin.home")}}">
@@ -63,8 +83,8 @@
 
         <!-- Divider -->
         <hr class="sidebar-divider">
-        
-        <!-- Nav Item - HomePage -->
+
+        <!-- Nav Item - About -->
         <li class="nav-item">
             <a class="nav-link" href="{{route("admin.about")}}">
                 <span>About</span>
@@ -81,11 +101,11 @@
                 <span>Give Permission to Role</span>
             </a>
         </li>
-        
+
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
         @endif
-        
+
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
@@ -235,7 +255,7 @@
                 </ul>
 
             </nav>
-            
+
             <!-- End of Topbar -->
 
             <!-- Begin Page Content -->

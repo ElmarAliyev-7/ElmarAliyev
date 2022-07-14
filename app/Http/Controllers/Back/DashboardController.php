@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Back;
 
 use App\Http\Controllers\Controller;
+use App\Models\MySkill;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
@@ -17,6 +18,13 @@ class DashboardController extends Controller
         return view('back.dashboard', compact('user_count'));
     }
 
+    public function users()
+    {
+        $users = User::where('username', '!=', 'admin')->paginate(10);
+        $roles = Role::select('id', 'name')->get();
+        return view('back.users.index', compact('users', 'roles'));
+    }
+
     public function home()
     {
         $data = HomePage::find(1);
@@ -29,11 +37,10 @@ class DashboardController extends Controller
         return view('back.about', compact('data'));
     }
 
-    public function users()
+    public function skills()
     {
-        $users = User::where('username', '!=', 'admin')->paginate(10);
-        $roles = Role::select('id', 'name')->get();
-        return view('back.users.index', compact('users', 'roles'));
+        $skills = MySkill::paginate(10);
+        return view('back.my-skills.index',compact('skills'));
     }
 
     public function permissions()

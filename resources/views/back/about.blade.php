@@ -12,11 +12,11 @@
     @if(Session::has('error'))
         <div class="alert alert-danger">
             {{ Session::get('error')}}
-        </div>  
+        </div>
     @elseif(Session::has('success'))
         <div class="alert alert-success">
             {{ Session::get('success')}}
-        </div> 
+        </div>
     @endif
     <div class="form-group">
       <label for="exampleInputTitle">FullName</label>
@@ -52,9 +52,9 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="exampleInputCv">Cv</label>   
+      <label for="exampleInputCv">Cv</label>
         <a href="{{route('download-cv')}}" class="btn btn-warning btn-sm float-right">
-          Download CV
+          Download Current CV
         </a>
       <input type="file" name="cv" class="form-control" id="exampleInputCv">
     </div>
