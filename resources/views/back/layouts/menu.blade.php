@@ -74,6 +74,29 @@
         <!-- Divider -->
         <hr class="sidebar-divider">
 
+        <!-- Experience -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#expPages"
+                aria-expanded="true" aria-controls="userPages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Experience & Education</span>
+            </a>
+            <div id="expPages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">My Skills</h6>
+                    <a class="collapse-item" href="{{route('admin.experience')}}">Experiences</a>
+                    @foreach ($auth_user_perms as $auth_user_perm)
+                        @if($auth_user_perm->permission_id === 1)
+                            <a class="collapse-item" href="{{route("admin.add-experience")}}">Add Experience</a>
+                        @endif
+                    @endforeach
+                </div>
+            </div>
+        </li>
+        
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
         <!-- Nav Item - HomePage -->
         <li class="nav-item">
             <a class="nav-link" href="{{route("admin.home")}}">
@@ -93,16 +116,6 @@
 
         <!-- Divider -->
         <hr class="sidebar-divider">
-
-        <!-- Nav Item - About -->
-        <li class="nav-item">
-            <a class="nav-link" href="{{route("admin.experience")}}">
-                <span>Experience</span>
-            </a>
-        </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block">
 
         @if(auth()->user()->id === 1)
          <!-- Nav Item - HomePage -->

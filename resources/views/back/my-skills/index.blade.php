@@ -29,7 +29,11 @@
                 <th>{{$skill->id}}</th>
                 <td @if($skill->parent_id == 0) class="text-danger" @endif>{{$skill->name}}</td>
                 <td>{{$skill->parent_id}}</td>
-                <td>{{$skill->percent}}</td>
+                <td>@if ($skill->percent == 0)
+                    ⛔
+                @else
+                    {{$skill->percent}}
+                @endif</td>
                 <td>
                     <a href="{{route('admin.delete-skill',$skill->id)}}" class="btn btn-danger btn-circle btn-sm">
                         <i class="fas fa-trash"></i>

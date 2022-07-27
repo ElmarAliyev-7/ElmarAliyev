@@ -10,8 +10,8 @@ class SkillController extends Controller
 {
     public function create()
     {
-        $skills = MySkill::select('id','name','parent_id')->where('parent_id',0)->get();
-        return view('back.my-skills.create',compact('skills'));
+        $skills = MySkill::select('id', 'name', 'parent_id')->where('parent_id', 0)->get();
+        return view('back.my-skills.create', compact('skills'));
     }
 
     public function createPost(Request $request)
@@ -20,17 +20,16 @@ class SkillController extends Controller
         $skill->name      = $request->skill;
         $parent_id        = $request->parent_id != null ? $request->parent_id  : 0;
         $skill->parent_id = $parent_id;
-        $skill->percent   = $request->percent;
+        $skill->percent   = $request->percent != null ? $request->percent  : 0;
         $skill->save();
-        return redirect()->back()->with('success','Skill added successfully!');
+        return redirect()->back()->with('success', 'Skill added successfully!');
     }
 
     public function delete($id)
     {
         $skill = MySkill::find($id);
-        if($skill->parent_id == 0)
-        {
-            MySkill::where('parent_id',$id)->update(['parent_id' => 0]);
+        if ($skill->parent_id == 0) {
+            MySkill::where('parent_id', $id)->update(['parent_id' => 0]);
         }
         MySkill::find($id)->delete();
         return redirect()->back()->with('success', 'Skill deleted successfully');

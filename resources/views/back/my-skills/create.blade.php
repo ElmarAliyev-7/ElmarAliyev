@@ -31,11 +31,24 @@
                 <label for="exampleInputTitle">Skill</label>
                 <input type="text" name="skill" class="form-control" id="exampleInputTitle" placeholder="Enter Skill Name" required>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="percent">
                 <label for="exampleInputTitle2">Enter Skill Knowladge Percent </label>
-                <input type="number" name="percent" class="form-control" id="exampleInputTitle2" placeholder="90%" required>
+                <input type="number" name="percent" class="form-control" id="exampleInputTitle2" placeholder="90%">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 @endsection
+
+@push('js')
+<script>
+    $("#exampleInputTitle1").change(function(){
+        if ( $(this).val() == "0" ) { 
+            $("#percent").show();
+        }
+        else{ 
+            $("#percent").hide();
+        }
+    }); 
+</script>
+@endpush

@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('duty');
             $table->date('start');
             $table->date('end')->nullable();
-            $table->string('work_time')->nullable();
-            $table->string('type');
+            $table->smallInteger('work_time')->nullable();
+            $table->smallInteger('type');
             $table->timestamps();
         });
     }

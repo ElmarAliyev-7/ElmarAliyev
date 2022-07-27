@@ -43,7 +43,9 @@
             </div>
         </div>
     </div>
-
+    <!--  Ajax -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+    @stack('js')
     <!-- Bootstrap core JavaScript-->
     <script src="back/vendor/jquery/jquery.min.js"></script>
     <script src="back/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

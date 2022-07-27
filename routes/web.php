@@ -2,13 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Front\HomeController as FrontHomeController;
-use App\Http\Controllers\Back\DashboardController;
-use App\Http\Controllers\Back\AuthController as BackAuthController;
 use App\Http\Controllers\Front\AuthController as FrontAuthController;
+use App\Http\Controllers\Back\AuthController as BackAuthController;
+use App\Http\Controllers\Back\HomeController as BackHomeController;
+use App\Http\Controllers\Back\DashboardController;
 use App\Http\Controllers\Back\PermissionController;
 use App\Http\Controllers\Back\UserController;
-use App\Http\Controllers\Back\HomeController as BackHomeController;
 use App\Http\Controllers\Back\SkillController;
+use App\Http\Controllers\Back\ExperienceController;
 
 //Front Routes
 Route::get('/',          [FrontHomeController::class, 'index'])->name('home');
@@ -36,7 +37,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         //Skills
         Route::get('/my-skills',        [SkillController::class, 'create'])->name('my-skills');
         Route::post('my-skills',        [SkillController::class, 'createPost'])->name('skill-post');
-        Route::get('delete-skill/{id}', [SkillController::class,'delete'])->name('delete-skill');
+        Route::get('delete-skill/{id}', [SkillController::class, 'delete'])->name('delete-skill');
+        //Experience & Education
+        Route::get('/add-experience',   [ExperienceController::class, 'create'])->name('add-experience');
 
         //Permission routes for SuperAdmin
         Route::group(['middleware' => 'isAdmin'], function () {
