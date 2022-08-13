@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Back;
 
 use App\Http\Controllers\Controller;
+use App\Models\Portfolio;
 use Illuminate\Http\Request;
 use App\Models\MySkill;
 use App\Models\User;
@@ -48,6 +49,12 @@ class DashboardController extends Controller
     {
         $experiences = Experience::all();
         return view('back.experience.index', compact('experiences'));
+    }
+
+    public function portfolio()
+    {
+        $projects = Portfolio::all();
+        return view('back.portfolio.index',compact('projects'));
     }
 
     public function permissions()

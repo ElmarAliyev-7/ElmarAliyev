@@ -10,5 +10,11 @@ return [
     '0' => 'full-time',
     '1' => 'part-time',
     '2' => 'freelance',
+  ],
+
+  'programs' => [
+      '0' => 'Core Php',
+      '1' => 'Codeigniter',
+      '2' => 'Laravel'
   ]
 ];

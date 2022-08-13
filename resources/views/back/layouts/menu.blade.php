@@ -77,7 +77,7 @@
         <!-- Experience -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#expPages"
-                aria-expanded="true" aria-controls="userPages">
+                aria-expanded="true" aria-controls="expPages">
                 <i class="fas fa-fw fa-folder"></i>
                 <span>Experience & Education</span>
             </a>
@@ -93,7 +93,30 @@
                 </div>
             </div>
         </li>
-        
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Portfolio -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#portfolioPages"
+               aria-expanded="true" aria-controls="userPages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Portfolio</span>
+            </a>
+            <div id="portfolioPages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Portfolio</h6>
+                    <a class="collapse-item" href="{{route('admin.portfolio')}}">Projects</a>
+                    @foreach ($auth_user_perms as $auth_user_perm)
+                        @if($auth_user_perm->permission_id === 1)
+                            <a class="collapse-item" href="{{route("admin.add-project")}}">Add Project</a>
+                        @endif
+                    @endforeach
+                </div>
+            </div>
+        </li>
+
         <!-- Divider -->
         <hr class="sidebar-divider">
 
