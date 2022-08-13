@@ -26,7 +26,7 @@
         <tbody>
         @foreach ($skills as $skill)
             <tr>
-                <th>{{$skill->id}}</th>
+                <th>{{$loop->iteration}}</th>
                 <td @if($skill->parent_id == 0) class="text-danger" @endif>{{$skill->name}}</td>
                 <td>{{$skill->parent_id}}</td>
                 <td>@if ($skill->percent == 0)
@@ -43,5 +43,5 @@
         @endforeach
         </tbody>
     </table>
-    {{ $skills->links() }}
+    {{ $skills->links('pagination::bootstrap-4') }}
 @endsection

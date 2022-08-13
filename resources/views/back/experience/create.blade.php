@@ -2,7 +2,7 @@
 @section('title','Create Experience & Education')
 @section('content')
     <div class="container">
-        <form action="" method="POST">
+        <form action="{{route('admin.experience-post')}}" method="POST">
             @csrf
             @if ($errors->any())
                 @foreach ($errors->all() as $error)
@@ -40,13 +40,13 @@
             </div>
             <div class="form-group">
                 <label for="exampleInputTitle5">End time</label>
-                <input type="date" name="end" class="form-control" id="exampleInputTitle5" placeholder="Enter End time" required>
+                <input type="date" name="end" class="form-control" id="exampleInputTitle5" placeholder="Enter End time">
             </div>
             <div class="form-group" id="work-time">
                 <label for="exampleInputTitle3">Work time</label>
-                <select name="type" class="form-control" id="exampleInputTitle3">
-                @foreach ( config('settings.work_time') as $item)
-                  <option value="{{$item}}">{{$item}}</option>
+                <select name="work_time" class="form-control" id="exampleInputTitle3">
+                @foreach ( config('settings.work_time') as $key => $item)
+                  <option value="{{$key}}">{{$item}}</option>
                 @endforeach
                 </select>
             </div>
@@ -58,12 +58,14 @@
 @push('js')
 <script>
   $("#exampleInputTitle1").change(function(){
-      if ( $(this).val() == "0" ) { 
+      if ( $(this).val() == "0" ) {
         $("#work-time").show();
+          $("#exampleInputTitle3").val(0);
       }
-      else{ 
+      else{
         $("#work-time").hide();
+        $("#exampleInputTitle3").val(null);
       }
-  }); 
+  });
 </script>
 @endpush

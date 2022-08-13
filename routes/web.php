@@ -13,10 +13,8 @@ use App\Http\Controllers\Back\ExperienceController;
 
 //Front Routes
 Route::get('/',          [FrontHomeController::class, 'index'])->name('home');
-Route::get('/about',     [FrontHomeController::class, 'about'])->name('about');
 Route::get('/projects',  [FrontHomeController::class, 'projects'])->name('projects');
 Route::get('/blogs',     [FrontHomeController::class, 'blogs'])->name('blogs');
-Route::get('/contact',   [FrontHomeController::class, 'contact'])->name('contact');
 Route::get('/register',  [FrontAuthController::class, 'register'])->name('register');
 Route::post('/register', [FrontAuthController::class, 'registerPost'])->name('register-post');
 Route::get('download-cv', [FrontHomeController::class, 'downloadCv'])->name('download-cv');
@@ -39,8 +37,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::post('my-skills',        [SkillController::class, 'createPost'])->name('skill-post');
         Route::get('delete-skill/{id}', [SkillController::class, 'delete'])->name('delete-skill');
         //Experience & Education
-        Route::get('/add-experience',   [ExperienceController::class, 'create'])->name('add-experience');
-
+        Route::get('/add-experience',        [ExperienceController::class, 'create'])->name('add-experience');
+        Route::post('/add-experience',       [ExperienceController::class, 'createPost'])->name('experience-post');
+        Route::get('delete-experience/{id}', [ExperienceController::class, 'delete'])->name('delete-exp');
         //Permission routes for SuperAdmin
         Route::group(['middleware' => 'isAdmin'], function () {
             Route::get('/permissions',          [DashboardController::class, 'permissions'])->name('permissions');

@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Back;
 
 use App\Http\Controllers\Controller;
-use App\Models\MySkill;
 use Illuminate\Http\Request;
+use App\Models\MySkill;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\HomePage;
 use App\Models\About;
+use App\Models\Experience;
 
 class DashboardController extends Controller
 {
@@ -45,7 +46,8 @@ class DashboardController extends Controller
 
     public function experience()
     {
-        return view('back.experience.index');
+        $experiences = Experience::all();
+        return view('back.experience.index', compact('experiences'));
     }
 
     public function permissions()

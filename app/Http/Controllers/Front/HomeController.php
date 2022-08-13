@@ -13,24 +13,14 @@ class HomeController extends Controller
         return view('front.home');
     }
 
-    public function about()
-    {
-        return view('front.pages.about');
-    }
-
     public function projects()
     {
-        return view('front.pages.projects');
+        return view('front.projects');
     }
 
     public function blogs()
     {
-        return view('front.pages.blogs');
-    }
-
-    public function contact()
-    {
-        return view('front.pages.contact');
+        return view('front.blogs');
     }
 
     public function downloadCv()

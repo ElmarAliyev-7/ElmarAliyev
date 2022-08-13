@@ -1,6 +1,5 @@
 @extends('front.layouts.master')
 @section('content')
-@include('front.layouts.navbar')
 <div class="container">
   <div class="sing row justify-content-center p-2">
     <button onclick="showSignUp()" class="btn btn-light" id="sing-up-button" style="display: none;">Sing-up</button>
@@ -14,11 +13,11 @@
   @if(Session::has('error'))
     <div class="alert alert-danger">
         {{ Session::get('error')}}
-    </div>  
+    </div>
   @elseif(Session::has('success'))
     <div class="alert alert-success">
         {{ Session::get('success')}}
-    </div>  
+    </div>
   @endif
   <div class="shadow-lg p-3 rounded" id="sing-up">
     <form action="{{route('register-post')}}" method="POST">
@@ -33,7 +32,7 @@
       </div>
       <div class="form-group">
         <label for="exampleInputUserame">Userame</label>
-        <input type="text" name="username" class="form-control" id="exampleInputUserame" placeholder="Enter Username" value="{{old('username')}}"> 
+        <input type="text" name="username" class="form-control" id="exampleInputUserame" placeholder="Enter Username" value="{{old('username')}}">
       </div>
       <div class="form-group">
         <label for="exampleInputEmail">Email address</label>

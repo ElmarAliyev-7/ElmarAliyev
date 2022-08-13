@@ -32,7 +32,7 @@
       <tbody>
           @foreach ($users as $user)
           <tr>
-            <th>{{$loop->iteration}}</th>
+            <th>{{$user->id}}</th>
             <td>{{$user->name}}</td>
             <td>{{$user->surname}}</td>
             <td class="text-danger">{{$user->username}}</td>
@@ -62,5 +62,5 @@
         @endforeach
       </tbody>
   </table>
-  {{ $users->links() }}
+  {{ $users->links('pagination::bootstrap-4') }}
 @endsection

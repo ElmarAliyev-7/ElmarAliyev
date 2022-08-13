@@ -75,5 +75,5 @@
         <a href="{{route('projects')}}" class="btn btn-theme">Load More</a>
       </div>
     </div>
-  </div> 
+  </div>
   <!-- End Portfolio page -->

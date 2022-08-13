@@ -6,12 +6,7 @@
       </div>
       <h1 class="text-center fw-normal wow fadeInUp">Get in touch</h1>
       <div class="row py-5">
-        <div class="col-lg-7 px-0 pr-lg-3 wow zoomIn">
-          <div class="vg-maps">
-            <div id="google-maps" style="width: 100%; height: 100%;"></div>
-          </div>
-        </div>
-        <div class="col-lg-5">
+        <div class="col-lg-12">
           <form class="vg-contact-form">
             <div class="form-row">
               <div class="col-12 mt-3 wow fadeInUp">
@@ -32,5 +27,5 @@
         </div>
       </div>
     </div>
-  </div> 
+  </div>
   <!-- End Contact -->

@@ -10,7 +10,26 @@ class ExperienceController extends Controller
 {
     public function create()
     {
-        $experiences = Experience::all();
-        return view('back.experience.create', compact('experiences'));
+        return view('back.experience.create');
+    }
+
+    public function createPost(Request $request)
+    {
+        $experience = new Experience;
+
+        $experience->company_name = $request->company_name;
+        $experience->duty         = $request->duty;
+        $experience->start        = $request->start;
+        $experience->end          = $request->end;
+        $experience->work_time    = $request->work_time;
+        $experience->type         = $request->type;
+        $experience->save();
+        return redirect()->back()->with('success', 'Skill added successfully!');
+    }
+
+    public function delete($id)
+    {
+        Experience::find($id)->delete();
+        return redirect()->back()->with('success', 'Experience deleted successfully');
     }
 }
