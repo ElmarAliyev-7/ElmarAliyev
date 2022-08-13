@@ -17,6 +17,9 @@
                     <a href="#about" class="nav-link" data-animate="scrolling">About</a>
                 </li>
                 <li class="nav-item">
+                    <a href="#service" class="nav-link" data-animate="scrolling">Service</a>
+                </li>
+                <li class="nav-item">
                     <a href="#portfolio" class="nav-link" data-animate="scrolling">Portfolio</a>
                 </li>
                 <li class="nav-item">
@@ -50,7 +53,7 @@
         <div class="floating-button"><span class="ti-mouse"></span></div>
     </div>
     @include('front.widgets.about')
-    {{-- @include('front.widgets.service') --}}
+     @include('front.widgets.service')
     @include('front.widgets.funfact')
     @include('front.widgets.portfolio')
     {{-- @include('front.widgets.testimonial') --}}
