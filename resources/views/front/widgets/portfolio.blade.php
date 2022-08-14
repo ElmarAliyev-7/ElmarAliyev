@@ -14,18 +14,22 @@
       </div>
       @endif
       <div class="gridder my-3">
-        @foreach($projects as $project)
-            <div class="grid-item {{$project->program}} wow zoomIn">
-              <div class="img-place" data-src="{{asset($project->image)}}" data-fancybox
-                   data-caption="<h5 class='fg-theme'>{{$project->title}}</h5> <p>{{$project->comment}}</p>">
-                <img src="{{asset($project->image)}}" alt="{{$project->title}}">
-                <div class="img-caption">
-                  <h5 class="fg-theme">{{$project->title}}</h5>
-                  <p>{{$project->comment}}</p>
-                </div>
+          <div class="container">
+              <div class="row">
+                @foreach($projects as $project)
+                    <div class="grid-item {{$project->program}} wow zoomIn col-sm-3" style="width: 300px; height: 270px;">
+                      <div class="img-place" data-src="{{asset($project->image)}}" data-fancybox
+                           data-caption="<h5 class='fg-theme'>{{$project->title}}</h5> <p>{{$project->comment}}</p>">
+                        <img src="{{asset($project->image)}}" alt="{{$project->title}}">
+                        <div class="img-caption" style="height: 50px">
+                          <h5 class="fg-theme">{{$project->title}}</h5>
+                          <p>{{$project->comment}}</p>
+                        </div>
+                      </div>
+                    </div>
+                @endforeach
               </div>
-            </div>
-        @endforeach
+          </div>
       </div> <!-- End gridder -->
     </div>
   </div>
