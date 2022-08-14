@@ -1,5 +1,5 @@
 @extends('back.layouts.master')
-@section('title','My Skills')
+@section('title','Messages')
 @section('content')
     <table class="table table-bordered">
         @if(Session::has('error'))
