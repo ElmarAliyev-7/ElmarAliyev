@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Message;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Models\RoleAndPermission;
@@ -29,5 +30,7 @@ class AppServiceProvider extends ServiceProvider
             $auth_user_perms = RoleAndPermission::where("role_id", auth()->user()->role_id)->get();
             $view->with('auth_user_perms', $auth_user_perms);
         });
+
+        View::share(['unchecked_messages' => Message::where('seen',0)->get()]);
     }
 }

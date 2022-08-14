@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('email',255);
             $table->tinyText('subject');
             $table->longText('message');
+            $table->smallInteger('seen')->default(0);
             $table->timestamps();
         });
     }

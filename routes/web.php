@@ -25,15 +25,19 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
     Route::group(['middleware' => 'notLogin'], function () {
         //Public routes for admins
-        Route::get('/',            [DashboardController::class, 'index'])->name('dashboard');
-        Route::get('/home',        [DashboardController::class, 'home'])->name('home');
-        Route::get('/users',       [DashboardController::class, 'users'])->name('users');
-        Route::get('/skills',      [DashboardController::class, 'skills'])->name('skills');
-        Route::get('/about',       [DashboardController::class, 'about'])->name('about');
-        Route::get('/experience',  [DashboardController::class, 'experience'])->name('experience');
-        Route::get('/portfolio',   [DashboardController::class, 'portfolio'])->name('portfolio');
-        Route::post('/home',       [BackHomeController::class, 'index'])->name('home-page');
-        Route::post('/about',      [BackHomeController::class, 'about'])->name('about-post');
+        Route::get('/',           [DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/home',       [DashboardController::class, 'home'])->name('home');
+        Route::get('/users',      [DashboardController::class, 'users'])->name('users');
+        Route::get('/skills',     [DashboardController::class, 'skills'])->name('skills');
+        Route::get('/about',      [DashboardController::class, 'about'])->name('about');
+        Route::get('/experience', [DashboardController::class, 'experience'])->name('experience');
+        Route::get('/portfolio',  [DashboardController::class, 'portfolio'])->name('portfolio');
+        Route::get('/message',    [DashboardController::class, 'messages'])->name('message');
+        Route::post('/home',  [BackHomeController::class, 'index'])->name('home-page');
+        Route::post('/about', [BackHomeController::class, 'about'])->name('about-post');
+        //Messages
+        Route::get('/delete-message/{id}',[DashboardController::class, 'deleteMessage'])->name('delete-message');
+        Route::get('/checked-seen/{id}',  [DashboardController::class, 'checkSeened'])->name('checked-seen');
         //Skills
         Route::get('/my-skills',        [SkillController::class, 'create'])->name('my-skills');
         Route::post('my-skills',        [SkillController::class, 'createPost'])->name('skill-post');

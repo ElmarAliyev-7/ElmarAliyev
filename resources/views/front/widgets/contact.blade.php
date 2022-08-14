@@ -7,34 +7,27 @@
       <h1 class="text-center fw-normal wow fadeInUp">Get in touch</h1>
       <div class="row py-5">
         <div class="col-lg-12">
-          <form  method="POST" action="{{route('contact')}}" class="vg-contact-form">
+          <form class="vg-contact-form" id="SubmitForm">
               @csrf
               @if ($errors->any())
                   @foreach ($errors->all() as $error)
                       <div class="alert alert-danger">{{$error}}</div>
                   @endforeach
               @endif
-              @if(Session::has('error'))
-                  <div class="alert alert-danger">
-                      {{ Session::get('error')}}
-                  </div>
-              @elseif(Session::has('success'))
-                  <div class="alert alert-success">
-                      {{ Session::get('success')}}
-                  </div>
-              @endif
+          <div class="alert alert-success" id="successMsg" style="display: none" ></div>
+          <div class="alert alert-danger"  id="errorMsg" style="display: none" ></div>
             <div class="form-row">
               <div class="col-12 mt-3 wow fadeInUp">
-                <input class="form-control" type="text" name="name" placeholder="Your Name" required>
+                <input class="form-control" type="text" name="name" placeholder="Your Name" id="InputName" required>
               </div>
               <div class="col-6 mt-3 wow fadeInUp">
-                <input class="form-control" type="text" name="email" placeholder="Email Address" required>
+                <input class="form-control" type="text" name="email" placeholder="Email Address" id="InputEmail" required>
               </div>
               <div class="col-6 mt-3 wow fadeInUp">
-                <input class="form-control" type="text" name="subject" placeholder="Subject" required>
+                <input class="form-control" type="text" name="subject" placeholder="Subject" id="InputSubject" required>
               </div>
               <div class="col-12 mt-3 wow fadeInUp">
-                <textarea class="form-control" name="message" rows="6" placeholder="Enter message here.." required></textarea>
+                <textarea class="form-control" name="message" rows="6" placeholder="Enter message here.." id="InputMessage" required></textarea>
               </div>
               <button type="submit" class="btn btn-theme mt-3 wow fadeInUp ml-1">Send Message</button>
             </div>
@@ -44,3 +37,43 @@
     </div>
   </div>
   <!-- End Contact -->
+
+@push('js')
+    <script type="text/javascript">
+
+        $('#SubmitForm').on('submit',function(e){
+            e.preventDefault();
+
+            let name    = $('#InputName').val();
+            let email   = $('#InputEmail').val();
+            let subject = $('#InputSubject').val();
+            let message = $('#InputMessage').val();
+
+            $.ajax({
+                url: "{{route('contact')}}",
+                type:"POST",
+                data:{
+                    "_token": "{{ csrf_token() }}",
+                    name:name,
+                    email:email,
+                    subject:subject,
+                    message:message,
+                },
+                success:function(response){
+                    if(response.error){
+                        $('#errorMsg').show();
+                        $('#errorMsg').text(response.error.errorInfo);
+                    }
+                    if(response.success){
+                        $('#successMsg').show();
+                        $('#successMsg').text(response.success);
+                        $('#InputName').val('');
+                        $('#InputEmail').val('');
+                        $('#InputSubject').val('');
+                        $('#InputMessage').val('');
+                    }
+                }
+            });
+        });
+    </script>
+@endpush

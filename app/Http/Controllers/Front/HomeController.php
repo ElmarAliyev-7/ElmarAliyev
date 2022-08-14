@@ -43,9 +43,9 @@ class HomeController extends Controller
         $message->message = $request->message;
         try{
             $message->save();
-            return redirect()->back()->with('success', 'Your message sended successfully');
+            return response()->json(['success'=>'Successfully']);
         }catch (\Exception $exception){
-            return redirect()->back()->with('error', $exception);
+            return response()->json(['error'=>$exception]);
         }
     }
 

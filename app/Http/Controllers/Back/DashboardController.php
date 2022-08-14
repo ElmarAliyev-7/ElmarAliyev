@@ -11,6 +11,7 @@ use App\Models\Role;
 use App\Models\HomePage;
 use App\Models\About;
 use App\Models\Experience;
+use App\Models\Message;
 
 class DashboardController extends Controller
 {
@@ -18,7 +19,8 @@ class DashboardController extends Controller
     {
         $user_count = User::count();
         $project_count = Portfolio::count();
-        return view('back.dashboard', compact('user_count', 'project_count'));
+        $message_count = Message::count();
+        return view('back.dashboard', compact('user_count', 'project_count', 'message_count'));
     }
 
     public function users()
@@ -56,6 +58,24 @@ class DashboardController extends Controller
     {
         $projects = Portfolio::all();
         return view('back.portfolio.index',compact('projects'));
+    }
+
+    public function messages()
+    {
+        $messages = Message::paginate(10);
+        return view('back.message',compact('messages'));
+    }
+
+    public function checkSeened($id)
+    {
+        Message::where('id',$id)->update(['seen' => 1]);
+        return redirect()->route('admin.message')->with('success','Checked like seen');
+    }
+
+    public function deleteMessage($id)
+    {
+        Message::find($id)->delete();
+        return redirect()->back()->with('success','Message deleted successfully');
     }
 
     public function permissions()

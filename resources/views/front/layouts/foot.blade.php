@@ -1,11 +1,8 @@
-@stack('js')
 <script src="front/assets/js/jquery-3.5.1.min.js"></script>
-
+@stack('js')
 <script src="front/assets/js/bootstrap.bundle.min.js"></script>
 
 <script src="front/assets/vendor/owl-carousel/owl.carousel.min.js"></script>
-
-{{-- <script src="front/assets/vendor/perfect-scrollbar/js/perfect-scrollbar.js"></script> --}}
 
 <script src="front/assets/vendor/isotope/isotope.pkgd.min.js"></script>
 
