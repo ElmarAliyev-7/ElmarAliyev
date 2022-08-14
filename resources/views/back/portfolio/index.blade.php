@@ -31,7 +31,7 @@
                 <th>{{$project->title}}</th>
                 <th>{{Str::limit($project->comment,25)}}</th>
                 <th><img src="{{asset($project->image)}}" width="80px" height="60px"/></th>
-                <th>{{$project->program}}</th>
+                <th>{{AppHelper::instance()->getProgramNameByKey($project->program)}}</th>
                 <td>
                     <a href="{{route('admin.update-project',$project->id)}}" class="btn btn-primary btn-circle btn-sm">
                         <i class="fas fa-edit"></i>

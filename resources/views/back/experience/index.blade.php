@@ -20,8 +20,7 @@
             <th scope="col">Company Name</th>
             <th scope="col">Type</th>
             <th scope="col">Duty</th>
-            <th scope="col">Start</th>
-            <th scope="col">End</th>
+            <th scope="col">Date</th>
             <th scope="col">Work time</th>
             <th scope="col">Actions</th>
         </tr>
@@ -37,21 +36,8 @@
                     <th class="text-primary">Education</th>
                 @endif
                 <th>{{$experience->duty}}</th>
-                <th>{{$experience->start}}</th>
-                <th>{{$experience->end}}</th>
-                <th>
-                @if(gettype($experience->work_time) == "NULL")
-                    ⛔
-                @else
-                    @if($experience->work_time == 0)
-                        full-time
-                    @elseif($experience->work_time == 1)
-                        part-time
-                    @elseif($experience->work_time == 2)
-                        freelance
-                    @endif
-                @endif
-                </th>
+                <th>{{AppHelper::instance()->formatDate($experience->start,$experience->end)}}</th>
+                <th>{{AppHelper::instance()->getWorkTime($experience->work_time)}}</th>
                 <td>
                     <a href="{{route('admin.delete-exp',$experience->id)}}" class="btn btn-danger btn-circle btn-sm">
                         <i class="fas fa-trash"></i>

@@ -14,10 +14,10 @@ use App\Http\Controllers\Back\PortfolioController;
 
 //Front Routes
 Route::get('/',          [FrontHomeController::class, 'index'])->name('home');
-Route::get('/projects',  [FrontHomeController::class, 'projects'])->name('projects');
 Route::get('/blogs',     [FrontHomeController::class, 'blogs'])->name('blogs');
 Route::get('/register',  [FrontAuthController::class, 'register'])->name('register');
 Route::post('/register', [FrontAuthController::class, 'registerPost'])->name('register-post');
+Route::post('/contact',  [FrontHomeController::class, 'contact'])->name('contact');
 Route::get('download-cv',[FrontHomeController::class, 'downloadCv'])->name('download-cv');
 
 //Back Routes
