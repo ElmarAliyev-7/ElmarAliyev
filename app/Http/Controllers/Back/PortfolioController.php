@@ -43,6 +43,41 @@ class PortfolioController extends Controller
         return $request;
     }
 
+    public function update($id)
+    {
+        $project = Portfolio::find($id);
+        return view('back.portfolio.update',compact('project'));
+    }
+
+    public function updatePost(Request $request, $id)
+    {
+        $project = Portfolio::findOrFail($id);
+        $project->title    = $request->title;
+        $project->comment  = $request->comment;
+        $project->program  = $request->program;
+
+        try {
+            if ($files = $request->file('image')) {
+                request()->validate([
+                    'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                ]);
+                $image_path = public_path($project->image);
+                if (File::exists($image_path)) {
+                    File::delete($image_path);
+                }
+                $destinationPath = public_path('/images/');
+                $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
+                $files->move($destinationPath, $profileImage);
+                $project->image = 'images/' . $profileImage;
+            }
+
+            $project->save();
+            return redirect()->back()->with('success', 'Project updated successfully');
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
+    }
+
     public function delete($id)
     {
         $project = Portfolio::find($id);

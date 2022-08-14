@@ -43,9 +43,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::post('/add-experience',       [ExperienceController::class, 'createPost'])->name('experience-post');
         Route::get('delete-experience/{id}', [ExperienceController::class, 'delete'])->name('delete-exp');
         //Portfolio
-        Route::get('/add-project',   [PortfolioController::class, 'create'])->name('add-project');
-        Route::post('/add-project',  [PortfolioController::class, 'createPost'])->name('project-post');
-        Route::get('delete-project/{id}', [PortfolioController::class, 'delete'])->name('delete-project');
+        Route::get('/add-project',         [PortfolioController::class, 'create'])->name('add-project');
+        Route::post('/add-project',        [PortfolioController::class, 'createPost'])->name('project-post');
+        Route::get('update-project/{id}',  [PortfolioController::class, 'update'])->name('update-project');
+        Route::post('update-project/{id}', [PortfolioController::class, 'updatePost'])->name('update-project-post');
+        Route::get('delete-project/{id}',  [PortfolioController::class, 'delete'])->name('delete-project');
         //Permission routes for SuperAdmin
         Route::group(['middleware' => 'isAdmin'], function () {
             Route::get('/permissions',          [DashboardController::class, 'permissions'])->name('permissions');

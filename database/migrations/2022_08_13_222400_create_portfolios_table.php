@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('portfolios', function (Blueprint $table) {
             $table->id();
             $table->string('title', 35);
-            $table->string('comment', 50)->nullable();
+            $table->text('comment')->nullable();
             $table->smallInteger('program');
             $table->string('image');
             $table->timestamps();

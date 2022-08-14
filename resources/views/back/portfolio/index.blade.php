@@ -29,11 +29,14 @@
             <tr>
                 <th>{{$loop->iteration}}</th>
                 <th>{{$project->title}}</th>
-                <th>{{$project->comment}}</th>
+                <th>{{Str::limit($project->comment,25)}}</th>
                 <th><img src="{{asset($project->image)}}" width="80px" height="60px"/></th>
                 <th>{{$project->program}}</th>
                 <td>
-                    <a href="{{route('admin.delete-project',$project->id)}}}" class="btn btn-danger btn-circle btn-sm">
+                    <a href="{{route('admin.update-project',$project->id)}}" class="btn btn-primary btn-circle btn-sm">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a href="{{route('admin.delete-project',$project->id)}}" class="btn btn-danger btn-circle btn-sm">
                         <i class="fas fa-trash"></i>
                     </a>
                 </td>
