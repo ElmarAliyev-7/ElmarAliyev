@@ -18,7 +18,7 @@ Route::get('/blogs',     [FrontHomeController::class, 'blogs'])->name('blogs');
 Route::get('/register',  [FrontAuthController::class, 'register'])->name('register');
 Route::post('/register', [FrontAuthController::class, 'registerPost'])->name('register-post');
 Route::post('/contact',  [FrontHomeController::class, 'contact'])->name('contact');
-Route::get('download-cv',[FrontHomeController::class, 'downloadCv'])->name('download-cv');
+Route::get('download-cv', [FrontHomeController::class, 'downloadCv'])->name('download-cv');
 
 //Back Routes
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
@@ -36,22 +36,15 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::post('/home',  [BackHomeController::class, 'index'])->name('home-page');
         Route::post('/about', [BackHomeController::class, 'about'])->name('about-post');
         //Messages
-        Route::get('/delete-message/{id}',[DashboardController::class, 'deleteMessage'])->name('delete-message');
+        Route::get('/delete-message/{id}', [DashboardController::class, 'deleteMessage'])->name('delete-message');
         Route::get('/checked-seen/{id}',  [DashboardController::class, 'checkSeened'])->name('checked-seen');
-        //Skills
-        Route::get('/my-skills',        [SkillController::class, 'create'])->name('my-skills');
-        Route::post('my-skills',        [SkillController::class, 'createPost'])->name('skill-post');
-        Route::get('delete-skill/{id}', [SkillController::class, 'delete'])->name('delete-skill');
-        //Experience & Education
-        Route::get('/add-experience',        [ExperienceController::class, 'create'])->name('add-experience');
-        Route::post('/add-experience',       [ExperienceController::class, 'createPost'])->name('experience-post');
-        Route::get('delete-experience/{id}', [ExperienceController::class, 'delete'])->name('delete-exp');
         //Portfolio
         Route::get('/add-project',         [PortfolioController::class, 'create'])->name('add-project');
         Route::post('/add-project',        [PortfolioController::class, 'createPost'])->name('project-post');
         Route::get('update-project/{id}',  [PortfolioController::class, 'update'])->name('update-project');
         Route::post('update-project/{id}', [PortfolioController::class, 'updatePost'])->name('update-project-post');
         Route::get('delete-project/{id}',  [PortfolioController::class, 'delete'])->name('delete-project');
+
         //Permission routes for SuperAdmin
         Route::group(['middleware' => 'isAdmin'], function () {
             Route::get('/permissions',          [DashboardController::class, 'permissions'])->name('permissions');
@@ -71,6 +64,24 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         //Delete User Permission
         Route::group(['middleware' => 'DeleteUser'], function () {
             Route::get('/delete-user/{id}', [UserController::class, 'delete'])->name('delete-user');
+        });
+        //Create Skill
+        Route::group(['middleware' => 'CreateSkill'], function () {
+            Route::get('/my-skills',        [SkillController::class, 'create'])->name('my-skills');
+            Route::post('my-skills',        [SkillController::class, 'createPost'])->name('skill-post');
+        });
+        //Delete Skill
+        Route::group(['middleware' => 'DeleteSkill'], function () {
+            Route::get('delete-skill/{id}', [SkillController::class, 'delete'])->name('delete-skill');
+        });
+        //Create Experience & Education
+        Route::group(['middleware' => 'CreateExperience'], function () {
+            Route::get('/add-experience',  [ExperienceController::class, 'create'])->name('add-experience');
+            Route::post('/add-experience', [ExperienceController::class, 'createPost'])->name('experience-post');
+        });
+        //Delete Experience & Education
+        Route::group(['middleware' => 'DeleteExperience'], function () {
+            Route::get('delete-experience/{id}', [ExperienceController::class, 'delete'])->name('delete-exp');
         });
     });
 
