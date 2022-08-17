@@ -35,15 +35,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('/message',    [DashboardController::class, 'messages'])->name('message');
         Route::post('/home',  [BackHomeController::class, 'index'])->name('home-page');
         Route::post('/about', [BackHomeController::class, 'about'])->name('about-post');
-        //Messages
-        Route::get('/delete-message/{id}', [DashboardController::class, 'deleteMessage'])->name('delete-message');
         Route::get('/checked-seen/{id}',  [DashboardController::class, 'checkSeened'])->name('checked-seen');
-        //Portfolio
-        Route::get('/add-project',         [PortfolioController::class, 'create'])->name('add-project');
-        Route::post('/add-project',        [PortfolioController::class, 'createPost'])->name('project-post');
-        Route::get('update-project/{id}',  [PortfolioController::class, 'update'])->name('update-project');
-        Route::post('update-project/{id}', [PortfolioController::class, 'updatePost'])->name('update-project-post');
-        Route::get('delete-project/{id}',  [PortfolioController::class, 'delete'])->name('delete-project');
 
         //Permission routes for SuperAdmin
         Route::group(['middleware' => 'isAdmin'], function () {
@@ -82,6 +74,24 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         //Delete Experience & Education
         Route::group(['middleware' => 'DeleteExperience'], function () {
             Route::get('delete-experience/{id}', [ExperienceController::class, 'delete'])->name('delete-exp');
+        });
+        //Create Project
+        Route::group(['middleware' => 'CreateProject'], function () {
+            Route::get('/add-project',         [PortfolioController::class, 'create'])->name('add-project');
+            Route::post('/add-project',        [PortfolioController::class, 'createPost'])->name('project-post');
+        });
+        //Update Project
+        Route::group(['middleware' => 'UpdateProject'], function () {
+            Route::get('update-project/{id}',  [PortfolioController::class, 'update'])->name('update-project');
+            Route::post('update-project/{id}', [PortfolioController::class, 'updatePost'])->name('update-project-post');
+        });
+        //Delete Project
+        Route::group(['middleware' => 'DeleteProject'], function () {
+            Route::get('delete-project/{id}',  [PortfolioController::class, 'delete'])->name('delete-project');
+        });
+        //Delete Message
+        Route::group(['middleware' => 'DeleteMessage'], function () {
+            Route::get('/delete-message/{id}', [DashboardController::class, 'deleteMessage'])->name('delete-message');
         });
     });
 
