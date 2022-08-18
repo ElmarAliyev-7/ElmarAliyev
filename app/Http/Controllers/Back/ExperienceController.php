@@ -24,12 +24,12 @@ class ExperienceController extends Controller
         $experience->work_time    = $request->work_time;
         $experience->type         = $request->type;
         $experience->save();
-        return redirect()->back()->with('success', 'Skill added successfully!');
+        return redirect()->back()->with('success', 'Added successfully!');
     }
 
     public function delete($id)
     {
         Experience::find($id)->delete();
-        return redirect()->back()->with('success', 'Experience deleted successfully');
+        return redirect()->back()->with('success', 'Deleted successfully');
     }
 }
