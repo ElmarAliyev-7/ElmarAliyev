@@ -22,7 +22,7 @@ class HomeController extends Controller
         $skills = MySkill::where('parent_id',0)->get();
         $educations = Experience::where('work_time',null)->orderBy('end', 'desc')->get();
         $experiences = Experience::where('work_time', '!=', null)->orderBy('id', 'desc')->get();
-        $projects = Portfolio::orderBy('order','desc')->get();
+        $projects = Portfolio::orderBy('order','asc')->get();
 
         return view('front.home',
             compact('home_page','home_subtitle_array' ,'about' , 'skills',

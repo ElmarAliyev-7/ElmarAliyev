@@ -12,11 +12,20 @@
     @if(Session::has('error'))
         <div class="alert alert-danger">
             {{ Session::get('error')}}
-        </div>  
+        </div>
     @elseif(Session::has('success'))
         <div class="alert alert-success">
             {{ Session::get('success')}}
-        </div> 
+        </div>
+    @endif
+    @if(count($auth_user_perms) == 0)
+        <div class="alert alert-warning">You don't have permission for updating data</div>
+    @else
+        @foreach ($auth_user_perms as $auth_user_perm)
+            @if($auth_user_perm->permission_id !== 11)
+                <div class="alert alert-warning">You don't have permission for updating data</div>
+            @endif
+        @endforeach
     @endif
     <div class="form-group">
       <label for="exampleInputTitle">Title</label>
@@ -37,7 +46,11 @@
       </label>
       <input type="file" name="background" class="form-control" id="exampleInputBackground">
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+      @foreach ($auth_user_perms as $auth_user_perm)
+      @if($auth_user_perm->permission_id === 11)
+        <button type="submit" class="btn btn-primary">Submit</button>
+      @endif
+      @endforeach
   </form>
 </div>
 @endsection

@@ -20,6 +20,7 @@ class PortfolioController extends Controller
         $project->title   = $request->title;
         $project->comment = $request->comment;
         $project->program = $request->program;
+        $project->order   = $request->order ? $request->order : 0;
 
         try {
             if ($files = $request->file('image')) {
@@ -36,7 +37,7 @@ class PortfolioController extends Controller
                 $project->image = 'images/' . $profileImage;
             }
             $project->save();
-            return redirect()->back()->with("success", "Updated successfully");
+            return redirect()->back()->with("success", "Project added successfully");
         } catch (\Exception $exception) {
             return redirect()->back()->with('error', $exception->getMessage());
         };
@@ -55,6 +56,7 @@ class PortfolioController extends Controller
         $project->title    = $request->title;
         $project->comment  = $request->comment;
         $project->program  = $request->program;
+        $project->order    = $request->order ? $request->order : 0;
 
         try {
             if ($files = $request->file('image')) {

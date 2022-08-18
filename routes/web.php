@@ -32,16 +32,25 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('/about',      [DashboardController::class, 'about'])->name('about');
         Route::get('/experience', [DashboardController::class, 'experience'])->name('experience');
         Route::get('/portfolio',  [DashboardController::class, 'portfolio'])->name('portfolio');
-        Route::get('/message',    [DashboardController::class, 'messages'])->name('message');
-        Route::post('/home',  [BackHomeController::class, 'index'])->name('home-page');
-        Route::post('/about', [BackHomeController::class, 'about'])->name('about-post');
-        Route::get('/checked-seen/{id}',  [DashboardController::class, 'checkSeened'])->name('checked-seen');
 
         //Permission routes for SuperAdmin
         Route::group(['middleware' => 'isAdmin'], function () {
             Route::get('/permissions',          [DashboardController::class, 'permissions'])->name('permissions');
             Route::get('/add-permission/{id}',  [PermissionController::class, 'addPermission'])->name('add-permission');
             Route::post('/add-permission/{id}', [PermissionController::class, 'submitPermission'])->name('submit-permission');
+        });
+        //View Message
+        Route::group(['middleware' => 'ViewMessage'], function () {
+            Route::get('/message',            [DashboardController::class, 'messages'])->name('message');
+            Route::get('/checked-seen/{id}',  [DashboardController::class, 'checkSeened'])->name('checked-seen');
+        });
+        //Update HomePage Permission
+        Route::group(['middleware' => 'UpdateHomePage'], function () {
+            Route::post('/home',  [BackHomeController::class, 'index'])->name('home-page');
+        });
+        //Update AboutPage Permission
+        Route::group(['middleware' => 'UpdateAboutPage'], function () {
+            Route::post('/about', [BackHomeController::class, 'about'])->name('about-post');
         });
         //Create User Permission
         Route::group(['middleware' => 'CreateUser'], function () {

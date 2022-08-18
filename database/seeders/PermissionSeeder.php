@@ -28,5 +28,6 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'Update HomePage']); // 11
         Permission::create(['name' => 'Update AboutPage']); // 12
         Permission::create(['name' => 'Delete Message']); // 13
+        Permission::create(['name' => 'View Messages']); //14
     }
 }

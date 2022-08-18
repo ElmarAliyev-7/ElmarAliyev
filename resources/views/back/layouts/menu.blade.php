@@ -211,6 +211,8 @@
                         </div>
                     </li>
 
+                 @foreach ($auth_user_perms as $auth_user_perm)
+                    @if($auth_user_perm->permission_id === 14)
                     <!-- Nav Item - Messages -->
                     <li class="nav-item dropdown no-arrow mx-1">
                         <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
@@ -238,7 +240,8 @@
                                href="{{route('admin.message')}}">Read More Messages</a>
                         </div>
                     </li>
-
+                    @endif
+                @endforeach
                     <div class="topbar-divider d-none d-sm-block"></div>
 
                     <!-- Nav Item - User Information -->

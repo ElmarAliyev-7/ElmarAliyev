@@ -77,5 +77,8 @@ class Kernel extends HttpKernel
         'DeleteProject' => \App\Http\Middleware\DeleteProject::class,
         'DeleteMessage' => \App\Http\Middleware\DeleteMessage::class,
         'UpdateProject' => \App\Http\Middleware\UpdateProject::class,
+        'UpdateAboutPage' => \App\Http\Middleware\UpdateAboutPage::class,
+        'UpdateHomePage' => \App\Http\Middleware\UpdateHomePage::class,
+        'ViewMessage' => \App\Http\Middleware\ViewMessage::class,
     ];
 }
