@@ -3,7 +3,7 @@
       <div class="row">
         <div class="col-lg-4 py-3">
           <div class="img-place wow fadeInUp">
-            <img src="{{asset($about->image)}}" alt="{{$about->fullname}}">
+            <img src="{{asset($about->image)}}" alt="{{$about->fullname}}" style="object-fit:cover;height: 100%">
           </div>
         </div>
         <div class="col-lg-6 offset-lg-1 wow fadeInRight">
