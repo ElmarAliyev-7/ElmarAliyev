@@ -11,6 +11,7 @@ use App\Models\HomePage;
 use App\Models\MySkill;
 use App\Models\Experience;
 use App\Models\Message;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -29,23 +30,29 @@ class HomeController extends Controller
             'educations', 'experiences' ,'projects'));
     }
 
-    public function blogs()
-    {
-        return view('front.blogs');
-    }
-
     public function contact(Request $request)
     {
-        $message = new Message;
-        $message->name    = $request->name;
-        $message->email   = $request->email;
-        $message->subject = $request->subject;
-        $message->message = $request->message;
+        $new_message  = new Message;
+        $new_message->name    = $request->name;
+        $new_message->email   = $request->email;
+        $new_message->subject = $request->subject;
+        $new_message->message = $request->message;
         try{
-            $message->save();
-            return response()->json(['success'=>'Successfully']);
+            $data = [
+                'name'   => $request->name,
+                'email'  => $request->email,
+                'subject'=> $request->subject,
+                'msg'    => $request->message,
+            ];
+            $email = $request->email;
+            Mail::send('front.mail', $data, function($m) use ($email) {
+                $m->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'));
+                $m->to(env('MAIL_USERNAME'), env('MAIL_FROM_NAME') )->subject($email);
+            });
+            $new_message->save();
+            return response()->json(['success'=>'Message Sended Successfully']);
         }catch (\Exception $exception){
-            return response()->json(['error'=>$exception]);
+            return response()->json(['error'=> $exception->getMessage()]);
         }
     }
 

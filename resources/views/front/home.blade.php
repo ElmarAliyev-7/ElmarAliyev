@@ -51,7 +51,7 @@
         <div class="floating-button"><span class="ti-mouse"></span></div>
     </div>
     @include('front.widgets.about')
-     @include('front.widgets.service')
+    @include('front.widgets.service')
     @include('front.widgets.funfact')
     @include('front.widgets.portfolio')
     @include('front.widgets.contact')

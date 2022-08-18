@@ -62,7 +62,7 @@
                 success:function(response){
                     if(response.error){
                         $('#errorMsg').show();
-                        $('#errorMsg').text(response.error.errorInfo);
+                        $('#errorMsg').text(response.error);
                     }
                     if(response.success){
                         $('#successMsg').show();
