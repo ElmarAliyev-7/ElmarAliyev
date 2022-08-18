@@ -69,5 +69,13 @@ class Kernel extends HttpKernel
         'CreateUser' => \App\Http\Middleware\CreateUser::class,
         'UpdateUser' => \App\Http\Middleware\UpdateUser::class,
         'DeleteUser' => \App\Http\Middleware\DeleteUser::class,
+        'CreateSkill' => \App\Http\Middleware\CreateSkill::class,
+        'DeleteSkill' => \App\Http\Middleware\DeleteSkill::class,
+        'CreateExperience' => \App\Http\Middleware\CreateExperience::class,
+        'DeleteExperience' => \App\Http\Middleware\DeleteExperience::class,
+        'CreateProject' => \App\Http\Middleware\CreateProject::class,
+        'DeleteProject' => \App\Http\Middleware\DeleteProject::class,
+        'DeleteMessage' => \App\Http\Middleware\DeleteMessage::class,
+        'UpdateProject' => \App\Http\Middleware\UpdateProject::class,
     ];
 }

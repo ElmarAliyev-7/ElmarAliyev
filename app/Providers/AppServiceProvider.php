@@ -26,11 +26,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer(['back.layouts.menu', 'back.users.index'], function ($view) {
+        View::composer([
+            'back.layouts.menu', 'back.users.index', 'back.my-skills.index',
+            'back.experience.index'
+        ], function ($view) {
             $auth_user_perms = RoleAndPermission::where("role_id", auth()->user()->role_id)->get();
             $view->with('auth_user_perms', $auth_user_perms);
         });
 
-        View::share(['unchecked_messages' => Message::where('seen',0)->get()]);
+        View::share(['unchecked_messages' => Message::where('seen', 0)->get()]);
     }
 }

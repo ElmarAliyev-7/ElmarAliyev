@@ -63,7 +63,7 @@
                     <h6 class="collapse-header">My Skills</h6>
                     <a class="collapse-item" href="{{route('admin.skills')}}">Skills</a>
                     @foreach ($auth_user_perms as $auth_user_perm)
-                        @if($auth_user_perm->permission_id === 1)
+                        @if($auth_user_perm->permission_id === 4)
                             <a class="collapse-item" href="{{route("admin.my-skills")}}">Add Skill</a>
                         @endif
                     @endforeach
@@ -83,10 +83,10 @@
             </a>
             <div id="expPages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">My Skills</h6>
+                    <h6 class="collapse-header">Experience & Education</h6>
                     <a class="collapse-item" href="{{route('admin.experience')}}">Experiences</a>
                     @foreach ($auth_user_perms as $auth_user_perm)
-                        @if($auth_user_perm->permission_id === 1)
+                        @if($auth_user_perm->permission_id === 6)
                             <a class="collapse-item" href="{{route("admin.add-experience")}}">Add Experience</a>
                         @endif
                     @endforeach
@@ -109,7 +109,7 @@
                     <h6 class="collapse-header">Portfolio</h6>
                     <a class="collapse-item" href="{{route('admin.portfolio')}}">Projects</a>
                     @foreach ($auth_user_perms as $auth_user_perm)
-                        @if($auth_user_perm->permission_id === 1)
+                        @if($auth_user_perm->permission_id === 8)
                             <a class="collapse-item" href="{{route("admin.add-project")}}">Add Project</a>
                         @endif
                     @endforeach
