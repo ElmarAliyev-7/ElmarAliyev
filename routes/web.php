@@ -15,7 +15,6 @@ use App\Http\Controllers\Back\MessageController;
 
 //Front Routes
 Route::get('/',          [FrontHomeController::class, 'index'])->name('home');
-Route::get('/blogs',     [FrontHomeController::class, 'blogs'])->name('blogs');
 Route::get('/register',  [FrontAuthController::class, 'register'])->name('register');
 Route::post('/register', [FrontAuthController::class, 'registerPost'])->name('register-post');
 Route::post('/contact',  [FrontHomeController::class, 'contact'])->name('contact');
