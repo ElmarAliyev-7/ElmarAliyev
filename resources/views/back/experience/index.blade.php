@@ -11,12 +11,10 @@
             {{ Session::get('success')}}
         </div>
     @endif
-    @foreach ($auth_user_perms as $auth_user_perm)
-    @if($auth_user_perm->permission_id === 6)
+    @if(AppHelper::instance()->checkPermisson(6) == 1)
         <a href="{{route('admin.add-experience')}}" class="btn btn-success btn-sm">Add new Experience
         </a> <hr>
     @endif
-    @endforeach
     <table class="table table-bordered">
         <thead>
         <tr>
@@ -43,13 +41,11 @@
                 <th>{{AppHelper::instance()->formatDate($experience->start,$experience->end)}}</th>
                 <th>{{AppHelper::instance()->getWorkTime($experience->work_time)}}</th>
                 <td>
-                @foreach ($auth_user_perms as $auth_user_perm)
-                    @if($auth_user_perm->permission_id === 7)
+                    @if(AppHelper::instance()->checkPermisson(7) == 1)
                     <a href="{{route('admin.delete-exp',$experience->id)}}" class="btn btn-danger btn-circle btn-sm">
                         <i class="fas fa-trash"></i>
                     </a>
                     @endif
-                @endforeach
                 </td>
             </tr>
         @endforeach

@@ -18,15 +18,8 @@
             {{ Session::get('success')}}
         </div>
     @endif
-      @if(count($auth_user_perms) == 0)
+      @if(AppHelper::instance()->checkPermisson(12) == 0)
           <div class="alert alert-warning">You don't have permission for updating data</div>
-      @else
-          @foreach ($auth_user_perms as $auth_user_perm)
-              @if($auth_user_perm->permission_id !== 12)
-
-                  <div class="alert alert-warning">You don't have permission for updating data</div>
-              @endif
-          @endforeach
       @endif
     <div class="form-group">
       <label for="exampleInputTitle">FullName</label>
@@ -75,11 +68,9 @@
       </label>
       <input type="file" name="image" class="form-control" id="exampleInputBackground">
     </div>
-      @foreach ($auth_user_perms as $auth_user_perm)
-      @if($auth_user_perm->permission_id === 12)
+      @if(AppHelper::instance()->checkPermisson(12) == 1)
         <button type="submit" class="btn btn-primary">Submit</button>
       @endif
-      @endforeach
   </form>
 </div>
 @endsection

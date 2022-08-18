@@ -11,12 +11,10 @@
             {{ Session::get('success')}}
         </div>
     @endif
-    @foreach ($auth_user_perms as $auth_user_perm)
-    @if($auth_user_perm->permission_id === 8)
+    @if(AppHelper::instance()->checkPermisson(8) == 1)
         <a href="{{route('admin.add-project')}}" class="btn btn-success btn-sm">Add new Project
         </a> <hr>
     @endif
-    @endforeach
     <table class="table table-bordered">
         <thead>
         <tr>
@@ -39,12 +37,16 @@
                 <th>{{AppHelper::instance()->getProgramNameByKey($project->program)}}</th>
                 <th>{{$project->order}}</th>
                 <td>
+                @if(AppHelper::instance()->checkPermisson(9) == 1)
                     <a href="{{route('admin.update-project',$project->id)}}" class="btn btn-primary btn-circle btn-sm">
                         <i class="fas fa-edit"></i>
                     </a>
+                @endif
+                @if(AppHelper::instance()->checkPermisson(10) == 1)
                     <a href="{{route('admin.delete-project',$project->id)}}" class="btn btn-danger btn-circle btn-sm">
                         <i class="fas fa-trash"></i>
                     </a>
+                @endif
                 </td>
             </tr>
         @endforeach

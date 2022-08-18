@@ -11,12 +11,10 @@
             {{ Session::get('success')}}
         </div>
     @endif
-    @foreach ($auth_user_perms as $auth_user_perm)
-      @if($auth_user_perm->permission_id === 4)
+    @if(AppHelper::instance()->checkPermisson(4) == 1)
         <a href="{{route('admin.my-skills')}}" class="btn btn-success btn-sm">Add new skill
         </a> <hr>
-      @endif
-    @endforeach
+    @endif
     <table class="table table-bordered">
         <thead>
         <tr>
@@ -39,13 +37,11 @@
                     {{$skill->percent}}
                 @endif</td>
                 <td>
-                @foreach ($auth_user_perms as $auth_user_perm)
-                    @if($auth_user_perm->permission_id === 5)
-                        <a href="{{route('admin.delete-skill',$skill->id)}}" class="btn btn-danger btn-circle btn-sm">
-                            <i class="fas fa-trash"></i>
-                        </a>
-                    @endif
-                @endforeach
+                @if(AppHelper::instance()->checkPermisson(5) == 1)
+                    <a href="{{route('admin.delete-skill',$skill->id)}}" class="btn btn-danger btn-circle btn-sm">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                @endif
                 </td>
             </tr>
         @endforeach

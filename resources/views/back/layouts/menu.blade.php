@@ -42,11 +42,9 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Users</h6>
                     <a class="collapse-item" href="{{route('admin.users')}}">Users</a>
-                    @foreach ($auth_user_perms as $auth_user_perm)
-                        @if($auth_user_perm->permission_id === 1)
+                    @if(AppHelper::instance()->checkPermisson(1) == 1)
                             <a class="collapse-item" href="{{route('admin.create-user')}}">Create User</a>
-                        @endif
-                    @endforeach
+                    @endif
                 </div>
             </div>
         </li>
@@ -62,11 +60,9 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">My Skills</h6>
                     <a class="collapse-item" href="{{route('admin.skills')}}">Skills</a>
-                    @foreach ($auth_user_perms as $auth_user_perm)
-                        @if($auth_user_perm->permission_id === 4)
+                    @if(AppHelper::instance()->checkPermisson(4) == 1)
                             <a class="collapse-item" href="{{route("admin.my-skills")}}">Add Skill</a>
-                        @endif
-                    @endforeach
+                    @endif
                 </div>
             </div>
         </li>
@@ -85,11 +81,9 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Experience & Education</h6>
                     <a class="collapse-item" href="{{route('admin.experience')}}">Experiences</a>
-                    @foreach ($auth_user_perms as $auth_user_perm)
-                        @if($auth_user_perm->permission_id === 6)
+                    @if(AppHelper::instance()->checkPermisson(6) == 1)
                             <a class="collapse-item" href="{{route("admin.add-experience")}}">Add Experience</a>
-                        @endif
-                    @endforeach
+                    @endif
                 </div>
             </div>
         </li>
@@ -108,11 +102,9 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Portfolio</h6>
                     <a class="collapse-item" href="{{route('admin.portfolio')}}">Projects</a>
-                    @foreach ($auth_user_perms as $auth_user_perm)
-                        @if($auth_user_perm->permission_id === 8)
+                    @if(AppHelper::instance()->checkPermisson(8) == 1)
                             <a class="collapse-item" href="{{route("admin.add-project")}}">Add Project</a>
-                        @endif
-                    @endforeach
+                    @endif
                 </div>
             </div>
         </li>
@@ -211,8 +203,7 @@
                         </div>
                     </li>
 
-                 @foreach ($auth_user_perms as $auth_user_perm)
-                    @if($auth_user_perm->permission_id === 14)
+                @if(AppHelper::instance()->checkPermisson(14) == 1)
                     <!-- Nav Item - Messages -->
                     <li class="nav-item dropdown no-arrow mx-1">
                         <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
@@ -240,8 +231,7 @@
                                href="{{route('admin.message')}}">Read More Messages</a>
                         </div>
                     </li>
-                    @endif
-                @endforeach
+                @endif
                     <div class="topbar-divider d-none d-sm-block"></div>
 
                     <!-- Nav Item - User Information -->
