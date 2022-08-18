@@ -11,6 +11,7 @@ use App\Http\Controllers\Back\UserController;
 use App\Http\Controllers\Back\SkillController;
 use App\Http\Controllers\Back\ExperienceController;
 use App\Http\Controllers\Back\PortfolioController;
+use App\Http\Controllers\Back\MessageController;
 
 //Front Routes
 Route::get('/',          [FrontHomeController::class, 'index'])->name('home');
@@ -42,7 +43,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         //View Message
         Route::group(['middleware' => 'ViewMessage'], function () {
             Route::get('/message',            [DashboardController::class, 'messages'])->name('message');
-            Route::get('/checked-seen/{id}',  [DashboardController::class, 'checkSeened'])->name('checked-seen');
+            Route::get('/checked-seen/{id}',  [MessageController::class, 'checkSeened'])->name('checked-seen');
         });
         //Update HomePage Permission
         Route::group(['middleware' => 'UpdateHomePage'], function () {
@@ -100,7 +101,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         });
         //Delete Message
         Route::group(['middleware' => 'DeleteMessage'], function () {
-            Route::get('/delete-message/{id}', [DashboardController::class, 'deleteMessage'])->name('delete-message');
+            Route::get('/delete-message/{id}', [MessageController::class, 'deleteMessage'])->name('delete-message');
         });
     });
 

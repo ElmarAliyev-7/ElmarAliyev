@@ -66,18 +66,6 @@ class DashboardController extends Controller
         return view('back.message',compact('messages'));
     }
 
-    public function checkSeened($id)
-    {
-        Message::where('id',$id)->update(['seen' => 1]);
-        return redirect()->route('admin.message')->with('success','Checked like seen');
-    }
-
-    public function deleteMessage($id)
-    {
-        Message::find($id)->delete();
-        return redirect()->back()->with('success','Message deleted successfully');
-    }
-
     public function permissions()
     {
         $roles = Role::select('id', 'name')->where('name', '!=', 'admin')->get();
