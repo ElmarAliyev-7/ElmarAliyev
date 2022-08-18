@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('comment')->nullable();
             $table->smallInteger('program');
             $table->string('image');
+            $table->integer('order');
             $table->timestamps();
         });
     }

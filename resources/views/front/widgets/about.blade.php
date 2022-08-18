@@ -70,7 +70,7 @@
                 </details>
               </span>
               <div class="progress">
-                <div class="progress-bar" role="progressbar" style="width: 84%;" aria-valuenow="84" aria-valuemin="0" aria-valuemax="100">84%</div>
+                <div class="progress-bar" role="progressbar" style="width: 78%;" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100">78%</div>
               </div>
             </div>
             <div class="progress-wrapper wow fadeInUp">
