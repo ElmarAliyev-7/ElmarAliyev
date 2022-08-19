@@ -47,31 +47,24 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
     @stack('js')
     <!-- Bootstrap core JavaScript-->
-    <script src="back/vendor/jquery/jquery.min.js"></script>
-    <script src="back/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="{{asset('back/vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{asset('back/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="back/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="{{asset('back/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="back/js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="back/vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="back/js/demo/chart-area-demo.js"></script>
-    <script src="back/js/demo/chart-pie-demo.js"></script>
+    <script src="{{asset('back/js/sb-admin-2.min.js')}}"></script>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="{{ asset('back') }}//vendor/jquery/jquery.min.js"></script>
-    <script src="{{ asset('back') }}//vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('back/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('back/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="{{ asset('back') }}//vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="{{ asset('back/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="{{ asset('back') }}//js/sb-admin-2.min.js"></script>
+    <script src="{{ asset('back/js/sb-admin-2.min.js') }}"></script>
 </body>
 
 </html>
