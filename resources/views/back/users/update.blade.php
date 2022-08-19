@@ -7,11 +7,11 @@
     @if(Session::has('error'))
         <div class="alert alert-danger">
             {{ Session::get('error')}}
-        </div>  
+        </div>
     @elseif(Session::has('success'))
         <div class="alert alert-success">
             {{ Session::get('success')}}
-        </div>  
+        </div>
     @endif
     <div class="form-group">
       <label for="exampleInputName">Name</label>
@@ -28,11 +28,17 @@
     <div class="form-group">
       <label for="exampleSelect">Select Role</label>
       <select class="form-control" id="exampleSelect" name="role_id">
-        @foreach ($roles as $role)
-          <option value="{{$role->id}}" @if($user->role_id == $role->id) selected @endif>
-            {{$role->name}}
-          </option>
-        @endforeach
+          @if(gettype($roles) == 'object' && count($roles) > 0)
+              @foreach ($roles as $role)
+                  <option value="{{$role->id}}" @if($user->role_id == $role->id) selected @endif>
+                      {{$role->name}}
+                  </option>
+              @endforeach
+          @else
+              <option value="{{$roles->id}}" @if($user->role_id == $roles->id) selected @endif>
+                  {{$roles->name}}
+              </option>
+          @endif
       </select>
     </div>
     <div class="form-group">

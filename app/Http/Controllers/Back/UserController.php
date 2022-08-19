@@ -47,6 +47,13 @@ class UserController extends Controller
     public function update($id)
     {
         $user = User::find($id);
+        if($id == 1){
+            abort(403,'You can\'t update Superadmin');
+        }
+        if($user->role_id == auth()->user()->role_id){
+            return abort(403,'Moderator doesn\'t edit the other moderator');
+        }
+
         if (auth()->user()->id === 1) {
             $roles = Role::where('name', '!=', 'admin')->orderBy('id', 'DESC')->get();
         } else {
@@ -58,6 +65,11 @@ class UserController extends Controller
     public function updatePost(Request $request, $id)
     {
         $user = User::findOrFail($id);
+        if($id == 1)
+            return abort(403,'You can\'t update Superadmin');
+        if($user->role_id == auth()->user()->role_id)
+            return abort(403,'Moderator doesn\'t edit the other moderator');
+
         $user->name     = $request->name;
         $user->surname  = $request->surname;
         $user->username = $request->username;

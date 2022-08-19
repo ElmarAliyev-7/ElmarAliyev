@@ -3,19 +3,9 @@ namespace App\Helpers;
 
 use App\Models\MySkill;
 use App\Models\RoleAndPermission;
-use App\Models\Role;
 
 class AppHelper
 {
-    public function getRoleNameByid($role_id)
-    {
-        foreach (Role::all() as $role){
-            if($role_id == $role->id){
-                return $role->name;
-            }
-        }
-    }
-
     public function checkPermisson($perm_id)
     {
         $auth_user_perms = RoleAndPermission::where("role_id", auth()->user()->role_id)->get();
