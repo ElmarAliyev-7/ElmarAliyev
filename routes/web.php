@@ -26,12 +26,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::group(['middleware' => 'notLogin'], function () {
         //Public routes for admins
         Route::get('/',           [DashboardController::class, 'index'])->name('dashboard');
-        Route::get('/home',       [DashboardController::class, 'home'])->name('home');
         Route::get('/users',      [DashboardController::class, 'users'])->name('users');
         Route::get('/skills',     [DashboardController::class, 'skills'])->name('skills');
-        Route::get('/about',      [DashboardController::class, 'about'])->name('about');
         Route::get('/experience', [DashboardController::class, 'experience'])->name('experience');
         Route::get('/portfolio',  [DashboardController::class, 'portfolio'])->name('portfolio');
+        Route::get('/home',       [DashboardController::class, 'home'])->name('home');
+        Route::get('/about',      [DashboardController::class, 'about'])->name('about');
+        Route::get('/profile',    [DashboardController::class, 'profile'])->name('profile');
 
         //Permission routes for SuperAdmin
         Route::group(['middleware' => 'isAdmin'], function () {
@@ -41,8 +42,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         });
         //View Message
         Route::group(['middleware' => 'ViewMessage'], function () {
-            Route::get('/message',            [DashboardController::class, 'messages'])->name('message');
-            Route::get('/checked-seen/{id}',  [MessageController::class, 'checkSeened'])->name('checked-seen');
+            Route::get('/message',           [DashboardController::class, 'messages'])->name('message');
+            Route::get('/checked-seen/{id}', [MessageController::class, 'checkSeened'])->name('checked-seen');
         });
         //Update HomePage Permission
         Route::group(['middleware' => 'UpdateHomePage'], function () {
@@ -59,8 +60,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         });
         //Update User Permission
         Route::group(['middleware' => 'UpdateUser'], function () {
-            Route::get('/update-user/{id}',    [UserController::class, 'update'])->name('update-user');
-            Route::post('/update-user/{id}',   [UserController::class, 'updatePost'])->name('update-user-post');
+            Route::get('/update-user/{id}',  [UserController::class, 'update'])->name('update-user');
+            Route::post('/update-user/{id}', [UserController::class, 'updatePost'])->name('update-user-post');
         });
         //Delete User Permission
         Route::group(['middleware' => 'DeleteUser'], function () {
@@ -68,8 +69,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         });
         //Create Skill
         Route::group(['middleware' => 'CreateSkill'], function () {
-            Route::get('/my-skills',        [SkillController::class, 'create'])->name('my-skills');
-            Route::post('my-skills',        [SkillController::class, 'createPost'])->name('skill-post');
+            Route::get('/my-skills', [SkillController::class, 'create'])->name('my-skills');
+            Route::post('my-skills', [SkillController::class, 'createPost'])->name('skill-post');
         });
         //Delete Skill
         Route::group(['middleware' => 'DeleteSkill'], function () {
@@ -86,8 +87,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         });
         //Create Project
         Route::group(['middleware' => 'CreateProject'], function () {
-            Route::get('/add-project',         [PortfolioController::class, 'create'])->name('add-project');
-            Route::post('/add-project',        [PortfolioController::class, 'createPost'])->name('project-post');
+            Route::get('/add-project', [PortfolioController::class, 'create'])->name('add-project');
+            Route::post('/add-project',[PortfolioController::class, 'createPost'])->name('project-post');
         });
         //Update Project
         Route::group(['middleware' => 'UpdateProject'], function () {
@@ -96,7 +97,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         });
         //Delete Project
         Route::group(['middleware' => 'DeleteProject'], function () {
-            Route::get('delete-project/{id}',  [PortfolioController::class, 'delete'])->name('delete-project');
+            Route::get('delete-project/{id}', [PortfolioController::class, 'delete'])->name('delete-project');
         });
         //Delete Message
         Route::group(['middleware' => 'DeleteMessage'], function () {

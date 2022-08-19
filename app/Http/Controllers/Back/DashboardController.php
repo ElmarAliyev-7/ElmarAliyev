@@ -66,6 +66,12 @@ class DashboardController extends Controller
         return view('back.message',compact('messages'));
     }
 
+    public function profile()
+    {
+        $user = auth()->user();
+        return view('back.profile.index',compact('user'));
+    }
+
     public function permissions()
     {
         $roles = Role::select('id', 'name')->where('name', '!=', 'admin')->get();
