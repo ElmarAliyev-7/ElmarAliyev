@@ -129,6 +129,7 @@
             </a>
         </li>
 
+    @if(AppHelper::instance()->checkPermisson(14) == 1)
         <!-- Divider -->
         <hr class="sidebar-divider">
 
@@ -138,7 +139,7 @@
                 <span>Messages</span>
             </a>
         </li>
-
+    @endif
         <!-- Divider -->
         <hr class="sidebar-divider">
 

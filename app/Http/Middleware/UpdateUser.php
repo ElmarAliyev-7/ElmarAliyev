@@ -25,6 +25,6 @@ class UpdateUser
             }
         }
 
-        return abort(404);
+        return abort(403, 'Access denied.');
     }
 }

@@ -17,7 +17,7 @@ class isAdmin
     public function handle(Request $request, Closure $next)
     {
         if (auth()->user()->username != 'admin') {
-            return abort(404);
+            return abort(403, 'Access denied.');
         }
         return $next($request);
     }
