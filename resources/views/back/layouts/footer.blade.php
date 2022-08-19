@@ -45,26 +45,29 @@
     </div>
     <!--  Ajax -->
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="back/vendor/jquery/jquery.min.js"></script>
+    <script src="back/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="back/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="back/js/sb-admin-2.min.js"></script>
+    @if(\Route::currentRouteName() != "admin.dashboard")
+    <!-- Bootstrap core JavaScript-->
+    <script src="{{ asset('back') }}/vendor/jquery/jquery.min.js"></script>
+    <script src="{{ asset('back') }}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="{{ asset('back') }}/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="{{ asset('back') }}/js/sb-admin-2.min.js"></script>
+    @endif
+
     @stack('js')
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{asset('back/vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{asset('back/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="{{asset('back/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="{{asset('back/js/sb-admin-2.min.js')}}"></script>
-
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{ asset('back/vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('back/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="{{ asset('back/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="{{ asset('back/js/sb-admin-2.min.js') }}"></script>
 </body>
 
 </html>
