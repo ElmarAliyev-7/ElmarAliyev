@@ -61,7 +61,7 @@
                     <h6 class="collapse-header">My Skills</h6>
                     <a class="collapse-item" href="{{route('admin.skills')}}">Skills</a>
                     @if(AppHelper::instance()->checkPermisson(4) == 1)
-                            <a class="collapse-item" href="{{route("admin.my-skills")}}">Add Skill</a>
+                            <a class="collapse-item" href="{{route("admin.create-skill")}}">Add Skill</a>
                     @endif
                 </div>
             </div>
@@ -82,7 +82,7 @@
                     <h6 class="collapse-header">Experience & Education</h6>
                     <a class="collapse-item" href="{{route('admin.experience')}}">Experiences</a>
                     @if(AppHelper::instance()->checkPermisson(6) == 1)
-                            <a class="collapse-item" href="{{route("admin.add-experience")}}">Add Experience</a>
+                            <a class="collapse-item" href="{{route("admin.create-experience")}}">Add Experience</a>
                     @endif
                 </div>
             </div>
@@ -103,7 +103,7 @@
                     <h6 class="collapse-header">Portfolio</h6>
                     <a class="collapse-item" href="{{route('admin.portfolio')}}">Projects</a>
                     @if(AppHelper::instance()->checkPermisson(8) == 1)
-                            <a class="collapse-item" href="{{route("admin.add-project")}}">Add Project</a>
+                            <a class="collapse-item" href="{{route("admin.create-project")}}">Add Project</a>
                     @endif
                 </div>
             </div>

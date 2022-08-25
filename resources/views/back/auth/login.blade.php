@@ -41,12 +41,12 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Xoşgəldiniz!</h1>
                                     </div>
-                                    <form class="user" method="post" action="{{route('admin.login-submit')}}">
+                                    <form class="user" method="post" action="{{route('admin.login')}}">
                                         @csrf
                                         @if(Session::has('error'))
                                             <div class="alert alert-danger">
                                                 {{ Session::get('error')}}
-                                            </div>  
+                                            </div>
                                         @endif
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"

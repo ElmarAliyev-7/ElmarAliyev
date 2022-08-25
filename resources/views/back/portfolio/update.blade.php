@@ -2,7 +2,7 @@
 @section('title','Create Project')
 @section('content')
     <div class="container">
-        <form action="{{route('admin.update-project-post',$project->id)}}" method="POST" enctype="multipart/form-data">
+        <form action="{{route('admin.update-project',$project->id)}}" method="POST" enctype="multipart/form-data">
             @csrf
             @if ($errors->any())
                 @foreach ($errors->all() as $error)

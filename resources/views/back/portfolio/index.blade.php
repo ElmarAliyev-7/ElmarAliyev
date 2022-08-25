@@ -12,7 +12,7 @@
         </div>
     @endif
     @if(AppHelper::instance()->checkPermisson(8) == 1)
-        <a href="{{route('admin.add-project')}}" class="btn btn-success btn-sm">Add new Project
+        <a href="{{route('admin.create-project')}}" class="btn btn-success btn-sm">Add new Project
         </a> <hr>
     @endif
     <table class="table table-bordered">

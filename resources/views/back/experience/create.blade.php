@@ -2,7 +2,7 @@
 @section('title','Create Experience & Education')
 @section('content')
     <div class="container">
-        <form action="{{route('admin.experience-post')}}" method="POST">
+        <form action="{{route('admin.create-experience')}}" method="POST">
             @csrf
             @if ($errors->any())
                 @foreach ($errors->all() as $error)

@@ -8,23 +8,25 @@ use Illuminate\Http\Request;
 
 class ExperienceController extends Controller
 {
-    public function create()
+    public function create(Request $request)
     {
-        return view('back.experience.create');
-    }
+        if ($request->isMethod('post'))
+        {
+            $experience = new Experience;
 
-    public function createPost(Request $request)
-    {
-        $experience = new Experience;
-
-        $experience->company_name = $request->company_name;
-        $experience->duty         = $request->duty;
-        $experience->start        = $request->start;
-        $experience->end          = $request->end;
-        $experience->work_time    = $request->work_time;
-        $experience->type         = $request->type;
-        $experience->save();
-        return redirect()->back()->with('success', 'Added successfully!');
+            $experience->company_name = $request->company_name;
+            $experience->duty         = $request->duty;
+            $experience->start        = $request->start;
+            $experience->end          = $request->end;
+            $experience->work_time    = $request->work_time;
+            $experience->type         = $request->type;
+            $experience->save();
+            return redirect()->back()->with('success', 'Added successfully!');
+        }
+        if ($request->isMethod('get'))
+        {
+            return view('back.experience.create');
+        }
     }
 
     public function delete($id)

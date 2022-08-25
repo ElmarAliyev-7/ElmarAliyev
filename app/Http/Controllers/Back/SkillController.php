@@ -8,21 +8,23 @@ use Illuminate\Http\Request;
 
 class SkillController extends Controller
 {
-    public function create()
+    public function create(Request $request)
     {
-        $skills = MySkill::select('id', 'name', 'parent_id')->where('parent_id', 0)->get();
-        return view('back.my-skills.create', compact('skills'));
-    }
-
-    public function createPost(Request $request)
-    {
-        $skill = new MySkill;
-        $skill->name      = $request->skill;
-        $parent_id        = $request->parent_id != null ? $request->parent_id  : 0;
-        $skill->parent_id = $parent_id;
-        $skill->percent   = $request->percent != null ? $request->percent  : 0;
-        $skill->save();
-        return redirect()->back()->with('success', 'Skill added successfully!');
+        if ($request->isMethod('post'))
+        {
+            $skill = new MySkill;
+            $skill->name      = $request->skill;
+            $parent_id        = $request->parent_id != null ? $request->parent_id  : 0;
+            $skill->parent_id = $parent_id;
+            $skill->percent   = $request->percent != null ? $request->percent  : 0;
+            $skill->save();
+            return redirect()->back()->with('success', 'Skill added successfully!');
+        }
+        if ($request->isMethod('get'))
+        {
+            $skills = MySkill::select('id', 'name', 'parent_id')->where('parent_id', 0)->get();
+            return view('back.my-skills.create', compact('skills'));
+        }
     }
 
     public function delete($id)

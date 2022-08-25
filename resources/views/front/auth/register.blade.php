@@ -20,7 +20,7 @@
     </div>
   @endif
   <div class="shadow-lg p-3 rounded" id="sing-up">
-    <form action="{{route('register-post')}}" method="POST">
+    <form action="{{route('register')}}" method="POST">
       @csrf
       <div class="form-group">
         <label for="exampleInputName">Name</label>

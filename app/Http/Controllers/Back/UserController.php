@@ -4,83 +4,92 @@ namespace App\Http\Controllers\Back;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function create()
+    public function create(Request $request)
     {
-        if (auth()->user()->username == "admin") {
-            $roles = Role::where('name', '!=', 'admin')->orderBy('id', 'DESC')->get();
-        } else {
-            $roles = Role::where('name', 'Standart user')->orderBy('id', 'DESC')->get();
-        }
-        return view('back.users.create', compact('roles'));
-    }
+        if ($request->isMethod('post'))
+        {
+            if ($request->password != $request->password_confirmation) {
+                return redirect()->back()->with('error', 'Password doesn\'t match');
+            } else {
+                $validated = $request->validate([
+                    'name'     => 'required|max:15',
+                    'surname'  => 'required|max:15',
+                    'username' => 'required|max:20|unique:users,username',
+                    'email'    => 'max:50|unique:users,email',
+                ]);
+                try {
+                    $user = new User;
+                    $user->name     = $validated->name;
+                    $user->surname  = $validated->surname;
+                    $user->username = $validated->username;
+                    $user->role_id  = $request->role_id;
+                    $user->email    = $validated->email;
+                    $user->password = Hash::make($request->password);
+                    $user->save();
 
-    public function createPost(RegisterRequest $request)
-    {
-        if ($request->password != $request->password_confirmation) {
-            return redirect()->back()->with('error', 'Password doesn\'t match');
-        } else {
-            try {
-                $user = new User;
-                $user->name     = $request->name;
-                $user->surname  = $request->surname;
-                $user->username = $request->username;
-                $user->role_id  = $request->role_id;
-                $user->email    = $request->email;
-                $user->password = Hash::make($request->password);
-                $user->save();
+                    return redirect()->back()->with('success', 'User register successfully');
+                } catch (\Exception $e) {
 
-                return redirect()->back()->with('success', 'User register successfully');
-            } catch (\Exception $e) {
-
-                return redirect()->back()->with('error', $e->getMessage());
+                    return redirect()->back()->with('error', $e->getMessage());
+                }
             }
         }
+        if ($request->isMethod('get'))
+        {
+            if (auth()->user()->username == "admin") {
+                $roles = Role::where('name', '!=', 'admin')->orderBy('id', 'DESC')->get();
+            } else {
+                $roles = Role::where('name', 'Standart user')->orderBy('id', 'DESC')->get();
+            }
+            return view('back.users.create', compact('roles'));
+        }
     }
 
-    public function update($id)
+    public function update(Request $request, $id)
     {
-        $user = User::find($id);
-        if($id == 1){
-            abort(403,'You can\'t update Superadmin');
+        if ($request->isMethod('post'))
+        {
+            $user = User::findOrFail($id);
+            if($id == 1)
+                return abort(403,'You can\'t update Superadmin');
+            if($user->role_id == auth()->user()->role_id)
+                return abort(403,'Moderator doesn\'t edit the other moderator');
+
+            $user->name     = $request->name;
+            $user->surname  = $request->surname;
+            $user->username = $request->username;
+            $user->role_id  = $request->role_id;
+            $user->email    = $request->email;
+
+            try {
+                $user->save();
+                return redirect()->back()->with('success', 'User updated successfully');
+            } catch (\Exception $exception) {
+                return redirect()->back()->with('error', $exception->getMessage());
+            }
         }
-        if($user->role_id == auth()->user()->role_id){
-            return abort(403,'Moderator doesn\'t edit the other moderator');
-        }
+        if ($request->isMethod('get'))
+        {
+            $user = User::find($id);
+            if($id == 1){
+                abort(403,'You can\'t update Superadmin');
+            }
+            if($user->role_id == auth()->user()->role_id){
+                return abort(403,'Moderator doesn\'t edit the other moderator');
+            }
 
-        if (auth()->user()->id === 1) {
-            $roles = Role::where('name', '!=', 'admin')->orderBy('id', 'DESC')->get();
-        } else {
-            $roles = Role::find(3); // Standart user
-        }
-        return view('back.users.update', compact('user', 'roles'));
-    }
-
-    public function updatePost(Request $request, $id)
-    {
-        $user = User::findOrFail($id);
-        if($id == 1)
-            return abort(403,'You can\'t update Superadmin');
-        if($user->role_id == auth()->user()->role_id)
-            return abort(403,'Moderator doesn\'t edit the other moderator');
-
-        $user->name     = $request->name;
-        $user->surname  = $request->surname;
-        $user->username = $request->username;
-        $user->role_id  = $request->role_id;
-        $user->email    = $request->email;
-
-        try {
-            $user->save();
-            return redirect()->back()->with('success', 'User updated successfully');
-        } catch (\Exception $exception) {
-            return redirect()->back()->with('error', $exception->getMessage());
+            if (auth()->user()->id === 1) {
+                $roles = Role::where('name', '!=', 'admin')->orderBy('id', 'DESC')->get();
+            } else {
+                $roles = Role::find(3); // Standart user
+            }
+            return view('back.users.update', compact('user', 'roles'));
         }
     }
 

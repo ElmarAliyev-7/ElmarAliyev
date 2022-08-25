@@ -2,7 +2,7 @@
 @section('title','Create User')
 @section('content')
 <div class="container">
-  <form action="{{route('admin.create-user-post')}}" method="POST">
+  <form action="{{route('admin.create-user')}}" method="POST">
     @csrf
     @if ($errors->any())
       @foreach ($errors->all() as $error)
@@ -12,11 +12,11 @@
     @if(Session::has('error'))
       <div class="alert alert-danger">
           {{ Session::get('error')}}
-      </div>  
+      </div>
     @elseif(Session::has('success'))
       <div class="alert alert-success">
           {{ Session::get('success')}}
-      </div>  
+      </div>
     @endif
     <div class="form-group">
       <label for="exampleInputName">Name</label>

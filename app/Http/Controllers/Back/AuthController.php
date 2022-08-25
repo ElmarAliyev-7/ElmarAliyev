@@ -8,28 +8,30 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    public function login()
+    public function login(Request $request)
     {
-        return view('back.auth.login');
-    }
+        if ($request->isMethod('post'))
+        {
+            $username = $request->username;
+            $password = $request->password;
+            $auth = Auth::attempt([
+                'username' => $username,
+                'password' => $password,
+                'role'     => function ($query) {
+                    $query->where('role_id', '!=', 3); // Standart user can't login to admin panel
+                }
+            ]);
 
-    public function loginPost(Request $request)
-    {
-        $username = $request->username;
-        $password = $request->password;
-        $auth = Auth::attempt([
-            'username' => $username,
-            'password' => $password,
-            'role'     => function ($query) {
-                $query->where('role_id', '!=', 3); // Standart user can't login to admin panel
+            if ($auth) {
+                return redirect()->route('admin.dashboard');
             }
-        ]);
 
-        if ($auth) {
-            return redirect()->route('admin.dashboard');
+            return redirect()->route('admin.login')->with('error', 'İstifadəçi adı və ya parol səhvdir');
         }
-
-        return redirect()->route('admin.login')->with('error', 'İstifadəçi adı və ya parol səhvdir');
+        if ($request->isMethod('get'))
+        {
+            return view('back.auth.login');
+        }
     }
 
     public function logOut()

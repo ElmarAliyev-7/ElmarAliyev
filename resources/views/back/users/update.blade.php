@@ -2,7 +2,7 @@
 @section('title','Update User -> '."$user->username")
 @section('content')
 <div class="container">
-  <form action="{{route('admin.update-user-post', $user->id)}}" method="POST">
+  <form action="{{route('admin.update-user', $user->id)}}" method="POST">
     @csrf
     @if(Session::has('error'))
         <div class="alert alert-danger">

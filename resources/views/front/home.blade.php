@@ -27,11 +27,11 @@
                 </li>
                 </ul>
                 <ul class="nav ml-auto">
-{{--                     <li class="nav-item">--}}
-{{--                        <a href="{{route('register')}}" data-animate="scrolling" class="text-light">--}}
-{{--                            Sign in/ Sing up--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
+                     <li class="nav-item">
+                        <a href="{{route('register')}}" data-animate="scrolling" class="text-light">
+                            Sign in/ Sing up
+                        </a>
+                    </li>
                 </ul>
             </div>
             </div>

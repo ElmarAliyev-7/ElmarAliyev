@@ -2,7 +2,7 @@
 @section('title','Create Skill')
 @section('content')
     <div class="container">
-        <form action="{{route('admin.skill-post')}}" method="POST">
+        <form action="{{route('admin.create-skill')}}" method="POST">
             @csrf
             @if ($errors->any())
                 @foreach ($errors->all() as $error)
@@ -43,12 +43,12 @@
 @push('js')
 <script>
     $("#exampleInputTitle1").change(function(){
-        if ( $(this).val() == "0" ) { 
+        if ( $(this).val() == "0" ) {
             $("#percent").show();
         }
-        else{ 
+        else{
             $("#percent").hide();
         }
-    }); 
+    });
 </script>
 @endpush
