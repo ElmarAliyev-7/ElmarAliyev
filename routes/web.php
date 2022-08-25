@@ -1,17 +1,21 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Front\HomeController as FrontHomeController;
-use App\Http\Controllers\Front\AuthController as FrontAuthController;
-use App\Http\Controllers\Back\AuthController as BackAuthController;
-use App\Http\Controllers\Back\HomeController as BackHomeController;
-use App\Http\Controllers\Back\DashboardController;
-use App\Http\Controllers\Back\PermissionController;
-use App\Http\Controllers\Back\UserController;
-use App\Http\Controllers\Back\SkillController;
-use App\Http\Controllers\Back\ExperienceController;
-use App\Http\Controllers\Back\PortfolioController;
-use App\Http\Controllers\Back\MessageController;
+use App\Http\Controllers\Front\{
+    HomeController as FrontHomeController,
+    AuthController as FrontAuthController,
+};
+use App\Http\Controllers\Back\{
+    AuthController as BackAuthController,
+    HomeController as BackHomeController,
+    DashboardController,
+    PermissionController,
+    UserController,
+    SkillController,
+    ExperienceController,
+    PortfolioController,
+    MessageController,
+};
 
 //Front Routes
 Route::get('/',          [FrontHomeController::class, 'index'])->name('home');
