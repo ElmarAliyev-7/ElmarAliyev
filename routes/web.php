@@ -78,6 +78,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::group(['middleware' => 'CreateExperience'], function () {
             Route::match(['get', 'post'], '/create-experience',[ExperienceController::class, 'create'])->name('create-experience');
         });
+        //Update Experience & Education
+        Route::group(['middleware' => 'UpdateExperience'], function () {
+            Route::match(['get', 'post'], '/update-experience/{id}',[ExperienceController::class, 'update'])->name('update-experience');
+        });
         //Delete Experience & Education
         Route::group(['middleware' => 'DeleteExperience'], function () {
             Route::get('delete-experience/{id}', [ExperienceController::class, 'delete'])->name('delete-exp');

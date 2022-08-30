@@ -72,6 +72,7 @@ class Kernel extends HttpKernel
         'CreateSkill' => \App\Http\Middleware\CreateSkill::class,
         'DeleteSkill' => \App\Http\Middleware\DeleteSkill::class,
         'CreateExperience' => \App\Http\Middleware\CreateExperience::class,
+        'UpdateExperience' => \App\Http\Middleware\UpdateExperience::class,
         'DeleteExperience' => \App\Http\Middleware\DeleteExperience::class,
         'CreateProject' => \App\Http\Middleware\CreateProject::class,
         'DeleteProject' => \App\Http\Middleware\DeleteProject::class,

@@ -41,6 +41,11 @@
                 <th>{{AppHelper::instance()->formatDate($experience->start,$experience->end)}}</th>
                 <th>{{AppHelper::instance()->getWorkTime($experience->work_time)}}</th>
                 <td>
+                    @if(AppHelper::instance()->checkPermisson(15) == 1)
+                        <a href="{{route('admin.update-experience',$experience->id)}}" class="btn btn-primary btn-circle btn-sm">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                    @endif
                     @if(AppHelper::instance()->checkPermisson(7) == 1)
                     <a href="{{route('admin.delete-exp',$experience->id)}}" class="btn btn-danger btn-circle btn-sm">
                         <i class="fas fa-trash"></i>
