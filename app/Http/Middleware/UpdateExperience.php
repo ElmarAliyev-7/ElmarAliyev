@@ -20,7 +20,7 @@ class UpdateExperience
         $user_perms  = RoleAndPermission::where("role_id", auth()->user()->role_id)->get();
 
         foreach ($user_perms as $user_perm) {
-            if ($user_perm->permission_id === 7) {
+            if ($user_perm->permission_id === 15) {
                 return $next($request);
             }
         }
