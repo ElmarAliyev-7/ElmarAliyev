@@ -30,5 +30,8 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'Delete Message']); // 13
         Permission::create(['name' => 'View Messages']); //14
         Permission::create(['name' => 'Update Experience']); //15
+        Permission::create(['name' => 'Create Blog']); // 16
+        Permission::create(['name' => 'Update Blog']); // 17
+        Permission::create(['name' => 'Delete Blog']); // 18
     }
 }

@@ -40,7 +40,11 @@
             </div>
             <div class="form-group">
                 <label for="exampleInputTitle5" id="end-time-lable">End time</label>
-                <button type="button" class="btn btn-danger btn-sm" id="remove-end-time">Make Present And Delete End time</button>
+                @if($experience->end)
+                    <button type="button" class="btn btn-danger btn-sm" id="remove-end-time">
+                        Make Present And Delete End time
+                    </button>
+                @endif
                 <input type="date" name="end" value="{{$experience->end}}" class="form-control" id="exampleInputTitle5" placeholder="Enter End time">
             </div>
             <div class="form-group" id="work-time">

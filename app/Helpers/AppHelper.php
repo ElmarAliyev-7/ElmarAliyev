@@ -39,6 +39,15 @@ class AppHelper
         }
     }
 
+    public function getExperiencePeriod($start, $end)
+    {
+        if(!$end){
+            return round((strtotime(date("Y-m-d")) - strtotime($start)) /60/60/24/30);
+        }else{
+            return round((strtotime($end) - strtotime($start)) /60/60/24/30);
+        }
+    }
+
     public function getSkillChilds($parent_id)
     {
         return MySkill::where('parent_id', $parent_id)->get();

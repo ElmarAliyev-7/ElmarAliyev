@@ -19,11 +19,13 @@ class HomeController extends Controller
     {
         $home_page = HomePage::find(1);
         $home_subtitle_array = explode(" ", $home_page->subtitle);
-        $about = About::find(1);
-        $skills = MySkill::where('parent_id',0)->get();
-        $educations = Experience::where('work_time',null)->orderBy('end', 'desc')->get();
-        $experiences = Experience::where('work_time', '!=', null)->orderBy('id', 'desc')->get();
+        $about    = About::find(1);
+        $skills   = MySkill::where('parent_id',0)->get();
         $projects = Portfolio::orderBy('order','asc')->get();
+        $educations  = Experience::where('type',1)
+            ->orderBy('id', 'desc')->get();
+        $experiences = Experience::where('type',0)
+            ->orderBy('id', 'desc')->get();
 
         return view('front.home',
             compact('home_page','home_subtitle_array' ,'about' , 'skills',

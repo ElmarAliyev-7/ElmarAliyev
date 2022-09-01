@@ -109,7 +109,10 @@
           <ul class="timeline mt-4 pr-md-5">
           @foreach($experiences as $experience)
             <li>
-              <div class="title w-100">{{AppHelper::instance()->formatDate($experience->start,$experience->end)}}</div>
+              <div class="title w-100">
+                  {{AppHelper::instance()->formatDate($experience->start,$experience->end)}}
+                  ( {{AppHelper::instance()->getExperiencePeriod($experience->start,$experience->end)}} month )
+              </div>
               <div class="details">
                 <h5>{{$experience->company_name}}</h5>
                 <small class="fg-theme">{{$experience->duty}}</small>

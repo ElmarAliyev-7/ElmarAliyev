@@ -12,6 +12,7 @@ use App\Models\HomePage;
 use App\Models\About;
 use App\Models\Experience;
 use App\Models\Message;
+use App\Models\Blog;
 
 class DashboardController extends Controller
 {
@@ -58,6 +59,12 @@ class DashboardController extends Controller
     {
         $projects = Portfolio::all();
         return view('back.portfolio.index',compact('projects'));
+    }
+
+    public function blog()
+    {
+        $blogs = Blog::all();
+        return view('back.blogs.index',compact('blogs'));
     }
 
     public function messages()

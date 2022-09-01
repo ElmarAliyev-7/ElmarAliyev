@@ -49,6 +49,9 @@
             </div>
         </li>
 
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
         <!-- Myskills -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#skillsPages"
@@ -104,6 +107,27 @@
                     <a class="collapse-item" href="{{route('admin.portfolio')}}">Projects</a>
                     @if(AppHelper::instance()->checkPermisson(8) == 1)
                             <a class="collapse-item" href="{{route("admin.create-project")}}">Add Project</a>
+                    @endif
+                </div>
+            </div>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Blogs -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#blogPages"
+               aria-expanded="true" aria-controls="userPages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Blogs</span>
+            </a>
+            <div id="blogPages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Blogs</h6>
+                    <a class="collapse-item" href="{{route('admin.blog')}}">Blogs</a>
+                    @if(AppHelper::instance()->checkPermisson(8) == 1)
+                        <a class="collapse-item" href="{{route("admin.create-blog")}}">Create Blog</a>
                     @endif
                 </div>
             </div>

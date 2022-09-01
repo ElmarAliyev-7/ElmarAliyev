@@ -10,6 +10,8 @@ return [
     '0' => 'full-time',
     '1' => 'part-time',
     '2' => 'freelance',
+    '3' => 'remote full-time',
+    '4' => 'remote part-time',
   ],
 
   'programs' => [

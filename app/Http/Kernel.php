@@ -81,5 +81,8 @@ class Kernel extends HttpKernel
         'UpdateAboutPage' => \App\Http\Middleware\UpdateAboutPage::class,
         'UpdateHomePage' => \App\Http\Middleware\UpdateHomePage::class,
         'ViewMessage' => \App\Http\Middleware\ViewMessage::class,
+        'CreateBlog' => \App\Http\Middleware\CreateBlog::class,
+        'UpdateBlog' => \App\Http\Middleware\UpdateBlog::class,
+        'DeleteBlog' => \App\Http\Middleware\DeleteBlog::class,
     ];
 }

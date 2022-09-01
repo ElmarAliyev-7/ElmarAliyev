@@ -38,7 +38,6 @@ class PortfolioController extends Controller
             } catch (\Exception $exception) {
                 return redirect()->back()->with('error', $exception->getMessage());
             };
-            return $request;
         }
         if ($request->isMethod('get'))
         {

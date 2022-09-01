@@ -1,5 +1,5 @@
 @extends('back.layouts.master')
-@section('title','Create Project')
+@section('title','Update Project')
 @section('content')
     <div class="container">
         <form action="{{route('admin.update-project',$project->id)}}" method="POST" enctype="multipart/form-data">

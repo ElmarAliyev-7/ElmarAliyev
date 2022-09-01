@@ -14,6 +14,7 @@ use App\Http\Controllers\Back\{
     SkillController,
     ExperienceController,
     PortfolioController,
+    BlogController,
     MessageController,
 };
 
@@ -35,6 +36,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('/about',      [DashboardController::class, 'about'])->name('about');
         Route::get('/experience', [DashboardController::class, 'experience'])->name('experience');
         Route::get('/portfolio',  [DashboardController::class, 'portfolio'])->name('portfolio');
+        Route::get('/blog',       [DashboardController::class, 'blog'])->name('blog');
 
         //Permission routes for SuperAdmin
         Route::group(['middleware' => 'isAdmin'], function () {
@@ -97,6 +99,18 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         //Delete Project
         Route::group(['middleware' => 'DeleteProject'], function () {
             Route::get('delete-project/{id}',  [PortfolioController::class, 'delete'])->name('delete-project');
+        });
+        //Create Blog
+        Route::group(['middleware' => 'CreateBlog'], function () {
+            Route::match(['get', 'post'], '/create-blog',[BlogController::class, 'create'])->name('create-blog');
+        });
+        //Update Blog
+        Route::group(['middleware' => 'UpdateBlog'], function () {
+            Route::match(['get', 'post'], '/update-blog/{id}',[BlogController::class, 'update'])->name('update-blog');
+        });
+        //Delete Blog
+        Route::group(['middleware' => 'DeleteBlog'], function () {
+            Route::get('delete-blog/{id}',  [BlogController::class, 'delete'])->name('delete-blog');
         });
         //Delete Message
         Route::group(['middleware' => 'DeleteMessage'], function () {
