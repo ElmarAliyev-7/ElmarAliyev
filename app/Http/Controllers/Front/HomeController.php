@@ -10,8 +10,10 @@ use App\Models\Portfolio;
 use App\Models\HomePage;
 use App\Models\MySkill;
 use App\Models\Experience;
+use App\Models\Blog;
 use App\Models\Message;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -22,6 +24,7 @@ class HomeController extends Controller
         $about    = About::find(1);
         $skills   = MySkill::where('parent_id',0)->get();
         $projects = Portfolio::orderBy('order','asc')->get();
+        $blogs    = Blog::orderBy('id','desc')->get();
         $educations  = Experience::where('type',1)
             ->orderBy('id', 'desc')->get();
         $experiences = Experience::where('type',0)
@@ -29,7 +32,14 @@ class HomeController extends Controller
 
         return view('front.home',
             compact('home_page','home_subtitle_array' ,'about' , 'skills',
-            'educations', 'experiences' ,'projects'));
+            'educations', 'experiences' ,'projects', 'blogs'));
+    }
+
+    public function blog($slug)
+    {
+        Blog::where('slug',$slug)->increment('reads',1);
+        $blog = Blog::where('slug',$slug)->first();
+        return view('front.single-blog', compact('blog'));
     }
 
     public function contact(Request $request)

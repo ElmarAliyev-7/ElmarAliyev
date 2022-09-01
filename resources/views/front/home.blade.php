@@ -23,6 +23,9 @@
                     <a href="#portfolio" class="nav-link" data-animate="scrolling">Portfolio</a>
                 </li>
                 <li class="nav-item">
+                    <a href="#blog" class="nav-link" data-animate="scrolling">Blog</a>
+                </li>
+                <li class="nav-item">
                     <a href="#contact" class="nav-link" data-animate="scrolling">Contact</a>
                 </li>
                 </ul>
@@ -54,5 +57,6 @@
     @include('front.widgets.service')
     @include('front.widgets.funfact')
     @include('front.widgets.portfolio')
+    @include('front.widgets.blog')
     @include('front.widgets.contact')
 @endsection

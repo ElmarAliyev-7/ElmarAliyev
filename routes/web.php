@@ -19,9 +19,10 @@ use App\Http\Controllers\Back\{
 };
 
 //Front Routes
-Route::get('/',          [FrontHomeController::class, 'index'])->name('home');
-Route::get('download-cv',[FrontHomeController::class, 'downloadCv'])->name('download-cv');
-Route::post('/contact',  [FrontHomeController::class, 'contact'])->name('contact');
+Route::get('/',            [FrontHomeController::class, 'index'])->name('home');
+Route::get('/blog/{slug}', [FrontHomeController::class, 'blog'])->name('blog');
+Route::get('download-cv',  [FrontHomeController::class, 'downloadCv'])->name('download-cv');
+Route::post('/contact',    [FrontHomeController::class, 'contact'])->name('contact');
 Route::match(['get', 'post'], '/register', [FrontAuthController::class, 'index'])->name('register');
 
 //Back Routes
@@ -36,7 +37,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('/about',      [DashboardController::class, 'about'])->name('about');
         Route::get('/experience', [DashboardController::class, 'experience'])->name('experience');
         Route::get('/portfolio',  [DashboardController::class, 'portfolio'])->name('portfolio');
-        Route::get('/blog',       [DashboardController::class, 'blog'])->name('blog');
+        Route::get('/blogs',      [DashboardController::class, 'blog'])->name('blog');
 
         //Permission routes for SuperAdmin
         Route::group(['middleware' => 'isAdmin'], function () {

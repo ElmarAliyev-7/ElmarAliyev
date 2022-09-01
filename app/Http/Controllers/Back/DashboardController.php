@@ -19,9 +19,11 @@ class DashboardController extends Controller
     public function index()
     {
         $user_count = User::count();
+        $blog_count = Blog::count();
         $project_count = Portfolio::count();
         $message_count = Message::count();
-        return view('back.dashboard', compact('user_count', 'project_count', 'message_count'));
+        return view('back.dashboard', compact('user_count', 'blog_count',
+            'project_count', 'message_count'));
     }
 
     public function users()

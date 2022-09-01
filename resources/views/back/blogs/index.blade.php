@@ -37,7 +37,11 @@
                 <th>{{Str::limit($blog->description, 50)}}</th>
                 <th>{{$blog->slug}}</th>
                 <th><img src="{{asset($blog->image)}}" width="180px" height="160px"/></th>
-                <th><video src="{{asset($blog->video)}}" width="180px" height="160px" controls></video></th>
+                <th>
+                    @if($blog->video)
+                        <video src="{{asset($blog->video)}}" width="180px" height="160px" controls></video>
+                    @endif
+                </th>
                 <th>{{$blog->link}}</th>
                 <th>{{$blog->reads}}</th>
                 <td>
