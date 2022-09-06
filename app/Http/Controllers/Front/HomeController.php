@@ -27,8 +27,15 @@ class HomeController extends Controller
         $blogs    = Blog::orderBy('id','desc')->get();
         $educations  = Experience::where('type',1)
             ->orderBy('id', 'desc')->get();
-        $experiences = Experience::where('type',0)
+        $all_exps = Experience::where('type',0)
             ->orderBy('id', 'desc')->get();
+
+        $experiences = array();
+        foreach($all_exps as $key => $experience)
+        {
+            $experiences[$experience->company_name] = Experience::where('company_name', $experience->company_name)
+            ->orderBy('id', 'DESC')->get();
+        }
 
         return view('front.home',
             compact('home_page','home_subtitle_array' ,'about' , 'skills',

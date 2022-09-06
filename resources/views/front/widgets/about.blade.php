@@ -108,17 +108,39 @@
           <h2 class="fw-normal">Experience</h2>
           <ul class="timeline mt-4 pr-md-5">
           @foreach($experiences as $experience)
-            <li>
-              <div class="title w-100">
-                  {{AppHelper::instance()->formatDate($experience->start,$experience->end)}}
-                  ( {{AppHelper::instance()->getExperiencePeriod($experience->start,$experience->end)}} month )
-              </div>
-              <div class="details">
-                <h5>{{$experience->company_name}}</h5>
-                <small class="fg-theme">{{$experience->duty}}</small>
-                <p>{{AppHelper::instance()->getWorkTime($experience->work_time)}}</p>
-              </div>
-            </li>
+              <li>
+                  @if(count($experience) == 1)
+                      <div class="title w-100">
+                          {{AppHelper::instance()->formatDate($experience[0]->start,$experience[0]->end)}}
+                          ( {{AppHelper::instance()->getExperiencePeriod($experience[0]->start,$experience[0]->end)}} month )
+                      </div>
+                      <div class="details">
+                          <h5>{{$experience[0]->company_name}}</h5>
+                          <small class="fg-theme">{{$experience[0]->duty}}</small>
+                          <p>{{AppHelper::instance()->getWorkTime($experience[0]->work_time)}}</p>
+                      </div>
+                  @else
+                      <div class="title w-100">
+                          @php $last_key = count($experience)-1; @endphp
+                          {{AppHelper::instance()->formatDate($experience[$last_key]->start,$experience[0]->end)}}
+                          ( {{AppHelper::instance()->getExperiencePeriod($experience[$last_key]->start,$experience[0]->end)}} month )
+                      </div>
+                      <div class="details">
+                          <h5>{{$experience[0]->company_name}}</h5>
+                          <small class="fg-theme">{{$experience[0]->duty}}</small>
+                          <ul>
+                              @foreach($experience as $exp)
+                                <li>
+                                  <p>
+                                      {{AppHelper::instance()->getWorkTime($exp->work_time)}}
+                                      ( {{AppHelper::instance()->getExperiencePeriod($exp->start,$exp->end)}} month )
+                                  </p>
+                                </li>
+                              @endforeach
+                          </ul>
+                      </div>
+                  @endif
+              </li>
           @endforeach
           </ul>
         </div>
