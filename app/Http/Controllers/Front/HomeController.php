@@ -19,16 +19,14 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $home_page = HomePage::find(1);
+        $home_page   = HomePage::find(1);
         $home_subtitle_array = explode(" ", $home_page->subtitle);
-        $about    = About::find(1);
-        $skills   = MySkill::where('parent_id',0)->get();
-        $projects = Portfolio::orderBy('order','asc')->get();
-        $blogs    = Blog::orderBy('id','desc')->get();
-        $educations  = Experience::where('type',1)
-            ->orderBy('id', 'desc')->get();
-        $all_exps = Experience::where('type',0)
-            ->orderBy('id', 'desc')->get();
+        $about       = About::find(1);
+        $skills      = MySkill::where('parent_id',0)->get();
+        $projects    = Portfolio::orderBy('order','asc')->get();
+        $blogs       = Blog::orderBy('id','desc')->get();
+        $educations  = Experience::where('type',1)->orderBy('id', 'desc')->get();
+        $all_exps    = Experience::where('type',0)->orderBy('id', 'desc')->get();
 
         $experiences = array();
         foreach($all_exps as $key => $experience)
