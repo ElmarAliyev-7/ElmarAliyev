@@ -1,6 +1,6 @@
 @extends('front.layouts.master')
 @section('content')
-<div class="container">
+<div class="container" id="register">
   <div class="sing row justify-content-center p-2">
     <button onclick="showSignUp()" class="btn btn-light" id="sing-up-button" style="display: none;">Sing-up</button>
     <button onclick="showSignIn()" class="btn btn-dark" id="sing-in-button">Sing-in</button>
@@ -67,20 +67,30 @@
 
 @push('js')
 <script>
-  function showSignUp(){
-    $('#sing-up').show();
-    $('#sing-in').hide();
+  $(document).ready(function() {
+      function showSignUp(){
+          $('#sing-up').show();
+          $('#sing-in').hide();
 
-    $("#sing-in-button").show();
-    $("#sing-up-button").hide();
-  }
-  function showSignIn(){
-    $('#sing-in').show();
-    $('#sing-up').hide();
+          $("#sing-in-button").show();
+          $("#sing-up-button").hide();
+      }
+      function showSignIn(){
+          $('#sing-in').show();
+          $('#sing-up').hide();
 
-    $("#sing-up-button").show();
-    $("#sing-in-button").hide();
-  }
+          $("#sing-up-button").show();
+          $("#sing-in-button").hide();
+      }
+
+      function scrollToRegister() {
+          $('html, body').animate({
+              scrollTop: $("#register").offset().top
+          }, 1000);
+      }
+
+      scrollToRegister()
+  });
 </script>
 @endpush
 @endsection

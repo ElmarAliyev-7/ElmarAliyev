@@ -6,6 +6,7 @@ use App\Models\Message;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Models\RoleAndPermission;
+use App\Models\HomePage;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -35,6 +36,12 @@ class AppServiceProvider extends ServiceProvider
             $view->with('auth_user_perms', $auth_user_perms);
         });
 
-        View::share(['unchecked_messages' => Message::where('seen', 0)->get()]);
+        $home_page = HomePage::find(1);
+
+        View::share([
+            'unchecked_messages' => Message::where('seen', 0)->get(),
+            'home_page'          => $home_page,
+            'home_subtitle_array'=> explode(" ", $home_page->subtitle)
+        ]);
     }
 }

@@ -7,20 +7,16 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 use App\Models\About;
 use App\Models\Portfolio;
-use App\Models\HomePage;
 use App\Models\MySkill;
 use App\Models\Experience;
 use App\Models\Blog;
 use App\Models\Message;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $home_page   = HomePage::find(1);
-        $home_subtitle_array = explode(" ", $home_page->subtitle);
         $about       = About::find(1);
         $skills      = MySkill::where('parent_id',0)->get();
         $projects    = Portfolio::orderBy('order','asc')->get();
@@ -36,8 +32,7 @@ class HomeController extends Controller
         }
 
         return view('front.home',
-            compact('home_page','home_subtitle_array' ,'about' , 'skills',
-            'educations', 'experiences' ,'projects', 'blogs'));
+            compact('about' , 'skills', 'educations', 'experiences' ,'projects', 'blogs'));
     }
 
     public function blog($slug)
