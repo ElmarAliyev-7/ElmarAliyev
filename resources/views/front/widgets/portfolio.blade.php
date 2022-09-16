@@ -33,8 +33,26 @@
 
       </div> <!-- End gridder -->
     </div>
+    @if(\Request::segment(1) !== 'projects')
       <div class="col-12 text-center py-3 wow fadeInUp">
           <a href="{{route('projects')}}" class="btn btn-theme">See All Projects</a>
       </div>
+    @endif
   </div>
   <!-- End Portfolio page -->
+
+  @push('js')
+      <script>
+          if(window.location.pathname == '/projects'){
+              $(document).ready(function() {
+                  function scrollToRegister() {
+                      $('html, body').animate({
+                          scrollTop: $("#portfolio").offset().top
+                      }, 1000);
+                  }
+
+                  scrollToRegister()
+              });
+          }
+      </script>
+  @endpush

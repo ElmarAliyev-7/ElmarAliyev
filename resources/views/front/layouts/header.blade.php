@@ -60,7 +60,7 @@
                           <a href="{{route('projects')}}" class="nav-link" data-animate="scrolling">Portfolio</a>
                       </li>
                       <li class="nav-item">
-                          <a href="{{route('blogs')}}" class="nav-link" data-animate="scrolling">Blog</a>
+                          <a href="{{route('blogs')}}" class="nav-link" data-animate="scrolling">Blogs</a>
                       </li>
                       <li class="nav-item">
                           <a href="{{route('home')}}/#contact" class="nav-link" data-animate="scrolling">Contact</a>

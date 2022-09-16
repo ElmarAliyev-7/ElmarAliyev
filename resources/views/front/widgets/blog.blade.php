@@ -21,9 +21,27 @@
                 </div>
             </div>
         @endforeach
+        @if(\Request::segment(1) !== 'blogs')
             <div class="col-12 text-center py-3 wow fadeInUp">
                 <a href="{{route('blogs')}}" class="btn btn-theme">See All Blogs</a>
             </div>
+        @endif
         </div>
     </div>
 </div>
+
+@push('js')
+    <script>
+        if(window.location.pathname === '/blogs') {
+            $(document).ready(function () {
+                function scrollToRegister() {
+                    $('html, body').animate({
+                        scrollTop: $("#blog").offset().top
+                    }, 1000);
+                }
+
+                scrollToRegister()
+            });
+        }
+    </script>
+@endpush
