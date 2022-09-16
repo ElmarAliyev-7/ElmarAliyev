@@ -48,7 +48,7 @@
               <div class="collapse navbar-collapse" id="main-navbar">
                   <ul class="navbar-nav ml-auto">
                       <li class="nav-item active">
-                          <a href="#" class="nav-link" data-animate="scrolling">Home</a>
+                          <a href="{{route('home')}}" class="nav-link" data-animate="scrolling">Home</a>
                       </li>
                       <li class="nav-item">
                           <a href="{{route('home')}}/#about" class="nav-link" data-animate="scrolling">About</a>
