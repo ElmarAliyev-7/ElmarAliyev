@@ -20,9 +20,11 @@ use App\Http\Controllers\Back\{
 
 //Front Routes
 Route::get('/',            [FrontHomeController::class, 'index'])->name('home');
+Route::get('/blogs',       [FrontHomeController::class, 'blogs'])->name('blogs');
 Route::get('/blog/{slug}', [FrontHomeController::class, 'blog'])->name('blog');
-Route::get('download-cv',  [FrontHomeController::class, 'downloadCv'])->name('download-cv');
+Route::get('/projects',    [FrontHomeController::class, 'projects'])->name('projects');
 Route::post('/contact',    [FrontHomeController::class, 'contact'])->name('contact');
+Route::get('download-cv',  [FrontHomeController::class, 'downloadCv'])->name('download-cv');
 Route::match(['get', 'post'], '/register', [FrontAuthController::class, 'index'])->name('register');
 
 //Back Routes

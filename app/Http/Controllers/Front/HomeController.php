@@ -12,6 +12,7 @@ use App\Models\Experience;
 use App\Models\Blog;
 use App\Models\Message;
 use Illuminate\Support\Facades\Mail;
+use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 
 class HomeController extends Controller
 {
@@ -19,8 +20,8 @@ class HomeController extends Controller
     {
         $about       = About::find(1);
         $skills      = MySkill::where('parent_id',0)->get();
-        $projects    = Portfolio::orderBy('order','asc')->get();
-        $blogs       = Blog::orderBy('id','desc')->get();
+        $projects    = Portfolio::orderBy('order','asc')->take(8)->get();
+        $blogs       = Blog::orderBy('id','desc')->take(4)->get();
         $educations  = Experience::where('type',1)->orderBy('id', 'desc')->get();
         $all_exps    = Experience::where('type',0)->orderBy('id', 'desc')->get();
 
@@ -35,11 +36,24 @@ class HomeController extends Controller
             compact('about' , 'skills', 'educations', 'experiences' ,'projects', 'blogs'));
     }
 
+    public function blogs()
+    {
+        $blogs = Blog::all();
+        return view('front.blogs', compact('blogs'));
+    }
+
     public function blog($slug)
     {
         Blog::where('slug',$slug)->increment('reads',1);
         $blog = Blog::where('slug',$slug)->first();
         return view('front.single-blog', compact('blog'));
+    }
+
+
+    public function projects()
+    {
+        $projects = Portfolio::all();
+        return view('front.projects', compact('projects'));
     }
 
     public function contact(Request $request)
