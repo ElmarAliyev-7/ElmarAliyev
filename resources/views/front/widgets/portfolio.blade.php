@@ -30,7 +30,11 @@
                 @endforeach
               </div>
           </div>
+
       </div> <!-- End gridder -->
     </div>
+      <div class="col-12 text-center py-3 wow fadeInUp">
+          <a href="blog-fullbar.html" class="btn btn-theme">See All Post</a>
+      </div>
   </div>
   <!-- End Portfolio page -->

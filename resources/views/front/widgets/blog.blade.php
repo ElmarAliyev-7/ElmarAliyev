@@ -21,6 +21,9 @@
                 </div>
             </div>
         @endforeach
+            <div class="col-12 text-center py-3 wow fadeInUp">
+                <a href="blog-fullbar.html" class="btn btn-theme">See All Post</a>
+            </div>
         </div>
     </div>
 </div>
