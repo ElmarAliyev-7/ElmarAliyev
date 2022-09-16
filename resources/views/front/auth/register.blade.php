@@ -68,21 +68,6 @@
 @push('js')
 <script>
   $(document).ready(function() {
-      function showSignUp(){
-          $('#sing-up').show();
-          $('#sing-in').hide();
-
-          $("#sing-in-button").show();
-          $("#sing-up-button").hide();
-      }
-      function showSignIn(){
-          $('#sing-in').show();
-          $('#sing-up').hide();
-
-          $("#sing-up-button").show();
-          $("#sing-in-button").hide();
-      }
-
       function scrollToRegister() {
           $('html, body').animate({
               scrollTop: $("#register").offset().top
@@ -91,6 +76,21 @@
 
       scrollToRegister()
   });
+
+  function showSignUp(){
+      $('#sing-up').show();
+      $('#sing-in').hide();
+
+      $("#sing-in-button").show();
+      $("#sing-up-button").hide();
+  }
+  function showSignIn(){
+      $('#sing-in').show();
+      $('#sing-up').hide();
+
+      $("#sing-up-button").show();
+      $("#sing-in-button").hide();
+  }
 </script>
 @endpush
 @endsection
