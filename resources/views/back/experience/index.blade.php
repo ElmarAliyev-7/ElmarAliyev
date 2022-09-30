@@ -20,6 +20,7 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Company Name</th>
+            <th scope="col">Logo</th>
             <th scope="col">Type</th>
             <th scope="col">Duty</th>
             <th scope="col">Date</th>
@@ -32,6 +33,7 @@
             <tr>
                 <th>{{$loop->iteration}}</th>
                 <th>{{$experience->company_name}}</th>
+                <th>@if($experience->image)<img src="{{asset($experience->image)}}" width="80px" height="60px"/>@endif</th>
                 @if($experience->type == 0)
                     <th class="text-success">Experience</th>
                 @elseif($experience->type == 1)

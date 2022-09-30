@@ -7,6 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Models\RoleAndPermission;
 use App\Models\HomePage;
+use App\Models\Portfolio;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -41,7 +42,8 @@ class AppServiceProvider extends ServiceProvider
         View::share([
             'unchecked_messages' => Message::where('seen', 0)->get(),
             'home_page'          => $home_page,
-            'home_subtitle_array'=> explode(" ", $home_page->subtitle)
+            'home_subtitle_array'=> explode(" ", $home_page->subtitle),
+            'experience_count'   => Portfolio::count(),
         ]);
     }
 }

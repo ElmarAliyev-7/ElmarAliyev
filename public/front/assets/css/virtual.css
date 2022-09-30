@@ -1,5 +1,5 @@
 /*
- 
+
  [Master Stylesheet]
 
  Project:   VirtualGram Template
@@ -62,7 +62,7 @@
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-/* 
+/*
     1. Basic
 */
 
@@ -128,7 +128,7 @@ a:hover, a:active {
     z-index: 99;
 }
 
-/* 
+/*
     2. Button
 */
 .btn-theme {
@@ -318,6 +318,32 @@ a:hover, a:active {
     background-repeat: no-repeat;
 }
 
+.details .work {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.details .work .aspect-ratio{
+    width: 80px;
+}
+
+.details .work .aspect-ratio .img-container{
+    width: 100%;
+    position: relative;
+    padding-top: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.details .work .aspect-ratio .img-container img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    object-fit: contain;
+}
+
 .set-menu {
     position: relative;
     display: inline-block;
@@ -328,7 +354,7 @@ a:hover, a:active {
 }
 
 
-/* 
+/*
     3. Color Scheme
 */
 
@@ -456,7 +482,7 @@ a:hover, a:active {
     background-color: #FE0002 !important;
 }
 
-/* 
+/*
     4. Progressbar
 */
 .progress-wrapper {
@@ -486,11 +512,11 @@ a:hover, a:active {
     background-color: #747474;
 }
 
-/* 
+/*
     5. Preloader
 */
 
-/* 
+/*
     6. Pagination
 */
 .page-item:not(:last-child) .page-link {
@@ -518,7 +544,7 @@ a:hover, a:active {
 }
 
 
-/* 
+/*
     7. List style
 */
 .theme-list {
@@ -559,7 +585,7 @@ a:hover, a:active {
 }
 
 /*
- *  8. Navigation 
+ *  8. Navigation
  */
 .sticky {
     top: 0;
@@ -604,7 +630,7 @@ a:hover, a:active {
     }
 }
 
-/* 
+/*
  *  9. Input
  */
 .form-control {
@@ -622,7 +648,7 @@ a:hover, a:active {
 
 .form-control::-webkit-input-placeholder {
     font-weight: 500;
-    color: #9FA2AB; 
+    color: #9FA2AB;
 }
 
 .form-control::-moz-placeholder {
@@ -635,7 +661,7 @@ a:hover, a:active {
     color: #9FA2AB;
 }
 
-/* 
+/*
  *  10. Select
  */
 .vg-select {

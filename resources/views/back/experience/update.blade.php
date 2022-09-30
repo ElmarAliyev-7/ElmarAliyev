@@ -2,7 +2,7 @@
 @section('title','Update Experience & Education')
 @section('content')
     <div class="container">
-        <form action="{{route('admin.update-experience',$experience->id)}}" method="POST">
+        <form action="{{route('admin.update-experience',$experience->id)}}" method="POST" enctype="multipart/form-data">
             @csrf
             @if ($errors->any())
                 @foreach ($errors->all() as $error)
@@ -29,6 +29,11 @@
             <div class="form-group">
                 <label for="exampleInputTitle">Company Name</label>
                 <input type="text" name="company_name" value="{{$experience->company_name}}" class="form-control" id="exampleInputTitle" placeholder="Enter Company Name" required>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputImage">Logo</label>
+                <img src="{{asset($experience->image)}}" width="180px" height="160px"/>
+                <input type="file" name="image" class="form-control" id="exampleInputImage">
             </div>
             <div class="form-group">
                 <label for="exampleInputTitle2">Duty</label>

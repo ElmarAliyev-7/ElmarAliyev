@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Back;
 use App\Http\Controllers\Controller;
 use App\Models\Experience;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class ExperienceController extends Controller
 {
@@ -20,8 +21,25 @@ class ExperienceController extends Controller
             $experience->end          = $request->end;
             $experience->work_time    = $request->work_time;
             $experience->type         = $request->type;
-            $experience->save();
-            return redirect()->back()->with('success', 'Added successfully!');
+            try {
+                if ($files = $request->file('image')) {
+                    request()->validate([
+                        'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                    ]);
+                    $image_path = public_path($experience->image);
+                    if (File::exists($image_path)) {
+                        File::delete($image_path);
+                    }
+                    $destinationPath = public_path('/images/');
+                    $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
+                    $files->move($destinationPath, $profileImage);
+                    $experience->image = 'images/' . $profileImage;
+                }
+                $experience->save();
+                return redirect()->back()->with('success', 'Added successfully!');
+            } catch (\Exception $exception) {
+                return redirect()->back()->with('error', $exception->getMessage());
+            }
         }
         if ($request->isMethod('get'))
         {
@@ -39,8 +57,25 @@ class ExperienceController extends Controller
             $experience->end          = $request->end;
             $experience->work_time    = $request->work_time;
             $experience->type         = $request->type;
-            $experience->save();
-            return redirect()->back()->with('success', 'Updated successfully!');
+            try {
+                if ($files = $request->file('image')) {
+                    request()->validate([
+                        'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                    ]);
+                    $image_path = public_path($experience->image);
+                    if (File::exists($image_path)) {
+                        File::delete($image_path);
+                    }
+                    $destinationPath = public_path('/images/');
+                    $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
+                    $files->move($destinationPath, $profileImage);
+                    $experience->image = 'images/' . $profileImage;
+                }
+                $experience->save();
+                return redirect()->back()->with('success', 'Updated successfully!');
+            } catch (\Exception $exception) {
+                return redirect()->back()->with('error', $exception->getMessage());
+            }
         }
         if ($request->isMethod('get'))
         {

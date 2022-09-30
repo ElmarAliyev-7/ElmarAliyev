@@ -97,7 +97,16 @@
             <li>
               <div class="title w-100">{{AppHelper::instance()->formatDate($education->start,$education->end)}}</div>
               <div class="details">
-                <h5>{{$education->duty}}</h5>
+                  <div class="work">
+                      @if($education->image)
+                          <div class="aspect-ratio">
+                              <div class="img-container">
+                                  <img src="{{$education->image}}"/>
+                              </div>
+                          </div>
+                      @endif
+                      <h5>{{$education->duty}}</h5>
+                  </div>
                 <small class="fg-theme">{{$education->company_name}}</small>
               </div>
             </li>
@@ -115,7 +124,16 @@
                           ( {{AppHelper::instance()->getExperiencePeriod($experience[0]->start,$experience[0]->end)}} month )
                       </div>
                       <div class="details">
-                          <h5>{{$experience[0]->company_name}}</h5>
+                          <div class="work">
+                              @if($experience[0]->image)
+                                  <div class="aspect-ratio">
+                                      <div class="img-container">
+                                          <img src="{{$experience[0]->image}}"/>
+                                      </div>
+                                  </div>
+                              @endif
+                              <h5>{{$experience[0]->company_name}}</h5>
+                          </div>
                           <small class="fg-theme">{{$experience[0]->duty}}</small>
                           <p>{{AppHelper::instance()->getWorkTime($experience[0]->work_time)}}</p>
                       </div>
@@ -126,7 +144,17 @@
                           ( {{AppHelper::instance()->getExperiencePeriod($experience[$last_key]->start,$experience[0]->end)}} month )
                       </div>
                       <div class="details">
-                          <h5>{{$experience[0]->company_name}}</h5>
+                          <div class="work">
+                              @if($experience[0]->image)
+                                  <div class="aspect-ratio">
+                                      <div class="img-container">
+                                          <img src="{{$experience[0]->image}}"/>
+                                      </div>
+                                  </div>
+                              @endif
+                              <h5>{{$experience[0]->company_name}}</h5>
+                          </div>
+                          {{$experience[0]->company_name}}</h5>
                           <small class="fg-theme">{{$experience[0]->duty}}</small>
                           <ul>
                               @foreach($experience as $exp)
