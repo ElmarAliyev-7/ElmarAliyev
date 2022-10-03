@@ -154,7 +154,6 @@
                               @endif
                               <h5>{{$experience[0]->company_name}}</h5>
                           </div>
-                          {{$experience[0]->company_name}}</h5>
                           <small class="fg-theme">{{$experience[0]->duty}}</small>
                           <ul>
                               @foreach($experience as $exp)
