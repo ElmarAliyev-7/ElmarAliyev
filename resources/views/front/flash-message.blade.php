@@ -36,7 +36,7 @@
         Please check the form below for errors
         <ul>
             @foreach ($errors->all() as $error)
-                <li>{{$error}}</li>>
+                <li>{{$error}}</li>
             @endforeach
         </ul>
     </div>

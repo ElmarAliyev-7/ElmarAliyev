@@ -19,7 +19,7 @@
                 <input type="file" name="image" class="form-control" id="exampleInputTitle4" accept="image/png, image/gif, image/jpeg">
             </div>
             <div class="form-group">
-                <label for="exampleInputTitle6">Video</label>
+                <label for="exampleInputTitle6">Video</label> <br>
                 <video src="{{asset($blog->video)}}" width="220px" height="180px" controls></video>
                 <input type="file" name="video" class="form-control" id="exampleInputTitle6" accept="video/mp4,video/x-m4v,video/*">
             </div>

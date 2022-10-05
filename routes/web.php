@@ -27,8 +27,10 @@ Route::post('/contact',    [FrontHomeController::class, 'contact'])->name('conta
 Route::get('/download-cv', [FrontHomeController::class, 'downloadCv'])->name('download-cv');
 Route::match(['get', 'post'], '/register', [FrontAuthController::class, 'index'])->name('register');
 Route::post('/login',      [FrontAuthController::class, 'login'])->name('login');
-Route::get('/profile',      [FrontAuthController::class, 'profile'])->name('profile');
+Route::get('/profile',     [FrontAuthController::class, 'profile'])->name('profile');
 Route::get('/logout',      [FrontAuthController::class, 'logOut'])->name('logout');
+Route::post('/update-profile/{id}', [FrontAuthController::class, 'updateProfile'])->name('update-profile');
+Route::post('/update-password/{id}',[FrontAuthController::class, 'updatePassword'])->name('update-password');
 
 //Back Routes
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {

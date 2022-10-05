@@ -44,24 +44,20 @@ class AuthController extends Controller
         $username = $request->username;
         $password = $request->password;
         $user     = User::where('username', $username)->first();
-
         if($user){
             if($user->role_id == 3){
-                $auth = Auth::guard('site')->attempt([
-                    'username' => $username,
-                    'password' => $password
-                ]);
-                if ($auth) {
-                    return redirect()->route('profile')->with('success', 'Xoşgəldiniz !');
-                }
+                $auth = Auth::guard('site')->attempt(['username' => $username, 'password' => $password]);
+                if ($auth)
+                    return view('front.auth.profile',compact('user'))->with('success', 'Xoşgəldiniz !');
+                else
+                    return redirect()->route('register')->with('error', 'İstifadəçi adı və ya parol səhvdir');
             }else{
                 $auth = Auth::attempt([
                     'username' => $username,
                     'password' => $password
                 ]);
-                if ($auth) {
+                if ($auth)
                     return redirect()->route('admin.dashboard');
-                }
             }
         }else{
             return redirect()->route('register')->with('error', 'İstifadəçi adı və ya parol səhvdir');
@@ -70,12 +66,45 @@ class AuthController extends Controller
 
     public function profile()
     {
-        return view('front.auth.profile');
+        $user = Auth::guard('site')->user();
+        return view('front.auth.profile', compact('user'));
     }
 
     public function logOut()
     {
         Auth::guard('site')->logout();
         return redirect()->route('home');
+    }
+
+    public function updateProfile(Request $request, $id){
+        $validated = $request->validate([
+            'name'     => 'required|max:15',
+            'surname'  => 'required|max:15',
+            'username' => 'required|max:20',
+            'email'    => 'max:50',
+        ]);
+        try {
+            $user = User::find($id);
+            $user->name     = $validated['name'];
+            $user->surname  = $validated['surname'];
+            $user->username = $validated['username'];
+            $user->email    = $validated['email'];
+            $user->save();
+            return redirect()->back()->with('success', 'Updated successfully !');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+    }
+
+    public function updatePassword(Request $request, $id){
+        $user = User::find($id);
+        if ($request->password != $request->password_confirmation) {
+            return redirect()->back()->with('error', 'Password doesn\'t match');
+        } else {
+            $user->password = Hash::make($request->password);
+            $user->save();
+            Auth::guard('site')->logout();
+            return redirect()->route('register')->with('success','Password updated successfully');
+        }
     }
 }

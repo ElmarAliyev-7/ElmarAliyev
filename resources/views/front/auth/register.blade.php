@@ -2,7 +2,7 @@
 @section('content')
     <div class="container" id="register">
         <!-- Outer Row -->
-        <div class="row justify-content-center" id="sing-in" style="display:none;">
+        <div class="row justify-content-center" id="sing-in">
             <div class="col-xl-10 col-lg-12 col-md-9">
                 <div class="card o-hidden border-0 shadow-lg my-5">
                     <div class="card-body p-0">
@@ -38,7 +38,7 @@
             </div>
         </div>
 
-        <div class="row justify-content-center" id="sing-up">
+        <div class="row justify-content-center" id="sing-up" style="display:none;">
             <div class="col-xl-10 col-lg-12 col-md-9">
                 <div class="card o-hidden border-0 shadow-lg my-5">
                     <div class="card-body p-0">
