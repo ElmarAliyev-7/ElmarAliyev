@@ -43,18 +43,29 @@ class AuthController extends Controller
     public function login(Request $request){
         $username = $request->username;
         $password = $request->password;
-        $auth = Auth::guard('site')->attempt([
-            'username' => $username,
-            'password' => $password,
-            'role'     => function ($query) {
-                $query->where('role_id', 3);
-            }
-        ]);
+        $user     = User::where('username', $username)->first();
 
-        if ($auth) {
-            return redirect()->route('profile')->with('success', 'Xoşgəldiniz !');
+        if($user){
+            if($user->role_id == 3){
+                $auth = Auth::guard('site')->attempt([
+                    'username' => $username,
+                    'password' => $password
+                ]);
+                if ($auth) {
+                    return redirect()->route('profile')->with('success', 'Xoşgəldiniz !');
+                }
+            }else{
+                $auth = Auth::attempt([
+                    'username' => $username,
+                    'password' => $password
+                ]);
+                if ($auth) {
+                    return redirect()->route('admin.dashboard');
+                }
+            }
+        }else{
+            return redirect()->route('register')->with('error', 'İstifadəçi adı və ya parol səhvdir');
         }
-        return redirect()->route('register')->with('error', 'İstifadəçi adı və ya parol səhvdir');
     }
 
     public function profile()
