@@ -20,7 +20,7 @@
                         <video src="{{asset($blog->video)}}" controls width="300px" height="275px"></video>
                     </div>
                 @endif
-                <p style="text-indent: 40px;text-align: justify;">{{$blog->description}}</p>
+                <p style="text-indent: 40px;text-align: justify;">{!! $blog->description !!}</p>
                 <a href="{{$blog->link}}" target="_blank" style="text-decoration: underline">Source link</a>
             </div>
         </div>
