@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -38,5 +38,33 @@ class AuthController extends Controller
         {
             return view('front.auth.register');
         }
+    }
+
+    public function login(Request $request){
+        $username = $request->username;
+        $password = $request->password;
+        $auth = Auth::guard('site')->attempt([
+            'username' => $username,
+            'password' => $password,
+            'role'     => function ($query) {
+                $query->where('role_id', 3);
+            }
+        ]);
+
+        if ($auth) {
+            return redirect()->route('profile')->with('success', 'Xoşgəldiniz !');
+        }
+        return redirect()->route('register')->with('error', 'İstifadəçi adı və ya parol səhvdir');
+    }
+
+    public function profile()
+    {
+        return view('front.auth.profile');
+    }
+
+    public function logOut()
+    {
+        Auth::guard('site')->logout();
+        return redirect()->route('home');
     }
 }

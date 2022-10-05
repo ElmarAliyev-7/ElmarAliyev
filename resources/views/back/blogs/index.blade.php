@@ -1,16 +1,7 @@
 @extends('back.layouts.master')
 @section('title','Blogs')
 @section('content')
-
-    @if(Session::has('error'))
-        <div class="alert alert-danger">
-            {{ Session::get('error')}}
-        </div>
-    @elseif(Session::has('success'))
-        <div class="alert alert-success">
-            {{ Session::get('success')}}
-        </div>
-    @endif
+    @include('front.flash-message')
     @if(AppHelper::instance()->checkPermisson(16) == 1)
         <a href="{{route('admin.create-blog')}}" class="btn btn-success btn-sm">Create new Blog
         </a> <hr>

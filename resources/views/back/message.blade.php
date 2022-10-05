@@ -2,15 +2,7 @@
 @section('title','Messages')
 @section('content')
 <table class="table table-bordered">
-    @if(Session::has('error'))
-        <div class="alert alert-danger">
-            {{ Session::get('error')}}
-        </div>
-    @elseif(Session::has('success'))
-        <div class="alert alert-success">
-            {{ Session::get('success')}}
-        </div>
-    @endif
+    @include('front.flash-message')
     <thead>
     <tr>
         <th scope="col">#</th>

@@ -5,20 +5,7 @@
     <button onclick="showSignUp()" class="btn btn-light" id="sing-up-button" style="display: none;">Sing-up</button>
     <button onclick="showSignIn()" class="btn btn-dark" id="sing-in-button">Sing-in</button>
   </div>
-  @if ($errors->any())
-    @foreach ($errors->all() as $error)
-        <div class="alert alert-danger">{{$error}}</div>
-    @endforeach
-  @endif
-  @if(Session::has('error'))
-    <div class="alert alert-danger">
-        {{ Session::get('error')}}
-    </div>
-  @elseif(Session::has('success'))
-    <div class="alert alert-success">
-        {{ Session::get('success')}}
-    </div>
-  @endif
+  @include('front.flash-message')
   <div class="shadow-lg p-3 rounded" id="sing-up">
     <form action="{{route('register')}}" method="POST">
       @csrf
@@ -50,7 +37,7 @@
     </form>
   </div>
   <div class="shadow-lg p-3 rounded" id="sing-in" style="display:none;">
-    <form action="" method="POST">
+    <form action="{{route('login')}}" method="POST">
       @csrf
       <div class="form-group">
         <label for="exampleInputUserame">Userame</label>

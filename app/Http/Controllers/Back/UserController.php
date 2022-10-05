@@ -25,11 +25,11 @@ class UserController extends Controller
                 ]);
                 try {
                     $user = new User;
-                    $user->name     = $validated->name;
-                    $user->surname  = $validated->surname;
-                    $user->username = $validated->username;
-                    $user->role_id  = $request->role_id;
-                    $user->email    = $validated->email;
+                    $user->name     = $validated['name'];
+                    $user->surname  = $validated['surname'];
+                    $user->username = $validated['username'];
+                    $user->role_id  = $request['role_id'];
+                    $user->email    = $validated['email'];
                     $user->password = Hash::make($request->password);
                     $user->save();
 

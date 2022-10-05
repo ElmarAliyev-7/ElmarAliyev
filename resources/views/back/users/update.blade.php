@@ -4,15 +4,7 @@
 <div class="container">
   <form action="{{route('admin.update-user', $user->id)}}" method="POST">
     @csrf
-    @if(Session::has('error'))
-        <div class="alert alert-danger">
-            {{ Session::get('error')}}
-        </div>
-    @elseif(Session::has('success'))
-        <div class="alert alert-success">
-            {{ Session::get('success')}}
-        </div>
-    @endif
+    @include('front.flash-message')
     <div class="form-group">
       <label for="exampleInputName">Name</label>
       <input type="text" name="name" class="form-control" id="exampleInputName" value="{{$user->name}}" placeholder="Enter Name">

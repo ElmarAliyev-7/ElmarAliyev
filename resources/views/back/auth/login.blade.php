@@ -43,11 +43,7 @@
                                     </div>
                                     <form class="user" method="post" action="{{route('admin.login')}}">
                                         @csrf
-                                        @if(Session::has('error'))
-                                            <div class="alert alert-danger">
-                                                {{ Session::get('error')}}
-                                            </div>
-                                        @endif
+                                        @include('front.flash-message')
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"

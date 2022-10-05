@@ -3,11 +3,7 @@
 @section('content')
 <div class="container">
     <h3 class="text-center">{{$role->name}}</h3>
-    @if(Session::has('success'))
-        <div class="alert alert-success">
-            {{ Session::get('success')}}
-        </div>
-    @endif
+    @include('front.flash-message')
     <form action="{{route('admin.create-permission',$role->id)}}" method="post">
         @csrf
         @foreach ($permissions as $permission)

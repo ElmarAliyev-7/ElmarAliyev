@@ -24,8 +24,11 @@ Route::get('/blogs',       [FrontHomeController::class, 'blogs'])->name('blogs')
 Route::get('/blog/{slug}', [FrontHomeController::class, 'blog'])->name('blog');
 Route::get('/projects',    [FrontHomeController::class, 'projects'])->name('projects');
 Route::post('/contact',    [FrontHomeController::class, 'contact'])->name('contact');
-Route::get('download-cv',  [FrontHomeController::class, 'downloadCv'])->name('download-cv');
+Route::get('/download-cv', [FrontHomeController::class, 'downloadCv'])->name('download-cv');
 Route::match(['get', 'post'], '/register', [FrontAuthController::class, 'index'])->name('register');
+Route::post('/login',      [FrontAuthController::class, 'login'])->name('login');
+Route::get('/profile',      [FrontAuthController::class, 'profile'])->name('profile');
+Route::get('/logout',      [FrontAuthController::class, 'logOut'])->name('logout');
 
 //Back Routes
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
