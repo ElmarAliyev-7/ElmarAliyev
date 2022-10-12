@@ -10,7 +10,8 @@ class MySkill extends Model
     use HasFactory;
 
     protected $fillable=[
-        'skill',
-        'parent_id'
+        'name',
+        'parent_id',
+        'percent',
     ];
 }

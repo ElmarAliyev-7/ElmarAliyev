@@ -24,14 +24,14 @@ class UserController extends Controller
                     'email'    => 'max:50|unique:users,email',
                 ]);
                 try {
-                    $user = new User;
-                    $user->name     = $validated['name'];
-                    $user->surname  = $validated['surname'];
-                    $user->username = $validated['username'];
-                    $user->role_id  = $request['role_id'];
-                    $user->email    = $validated['email'];
-                    $user->password = Hash::make($request->password);
-                    $user->save();
+                    User::create([
+                        'name'     => $validated['name'],
+                        'surname'  => $validated['surname'],
+                        'username' => $validated['username'],
+                        'role_id'  => $request['role_id'],
+                        'email'    => $validated['email'],
+                        'password' => Hash::make($request->password),
+                    ]);
 
                     return redirect()->back()->with('success', 'User register successfully');
                 } catch (\Exception $e) {
@@ -61,14 +61,15 @@ class UserController extends Controller
             if($user->role_id == auth()->user()->role_id)
                 return abort(403,'Moderator doesn\'t edit the other moderator');
 
-            $user->name     = $request->name;
-            $user->surname  = $request->surname;
-            $user->username = $request->username;
-            $user->role_id  = $request->role_id;
-            $user->email    = $request->email;
-
             try {
-                $user->save();
+                $user->update([
+                    'name' => $request->name,
+                    'surname' =>$request->surname,
+                    'username' => $request->username,
+                    'role_id'  => $request->role_id,
+                    'email'    => $request->email
+                ]);
+
                 return redirect()->back()->with('success', 'User updated successfully');
             } catch (\Exception $exception) {
                 return redirect()->back()->with('error', $exception->getMessage());

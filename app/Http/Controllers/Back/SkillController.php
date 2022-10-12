@@ -12,12 +12,12 @@ class SkillController extends Controller
     {
         if ($request->isMethod('post'))
         {
-            $skill = new MySkill;
-            $skill->name      = $request->skill;
-            $parent_id        = $request->parent_id != null ? $request->parent_id  : 0;
-            $skill->parent_id = $parent_id;
-            $skill->percent   = $request->percent != null ? $request->percent  : 0;
-            $skill->save();
+            MySkill::create([
+                'name'      => $request->skill,
+                'parent_id' => $request->parent_id != null ? $request->parent_id  : 0,
+                'percent'   => $request->percent != null ? $request->percent  : 0
+            ]);
+
             return redirect()->back()->with('success', 'Skill added successfully!');
         }
         if ($request->isMethod('get'))
