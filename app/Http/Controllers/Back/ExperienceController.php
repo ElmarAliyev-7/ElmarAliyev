@@ -76,7 +76,6 @@ class ExperienceController extends Controller
                     $files->move($destinationPath, $profileImage);
                     $experience->update(['image' => 'images/' . $profileImage]);
                 }
-                $experience->save();
                 return redirect()->back()->with('success', 'Updated successfully!');
             } catch (\Exception $exception) {
                 return redirect()->back()->with('error', $exception->getMessage());

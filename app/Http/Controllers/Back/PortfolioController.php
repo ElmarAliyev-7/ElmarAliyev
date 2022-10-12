@@ -13,13 +13,14 @@ class PortfolioController extends Controller
     {
         if ($request->isMethod('post'))
         {
-            $project = new Portfolio;
-            $project->title   = $request->title;
-            $project->comment = $request->comment;
-            $project->program = $request->program;
-            $project->order   = $request->order ? $request->order : 0;
-
             try {
+                $project = Portfolio::create([
+                    'title'   => $request->title,
+                    'comment' => $request->comment,
+                    'program' => $request->program,
+                    'order'   => $request->order ? $request->order : 0
+                ]);
+
                 if ($files = $request->file('image')) {
                     request()->validate([
                         'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -31,9 +32,8 @@ class PortfolioController extends Controller
                     $destinationPath = public_path('/images/');
                     $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
                     $files->move($destinationPath, $profileImage);
-                    $project->image = 'images/' . $profileImage;
+                    $project->update(['image' => 'images/' . $profileImage]);
                 }
-                $project->save();
                 return redirect()->back()->with("success", "Project added successfully");
             } catch (\Exception $exception) {
                 return redirect()->back()->with('error', $exception->getMessage());
@@ -49,13 +49,16 @@ class PortfolioController extends Controller
     {
         if ($request->isMethod('post'))
         {
-            $project = Portfolio::findOrFail($id);
-            $project->title    = $request->title;
-            $project->comment  = $request->comment;
-            $project->program  = $request->program;
-            $project->order    = $request->order ? $request->order : 0;
-
             try {
+                $project = Portfolio::findOrFail($id);
+
+                $project->update([
+                    'title'    => $request->title,
+                    'comment'  => $request->comment,
+                    'program'  => $request->program,
+                    'order'    => $request->order ? $request->order : 0
+                ]);
+
                 if ($files = $request->file('image')) {
                     request()->validate([
                         'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -67,10 +70,8 @@ class PortfolioController extends Controller
                     $destinationPath = public_path('/images/');
                     $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
                     $files->move($destinationPath, $profileImage);
-                    $project->image = 'images/' . $profileImage;
+                    $project->update(['image' => 'images/' . $profileImage ]);
                 }
-
-                $project->save();
                 return redirect()->back()->with('success', 'Project updated successfully');
             } catch (\Exception $exception) {
                 return redirect()->back()->with('error', $exception->getMessage());

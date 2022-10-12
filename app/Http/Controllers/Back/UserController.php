@@ -35,7 +35,6 @@ class UserController extends Controller
 
                     return redirect()->back()->with('success', 'User register successfully');
                 } catch (\Exception $e) {
-
                     return redirect()->back()->with('error', $e->getMessage());
                 }
             }
