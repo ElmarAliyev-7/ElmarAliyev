@@ -1,7 +1,6 @@
 @extends('back.layouts.master')
 @section('title','Blogs')
 @section('content')
-    @include('front.flash-message')
     @if(AppHelper::instance()->checkPermisson(16) == 1)
         <a href="{{route('admin.create-blog')}}" class="btn btn-success btn-sm">Create new Blog
         </a> <hr>

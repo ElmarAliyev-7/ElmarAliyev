@@ -2,7 +2,6 @@
 @section('title','Messages')
 @section('content')
 <table class="table table-bordered">
-    @include('front.flash-message')
     <thead>
     <tr>
         <th scope="col">#</th>

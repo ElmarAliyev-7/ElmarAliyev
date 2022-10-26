@@ -3,7 +3,6 @@
 @section('content')
 <div class="container">
     <h3 class="text-center">{{$role->name}}</h3>
-    @include('front.flash-message')
     <form action="{{route('admin.create-permission',$role->id)}}" method="post">
         @csrf
         @foreach ($permissions as $permission)

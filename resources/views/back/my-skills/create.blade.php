@@ -4,7 +4,6 @@
     <div class="container">
         <form action="{{route('admin.create-skill')}}" method="POST">
             @csrf
-            @include('front.flash-message')
             <div class="form-group">
                 <label for="exampleInputTitle1">Select top category</label>
                 <select name="parent_id" class="form-control" id="exampleInputTitle1">
