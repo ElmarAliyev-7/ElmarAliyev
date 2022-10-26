@@ -76,9 +76,9 @@ class HomeController extends Controller
                 $m->to(env('MAIL_USERNAME'), env('MAIL_FROM_NAME') )->subject($email);
             });
             $new_message->save();
-            return response()->json(['success'=>'Message Sended Successfully']);
+            return redirect()->back()->with('success', 'Message Sended Successfully');
         }catch (\Exception $exception){
-            return response()->json(['error'=> $exception->getMessage()]);
+            return redirect()->back()->with('error', $exception->getMessage());
         }
     }
 

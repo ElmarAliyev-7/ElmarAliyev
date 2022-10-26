@@ -23,7 +23,8 @@ class AuthController extends Controller
             ]);
 
             if ($auth) {
-                return redirect()->route('admin.dashboard');
+                return redirect()->route('admin.dashboard')
+                    ->with('success', 'Welcome '.Auth::user()->name.' '.Auth::user()->surname);
             }
 
             return redirect()->route('admin.login')->with('error', 'İstifadəçi adı və ya parol səhvdir');

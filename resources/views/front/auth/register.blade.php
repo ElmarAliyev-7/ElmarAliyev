@@ -48,7 +48,6 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Sing up</h1>
                                     </div>
-                                    @include('front.flash-message')
                                     <form action="{{route('register')}}" method="POST" class="user">
                                         @csrf
                                         <div class="form-group">
