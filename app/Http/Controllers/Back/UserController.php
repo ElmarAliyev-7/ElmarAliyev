@@ -41,10 +41,10 @@ class UserController extends Controller
         }
         if ($request->isMethod('get'))
         {
-            if (auth()->user()->username == "admin") {
-                $roles = Role::where('name', '!=', 'admin')->orderBy('id', 'DESC')->get();
+            if (auth()->user()->id == 1) {
+                $roles = Role::where('id', '!=', 1)->orderBy('id', 'DESC')->get();
             } else {
-                $roles = Role::where('name', 'Standart user')->orderBy('id', 'DESC')->get();
+                $roles = Role::where('id', 3)->orderBy('id', 'DESC')->get();
             }
             return view('back.users.create', compact('roles'));
         }
@@ -85,7 +85,7 @@ class UserController extends Controller
             }
 
             if (auth()->user()->id === 1) {
-                $roles = Role::where('name', '!=', 'admin')->orderBy('id', 'DESC')->get();
+                $roles = Role::where('id', '!=', 1)->orderBy('id', 'DESC')->get();
             } else {
                 $roles = Role::find(3); // Standart user
             }

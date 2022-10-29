@@ -1,15 +1,16 @@
 @extends('back.layouts.master')
 @section('title','Messages')
 @section('content')
+@if(count($messages) > 0)
+    <a href="{{route('admin.delete-all-messages')}}" class="btn btn-danger btn-sm">Bulk Delete</a> <hr>
+@endif
 <table class="table table-bordered">
     <thead>
     <tr>
         <th scope="col">#</th>
         <th scope="col">Name</th>
-        <th scope="col">Email</th>
         <th scope="col">Subject</th>
-        <th scope="col">Message</th>
-        <th scope="col">Seen</th>
+        <th scope="col">Show Message</th>
         <th scope="col">Actions</th>
     </tr>
     </thead>
@@ -18,19 +19,13 @@
         <tr>
             <th>{{$loop->iteration}}</th>
             <td>{{$message->name}}</td>
-            <td>{{$message->email}}</td>
             <td>{{$message->subject}}</td>
-            <td>{{$message->message}}</td>
             <td>
-            @if($message->seen == 1)
-               <p class="text-success">Seened</p>
-            @else
                 @if(AppHelper::instance()->checkPermisson(14) == 1)
-                    <a href="{{route('admin.checked-seen',$message->id)}}" class="btn btn-primary btn-circle btn-sm">
+                    <a href="{{route('admin.show-message',$message->id)}}" class="btn btn-primary btn-circle btn-sm">
                         <i class="fas fa-eye"></i>
                     </a>
                 @endif
-            @endif
             </td>
             <td>
                 @if(AppHelper::instance()->checkPermisson(11) == 1)

@@ -6,6 +6,7 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Role</th>
+            <th scope="col">Permissions</th>
             <th scope="col">Actions</th>
         </tr>
         </thead>
@@ -15,7 +16,20 @@
                 <th>{{$loop->iteration}}</th>
                 <td>{{$role->name}}</td>
                 <td>
-                    @if ($role->name == 'Standart user')
+                    @if($role->id == 3)
+                       <span class="badge badge-danger">Standart user doesn't have any permission</span>
+                    @else
+                        @foreach($role->permissions as $permission)
+                            <span
+                                class="badge @if($permission->type==1) badge-success @elseif($permission->type==2) badge-info
+                                    @else badge-dark @endif">{{$permission->name}}</span>
+                        @endforeach
+                    @endif
+                </td>
+                <td>
+                    @if ($role->id == 1)
+                        <img src="{{asset('super_admin.gif')}}" height="140px"/>
+                    @elseif($role->id == 3)
                         ⛔
                     @else
                     <a href="{{route('admin.create-permission',$role->id)}}" class="btn btn-success btn-circle btn-sm">

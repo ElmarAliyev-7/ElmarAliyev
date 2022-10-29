@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Permission;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -15,25 +16,32 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
+
         $permissions = [
-            ['name' => 'Create User'], // 1
-            ['name' => 'Update User'], // 2
-            ['name' => 'Delete User'], // 3
-            ['name' => 'Create Skill'], // 4
-            ['name' => 'Delete Skill'], // 5
-            ['name' => 'Create Experience'], // 6
-            ['name' => 'Delete Experience'], // 7
-            ['name' => 'Create Project'], // 8
-            ['name' => 'Update Project'], // 9
-            ['name' => 'Delete Project'], // 10
-            ['name' => 'Update HomePage'],// 11
-            ['name' => 'Update AboutPage'], // 12
-            ['name' => 'Delete Message'], // 13
-            ['name' => 'View Messages'], //14
-            ['name' => 'Update Experience'], //15
-            ['name' => 'Create Blog'], // 16
-            ['name' => 'Update Blog'], // 17
-            ['name' => 'Delete Blog'], // 18
+            ['id' => 1,'name' => 'Create User', 'type' => 1],
+            ['id' => 2,'name' => 'Update User', 'type' => 1],
+            ['id' => 3,'name' => 'Delete User', 'type' => 1],
+
+            ['id' => 4,'name' => 'Create Skill', 'type' => 2],
+            ['id' => 5,'name' => 'Delete Skill', 'type' => 2],
+
+            ['id' => 6,'name' => 'Create Experience', 'type' => 2],
+            ['id' => 15,'name' => 'Update Experience', 'type' => 2],
+            ['id' => 7,'name' => 'Delete Experience', 'type' => 2],
+
+            ['id' => 8,'name' => 'Create Project', 'type' => 2],
+            ['id' => 9,'name' => 'Update Project', 'type' => 2],
+            ['id' => 10,'name' => 'Delete Project', 'type' => 2],
+
+            ['id' => 11,'name' => 'Update HomePage', 'type' => 2],
+            ['id' => 12,'name' => 'Update AboutPage', 'type' => 2],
+
+            ['id' => 13,'name' => 'Delete Message', 'type' => 2],
+            ['id' => 14,'name' => 'View Messages', 'type' => 2],
+
+            ['id' => 16,'name' => 'Create Blog', 'type' => 3],
+            ['id' => 17,'name' => 'Update Blog', 'type' => 3],
+            ['id' => 18,'name' => 'Delete Blog', 'type' => 3],
         ];
 
         DB::table('permissions')->insert($permissions);

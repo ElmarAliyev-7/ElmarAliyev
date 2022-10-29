@@ -28,7 +28,7 @@ class DashboardController extends Controller
 
     public function users()
     {
-        $users = User::where('username', '!=', 'admin')->paginate(10);
+        $users = User::where('id', '!=', 1)->paginate(10);
         $roles = Role::select('id', 'name')->get();
         return view('back.users.index', compact('users', 'roles'));
     }
@@ -72,12 +72,12 @@ class DashboardController extends Controller
     public function messages()
     {
         $messages = Message::paginate(10);
-        return view('back.message',compact('messages'));
+        return view('back.messages.index',compact('messages'));
     }
 
     public function permissions()
     {
-        $roles = Role::select('id', 'name')->where('id', '!=', 1)->get();
+        $roles = Role::with('permissions')->orderBy('id','ASC')->get();
         return view('back.permissions.index', compact('roles'));
     }
 }

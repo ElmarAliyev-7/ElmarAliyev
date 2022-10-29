@@ -244,8 +244,8 @@
                                 Message Center
                             </h6>
                             @foreach($unchecked_messages as $unchecked_message)
-                                <a class="dropdown-item d-flex align-items-center"
-                                   href="{{route('admin.checked-seen',$unchecked_message->id)}}">
+                            <a class="dropdown-item d-flex align-items-center"
+                                   href="{{route('admin.show-message',$unchecked_message->id)}}">
                                 <div class="font-weight-bold">
                                     <div class="text-truncate">{{$unchecked_message->name}}</div>
                                     <div class="small text-gray-500">{{$unchecked_message->message}}</div>

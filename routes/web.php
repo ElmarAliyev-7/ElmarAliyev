@@ -56,8 +56,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         });
         //View Message
         Route::group(['middleware' => 'ViewMessage'], function () {
-            Route::get('/message',            [DashboardController::class, 'messages'])->name('message');
-            Route::get('/checked-seen/{id}',  [MessageController::class, 'checkSeened'])->name('checked-seen');
+            Route::get('/message',             [DashboardController::class, 'messages'])->name('message');
+            Route::get('/show-message/{id}',   [MessageController::class, 'showMessage'])->name('show-message');
+            Route::get('/delete-all-messages', [MessageController::class, 'bulkDelete'])->name('delete-all-messages');
         });
         //Update HomePage Permission
         Route::group(['middleware' => 'UpdateHomePage'], function () {
