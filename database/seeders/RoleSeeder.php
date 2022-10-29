@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Role;
 use App\Models\Permission;
 use App\Models\RoleAndPermission;
+use Illuminate\Support\Facades\DB;
 
 class RoleSeeder extends Seeder
 {
@@ -17,17 +18,21 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        $admin         = Role::create(['name' => 'Admin']);
-        $moderator     = Role::create(['name' => 'Moderator']);
-        $standart_user = Role::create(['name' => 'Standart user']);
+        $roles = [
+            ['name' => 'SuperAdmin'],
+            ['name' => 'Admin'],
+            ['name' => 'Standart user']
+        ];
+        DB::table('roles')->insert($roles);
 
-        //Give All Permisssions to Admin
+
+        //Give All Permisssions to SuperAdmin
+        $super_admin_permissions = [];
         $permissions = Permission::all();
+
         foreach ($permissions as $permission) {
-            RoleAndPermission::create([
-                'role_id' => 1,
-                'permission_id' => $permission->id
-            ]);
+            array_push($super_admin_permissions, ['role_id' => 1, 'permission_id' => $permission->id]);
         }
+        DB::table('role_and_permissions')->insert($super_admin_permissions);
     }
 }

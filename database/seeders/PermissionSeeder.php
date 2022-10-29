@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Permission;
+use Illuminate\Support\Facades\DB;
 
 class PermissionSeeder extends Seeder
 {
@@ -15,23 +15,27 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
-        Permission::create(['name' => 'Create User']); // 1
-        Permission::create(['name' => 'Update User']); // 2
-        Permission::create(['name' => 'Delete User']); // 3
-        Permission::create(['name' => 'Create Skill']); // 4
-        Permission::create(['name' => 'Delete Skill']); // 5
-        Permission::create(['name' => 'Create Experience']); // 6
-        Permission::create(['name' => 'Delete Experience']); // 7
-        Permission::create(['name' => 'Create Project']); // 8
-        Permission::create(['name' => 'Update Project']); // 9
-        Permission::create(['name' => 'Delete Project']); // 10
-        Permission::create(['name' => 'Update HomePage']); // 11
-        Permission::create(['name' => 'Update AboutPage']); // 12
-        Permission::create(['name' => 'Delete Message']); // 13
-        Permission::create(['name' => 'View Messages']); //14
-        Permission::create(['name' => 'Update Experience']); //15
-        Permission::create(['name' => 'Create Blog']); // 16
-        Permission::create(['name' => 'Update Blog']); // 17
-        Permission::create(['name' => 'Delete Blog']); // 18
+        $permissions = [
+            ['name' => 'Create User'], // 1
+            ['name' => 'Update User'], // 2
+            ['name' => 'Delete User'], // 3
+            ['name' => 'Create Skill'], // 4
+            ['name' => 'Delete Skill'], // 5
+            ['name' => 'Create Experience'], // 6
+            ['name' => 'Delete Experience'], // 7
+            ['name' => 'Create Project'], // 8
+            ['name' => 'Update Project'], // 9
+            ['name' => 'Delete Project'], // 10
+            ['name' => 'Update HomePage'],// 11
+            ['name' => 'Update AboutPage'], // 12
+            ['name' => 'Delete Message'], // 13
+            ['name' => 'View Messages'], //14
+            ['name' => 'Update Experience'], //15
+            ['name' => 'Create Blog'], // 16
+            ['name' => 'Update Blog'], // 17
+            ['name' => 'Delete Blog'], // 18
+        ];
+
+        DB::table('permissions')->insert($permissions);
     }
 }
