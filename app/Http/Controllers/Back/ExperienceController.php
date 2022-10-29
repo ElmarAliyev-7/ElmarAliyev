@@ -13,15 +13,16 @@ class ExperienceController extends Controller
     {
         if ($request->isMethod('post'))
         {
-            $experience = new Experience;
-
-            $experience->company_name = $request->company_name;
-            $experience->duty         = $request->duty;
-            $experience->start        = $request->start;
-            $experience->end          = $request->end;
-            $experience->work_time    = $request->work_time;
-            $experience->type         = $request->type;
             try {
+                $experience = Experience::create([
+                    'company_name' =>   $request->company_name,
+                    'duty'         =>   $request->duty,
+                    'start'        =>   $request->start,
+                    'end'          =>   $request->end,
+                    'work_time'    =>   $request->work_time,
+                    'type'         =>   $request->type,
+                ]);
+
                 if ($files = $request->file('image')) {
                     request()->validate([
                         'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -33,9 +34,9 @@ class ExperienceController extends Controller
                     $destinationPath = public_path('/images/');
                     $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
                     $files->move($destinationPath, $profileImage);
-                    $experience->image = 'images/' . $profileImage;
+                    $experience->update(['image' => 'images/' . $profileImage]);
                 }
-                $experience->save();
+
                 return redirect()->back()->with('success', 'Added successfully!');
             } catch (\Exception $exception) {
                 return redirect()->back()->with('error', $exception->getMessage());
@@ -50,14 +51,18 @@ class ExperienceController extends Controller
     public function update(Request $request, $id){
         if ($request->isMethod('post'))
         {
-            $experience = Experience::findOrFail($id);
-            $experience->company_name = $request->company_name;
-            $experience->duty         = $request->duty;
-            $experience->start        = $request->start;
-            $experience->end          = $request->end;
-            $experience->work_time    = $request->work_time;
-            $experience->type         = $request->type;
             try {
+                $experience = Experience::findOrFail($id);
+
+                $experience->update([
+                    'company_name' =>   $request->company_name,
+                    'duty'         =>   $request->duty,
+                    'start'        =>   $request->start,
+                    'end'          =>   $request->end,
+                    'work_time'    =>   $request->work_time,
+                    'type'         =>   $request->type
+                ]);
+
                 if ($files = $request->file('image')) {
                     request()->validate([
                         'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -69,9 +74,8 @@ class ExperienceController extends Controller
                     $destinationPath = public_path('/images/');
                     $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
                     $files->move($destinationPath, $profileImage);
-                    $experience->image = 'images/' . $profileImage;
+                    $experience->update(['image' => 'images/' . $profileImage]);
                 }
-                $experience->save();
                 return redirect()->back()->with('success', 'Updated successfully!');
             } catch (\Exception $exception) {
                 return redirect()->back()->with('error', $exception->getMessage());
@@ -86,7 +90,12 @@ class ExperienceController extends Controller
 
     public function delete($id)
     {
-        Experience::find($id)->delete();
+        $experience = Experience::find($id);
+        if (File::exists($experience->image)) {
+            File::delete($experience->image);
+        }
+
+        $experience->delete();
         return redirect()->back()->with('success', 'Deleted successfully');
     }
 }

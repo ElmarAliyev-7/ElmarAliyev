@@ -4,7 +4,6 @@
 <div class="container">
   <form action="{{route('admin.update-user', $user->id)}}" method="POST">
     @csrf
-    @include('front.flash-message')
     <div class="form-group">
       <label for="exampleInputName">Name</label>
       <input type="text" name="name" class="form-control" id="exampleInputName" value="{{$user->name}}" placeholder="Enter Name">

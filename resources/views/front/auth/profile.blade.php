@@ -3,7 +3,6 @@
     <div class="container">
         <form action="{{route('update-profile',$user->id)}}" method="POST" id="update-form">
             @csrf
-            @include('front.flash-message')
             <a href="#change-password" onclick="changePassword()">Change Password</a><hr>
             <div class="form-group">
                 <label for="exampleInputName">Name</label>

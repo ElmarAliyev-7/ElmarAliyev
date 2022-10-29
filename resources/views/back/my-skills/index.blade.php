@@ -1,7 +1,6 @@
 @extends('back.layouts.master')
 @section('title','My Skills')
 @section('content')
-    @include('front.flash-message')
     @if(AppHelper::instance()->checkPermisson(4) == 1)
         <a href="{{route('admin.create-skill')}}" class="btn btn-success btn-sm">Add new skill
         </a> <hr>

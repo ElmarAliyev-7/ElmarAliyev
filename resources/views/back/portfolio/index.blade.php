@@ -1,7 +1,6 @@
 @extends('back.layouts.master')
 @section('title','Portfolio')
 @section('content')
-    @include('front.flash-message')
     @if(AppHelper::instance()->checkPermisson(8) == 1)
         <a href="{{route('admin.create-project')}}" class="btn btn-success btn-sm">Add new Project
         </a> <hr>

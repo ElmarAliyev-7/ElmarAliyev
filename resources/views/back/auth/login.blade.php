@@ -43,7 +43,6 @@
                                     </div>
                                     <form class="user" method="post" action="{{route('admin.login')}}">
                                         @csrf
-                                        @include('front.flash-message')
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"

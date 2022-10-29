@@ -4,7 +4,6 @@
     <div class="container">
         <form action="{{route('admin.create-project')}}" method="POST" enctype="multipart/form-data">
             @csrf
-            @include('front.flash-message')
             <div class="form-group">
                 <label for="exampleInputTitle">Title</label>
                 <input type="text" name="title" class="form-control" id="exampleInputTitle" placeholder="Enter Title" required>
