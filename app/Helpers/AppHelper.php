@@ -1,7 +1,6 @@
 <?php
 namespace App\Helpers;
 
-use App\Models\MySkill;
 use App\Models\RoleAndPermission;
 
 class AppHelper

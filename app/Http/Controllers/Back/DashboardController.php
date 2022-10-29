@@ -59,7 +59,7 @@ class DashboardController extends Controller
 
     public function portfolio()
     {
-        $projects = Portfolio::all();
+        $projects = Portfolio::orderBy('order', 'ASC')->get();
         return view('back.portfolio.index',compact('projects'));
     }
 

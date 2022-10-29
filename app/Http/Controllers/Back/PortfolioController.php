@@ -18,7 +18,6 @@ class PortfolioController extends Controller
                     'title'   => $request->title,
                     'comment' => $request->comment,
                     'program' => $request->program,
-                    'order'   => $request->order ? $request->order : 0
                 ]);
 
                 if ($files = $request->file('image')) {
@@ -56,7 +55,6 @@ class PortfolioController extends Controller
                     'title'    => $request->title,
                     'comment'  => $request->comment,
                     'program'  => $request->program,
-                    'order'    => $request->order ? $request->order : 0
                 ]);
 
                 if ($files = $request->file('image')) {
@@ -94,4 +92,12 @@ class PortfolioController extends Controller
         $project->delete();
         return redirect()->back()->with('success', 'Deleted successfully');
     }
+
+    public function sort(Request $request)
+    {
+        foreach($request->sorts as $order => $id) {
+            Portfolio::where('id', $id)->update(['order' => $order]);
+        }
+    }
+
 }

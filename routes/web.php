@@ -54,20 +54,24 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
             Route::get('/permissions',          [DashboardController::class, 'permissions'])->name('permissions');
             Route::match(['get', 'post'], '/add-permission/{id}',[PermissionController::class, 'index'])->name('create-permission');
         });
+
         //View Message
         Route::group(['middleware' => 'ViewMessage'], function () {
             Route::get('/message',             [DashboardController::class, 'messages'])->name('message');
             Route::get('/show-message/{id}',   [MessageController::class, 'showMessage'])->name('show-message');
             Route::get('/delete-all-messages', [MessageController::class, 'bulkDelete'])->name('delete-all-messages');
         });
+
         //Update HomePage Permission
         Route::group(['middleware' => 'UpdateHomePage'], function () {
             Route::post('/home',  [BackHomeController::class, 'index'])->name('home-page');
         });
+
         //Update AboutPage Permission
         Route::group(['middleware' => 'UpdateAboutPage'], function () {
             Route::post('/about', [BackHomeController::class, 'about'])->name('about-post');
         });
+
         //Create User Permission
         Route::group(['middleware' => 'CreateUser'], function () {
             Route::match(['get', 'post'], '/create-user',[UserController::class, 'create'])->name('create-user');
@@ -80,6 +84,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::group(['middleware' => 'DeleteUser'], function () {
             Route::get('/delete-user/{id}', [UserController::class, 'delete'])->name('delete-user');
         });
+
         //Create Skill
         Route::group(['middleware' => 'CreateSkill'], function () {
             Route::match(['get', 'post'], '/create-skill',[SkillController::class, 'create'])->name('create-skill');
@@ -88,6 +93,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::group(['middleware' => 'DeleteSkill'], function () {
             Route::get('delete-skill/{id}', [SkillController::class, 'delete'])->name('delete-skill');
         });
+
         //Create Experience & Education
         Route::group(['middleware' => 'CreateExperience'], function () {
             Route::match(['get', 'post'], '/create-experience',[ExperienceController::class, 'create'])->name('create-experience');
@@ -100,6 +106,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::group(['middleware' => 'DeleteExperience'], function () {
             Route::get('delete-experience/{id}', [ExperienceController::class, 'delete'])->name('delete-exp');
         });
+
         //Create Project
         Route::group(['middleware' => 'CreateProject'], function () {
             Route::match(['get', 'post'], '/create-project',[PortfolioController::class, 'create'])->name('create-project');
@@ -107,11 +114,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         //Update Project
         Route::group(['middleware' => 'UpdateProject'], function () {
             Route::match(['get', 'post'], '/update-project/{id}',[PortfolioController::class, 'update'])->name('update-project');
+            Route::get('/sort-projects', [PortfolioController::class, 'sort'])->name('sort-projects');
         });
         //Delete Project
         Route::group(['middleware' => 'DeleteProject'], function () {
             Route::get('delete-project/{id}',  [PortfolioController::class, 'delete'])->name('delete-project');
         });
+
         //Create Blog
         Route::group(['middleware' => 'CreateBlog'], function () {
             Route::match(['get', 'post'], '/create-blog',[BlogController::class, 'create'])->name('create-blog');
@@ -124,6 +133,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::group(['middleware' => 'DeleteBlog'], function () {
             Route::get('delete-blog/{id}',  [BlogController::class, 'delete'])->name('delete-blog');
         });
+
         //Delete Message
         Route::group(['middleware' => 'DeleteMessage'], function () {
             Route::get('/delete-message/{id}', [MessageController::class, 'deleteMessage'])->name('delete-message');

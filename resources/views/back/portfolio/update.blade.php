@@ -25,10 +25,6 @@
                     @endforeach
                 </select>
             </div>
-            <div class="form-group">
-                <label for="exampleInputTitle5">Order Number</label>
-                <input type="number" name="order" class="form-control" id="exampleInputTitle5" placeholder="Enter Order Number" value="{{$project->order}}">
-            </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
