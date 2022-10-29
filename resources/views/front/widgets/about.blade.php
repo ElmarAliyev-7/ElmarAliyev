@@ -28,22 +28,24 @@
             <h4 class="wow fadeInUp">Coding skills</h4>
             <div class="progress-wrapper wow fadeInUp">
             @foreach($skills as $skill)
-              <span class="caption">
-                <details>
-                  <summary>{{$skill->name}}</summary>
-                  <ul>
-                  @foreach(AppHelper::instance()->getSkillChilds($skill->id) as $child)
-                    <li>{{$child->name}}</li>
-                  @endforeach
-                  </ul>
-                </details>
-              </span>
-              <div class="progress">
-                <div class="progress-bar" role="progressbar" style="width:{{$skill->percent}}%;"
-                     aria-valuenow="{{$skill->percent}}" aria-valuemin="0" aria-valuemax="100">
-                    {{$skill->percent}}%
-                </div>
-              </div>
+                @if(count($skill->childs) > 0)
+                  <span class="caption">
+                    <details>
+                      <summary>{{$skill->name}}</summary>
+                      <ul>
+                          @foreach($skill->childs as $child)
+                            <li>{{$child->name}}</li>
+                          @endforeach
+                      </ul>
+                    </details>
+                  </span>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width:{{$skill->percent}}%;"
+                         aria-valuenow="{{$skill->percent}}" aria-valuemin="0" aria-valuemax="100">
+                        {{$skill->percent}}%
+                    </div>
+                  </div>
+                @endif
             @endforeach
             </div>
           </div>

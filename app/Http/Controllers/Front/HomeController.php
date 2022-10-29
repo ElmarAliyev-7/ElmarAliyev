@@ -19,7 +19,7 @@ class HomeController extends Controller
     public function index()
     {
         $about       = About::find(1);
-        $skills      = MySkill::where('parent_id',0)->get();
+        $skills      = MySkill::with('childs')->get();
         $projects    = Portfolio::orderBy('order','asc')->take(8)->get();
         $blogs       = Blog::orderBy('id','desc')->take(4)->get();
         $educations  = Experience::where('type',1)->orderBy('id', 'desc')->get();

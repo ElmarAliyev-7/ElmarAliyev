@@ -48,11 +48,6 @@ class AppHelper
         }
     }
 
-    public function getSkillChilds($parent_id)
-    {
-        return MySkill::where('parent_id', $parent_id)->get();
-    }
-
     public function getProgramNameByKey($prog_key)
     {
         foreach ( config('settings.programs') as $key => $value){

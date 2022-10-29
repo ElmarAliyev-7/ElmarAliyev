@@ -14,4 +14,14 @@ class MySkill extends Model
         'parent_id',
         'percent',
     ];
+
+    public function parent()
+    {
+        return $this->belongsTo(MySkill::class, 'parent_id');
+    }
+
+    public function childs()
+    {
+        return $this->hasMany(MySkill::class, 'parent_id');
+    }
 }
