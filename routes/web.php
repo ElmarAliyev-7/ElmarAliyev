@@ -50,7 +50,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('/blogs',      [DashboardController::class, 'blog'])->name('blog');
 
         //Permission routes for SuperAdmin
-        Route::group(['middleware' => 'isAdmin'], function () {
+        Route::group(['middleware' => 'isSuperAdmin'], function () {
             Route::get('/permissions',          [DashboardController::class, 'permissions'])->name('permissions');
             Route::match(['get', 'post'], '/add-permission/{id}',[PermissionController::class, 'index'])->name('create-permission');
         });

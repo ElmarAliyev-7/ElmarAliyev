@@ -29,7 +29,7 @@ class PermissionController extends Controller
         if ($request->isMethod('get'))
         {
             if ($id == 1 || $id == 3) {
-                return abort(404); // Admin and Standart User can't get permission
+                return abort(404); // SuperAdmin and Standart User can't get permission
             }
             $role         = Role::findOrFail($id);
             $role_perms   = RoleAndPermission::where('role_id', $id)->get();

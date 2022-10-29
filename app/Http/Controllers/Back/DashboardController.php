@@ -77,7 +77,7 @@ class DashboardController extends Controller
 
     public function permissions()
     {
-        $roles = Role::select('id', 'name')->where('name', '!=', 'admin')->get();
+        $roles = Role::select('id', 'name')->where('id', '!=', 1)->get();
         return view('back.permissions.index', compact('roles'));
     }
 }
