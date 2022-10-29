@@ -41,27 +41,37 @@ class AuthController extends Controller
     }
 
     public function login(Request $request){
-        $username = $request->username;
-        $password = $request->password;
-        $user     = User::where('username', $username)->first();
-        if($user){
-            if($user->role_id == 3){
-                $auth = Auth::guard('site')->attempt(['username' => $username, 'password' => $password]);
-                if ($auth)
-                    return view('front.auth.profile',compact('user'))->with('success', 'Xoşgəldiniz !');
-                else
+
+        if($request->isMethod('post'))
+        {
+            $username = $request->username;
+            $password = $request->password;
+            $user     = User::where('username', $username)->first();
+            if($user){
+                if($user->role_id == 3){
+                    $auth = Auth::guard('site')->attempt(['username' => $username, 'password' => $password]);
+                    if ($auth){
+                        toastr()->success('Xoşgəldiniz !' );
+                        return view('front.auth.profile', compact('user'));
+                    }
                     return redirect()->route('register')->with('error', 'İstifadəçi adı və ya parol səhvdir');
-            }else{
-                $auth = Auth::attempt([
-                    'username' => $username,
-                    'password' => $password
-                ]);
-                if ($auth)
-                    return redirect()->route('admin.dashboard');
+                }else{
+                    $auth = Auth::attempt([
+                        'username' => $username,
+                        'password' => $password
+                    ]);
+                    if ($auth)
+                        return redirect()->route('admin.dashboard');
+                }
             }
-        }else{
             return redirect()->route('register')->with('error', 'İstifadəçi adı və ya parol səhvdir');
         }
+
+        if($request->isMethod('get'))
+        {
+            return view('front.auth.register');
+        }
+
     }
 
     public function profile()
@@ -73,7 +83,7 @@ class AuthController extends Controller
     public function logOut()
     {
         Auth::guard('site')->logout();
-        return redirect()->route('home');
+        return redirect()->route('home')->with('info', 'Logged Out');
     }
 
     public function updateProfile(Request $request, $id){

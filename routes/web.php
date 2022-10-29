@@ -25,8 +25,11 @@ Route::get('/blog/{slug}', [FrontHomeController::class, 'blog'])->name('blog');
 Route::get('/projects',    [FrontHomeController::class, 'projects'])->name('projects');
 Route::post('/contact',    [FrontHomeController::class, 'contact'])->name('contact');
 Route::get('/download-cv', [FrontHomeController::class, 'downloadCv'])->name('download-cv');
-Route::post('/login',      [FrontAuthController::class, 'login'])->name('login');
-Route::match(['get', 'post'], '/register', [FrontAuthController::class, 'index'])->name('register');
+
+Route::group(['middleware' => 'isNotSiteLogin'], function(){
+    Route::match(['get', 'post'], '/login',      [FrontAuthController::class, 'login'])->name('login');
+    Route::match(['get', 'post'], '/register',   [FrontAuthController::class, 'index'])->name('register');
+});
 
 Route::group(['middleware' => 'isSiteLogin'], function () {
     Route::get('/profile',     [FrontAuthController::class, 'profile'])->name('profile');

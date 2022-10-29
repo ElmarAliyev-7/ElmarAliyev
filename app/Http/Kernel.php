@@ -85,5 +85,6 @@ class Kernel extends HttpKernel
         'UpdateBlog' => \App\Http\Middleware\UpdateBlog::class,
         'DeleteBlog' => \App\Http\Middleware\DeleteBlog::class,
         'isSiteLogin' => \App\Http\Middleware\isSiteLogin::class,
+        'isNotSiteLogin' => \App\Http\Middleware\isNotSiteLogin::class,
     ];
 }

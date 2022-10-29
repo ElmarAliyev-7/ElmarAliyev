@@ -25,7 +25,6 @@
 
         <form action="{{route('update-password',$user->id)}}" method="POST" id="change-password" style="display: none;">
             @csrf
-            @include('front.flash-message')
             <a href="#update-form" onclick="profile()">Profile</a><hr>
             <div class="form-group">
                 <label for="exampleInputPassword1">Password</label>
