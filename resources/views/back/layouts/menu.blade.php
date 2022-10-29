@@ -17,7 +17,7 @@
         <hr class="sidebar-divider my-0">
 
         <!-- Nav Item - Dashboard -->
-        <li class="nav-item active">
+        <li class="nav-item @if(url()->current() == route('admin.dashboard')) active @endif">
             <a class="nav-link" href="{{route('admin.dashboard')}}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
@@ -32,7 +32,8 @@
         </div>
 
         <!-- Users -->
-        <li class="nav-item">
+        <li class="nav-item
+            @if( (url()->current() == route('admin.users')) || (url()->current() == route('admin.create-user'))) active @endif">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#userPages"
                 aria-expanded="true" aria-controls="userPages">
                 <i class="fas fa-fw fa-folder"></i>
@@ -53,7 +54,8 @@
         <hr class="sidebar-divider">
 
         <!-- Myskills -->
-        <li class="nav-item">
+        <li class="nav-item
+            @if( (url()->current() == route('admin.skills')) || (url()->current() == route('admin.create-skill'))) active @endif">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#skillsPages"
                aria-expanded="true" aria-controls="userPages">
                 <i class="fas fa-fw fa-folder"></i>
@@ -74,7 +76,8 @@
         <hr class="sidebar-divider">
 
         <!-- Experience -->
-        <li class="nav-item">
+        <li class="nav-item
+            @if( (url()->current() == route('admin.experience')) || (url()->current() == route('admin.create-experience'))) active @endif">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#expPages"
                 aria-expanded="true" aria-controls="expPages">
                 <i class="fas fa-fw fa-folder"></i>
@@ -95,7 +98,8 @@
         <hr class="sidebar-divider">
 
         <!-- Portfolio -->
-        <li class="nav-item">
+        <li class="nav-item
+            @if( (url()->current() == route('admin.portfolio')) || (url()->current() == route('admin.create-project'))) active @endif">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#portfolioPages"
                aria-expanded="true" aria-controls="userPages">
                 <i class="fas fa-fw fa-folder"></i>
@@ -116,7 +120,8 @@
         <hr class="sidebar-divider">
 
         <!-- Blogs -->
-        <li class="nav-item">
+        <li class="nav-item
+            @if( (url()->current() == route('admin.blog')) || (url()->current() == route('admin.create-blog'))) active @endif">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#blogPages"
                aria-expanded="true" aria-controls="userPages">
                 <i class="fas fa-fw fa-folder"></i>
@@ -137,7 +142,7 @@
         <hr class="sidebar-divider">
 
         <!-- Nav Item - HomePage -->
-        <li class="nav-item">
+        <li class="nav-item @if(url()->current() == route('admin.home')) active @endif">
             <a class="nav-link" href="{{route("admin.home")}}">
                 <span>HomePage</span>
             </a>
@@ -147,7 +152,7 @@
         <hr class="sidebar-divider">
 
         <!-- Nav Item - About -->
-        <li class="nav-item">
+        <li class="nav-item @if(url()->current() == route('admin.about')) active @endif">
             <a class="nav-link" href="{{route("admin.about")}}">
                 <span>About</span>
             </a>
@@ -158,7 +163,7 @@
         <hr class="sidebar-divider">
 
         <!-- Nav Item - About -->
-        <li class="nav-item">
+        <li class="nav-item @if(url()->current() == route('admin.message')) active @endif">
             <a class="nav-link" href="{{route("admin.message")}}">
                 <span>Messages</span>
             </a>
@@ -169,7 +174,7 @@
 
         @if(auth()->user()->id === 1)
          <!-- Nav Item - HomePage -->
-         <li class="nav-item">
+         <li class="nav-item @if(url()->current() == route('admin.permissions')) active @endif">
             <a class="nav-link" href="{{route("admin.permissions")}}">
                 <span>Give Permission to Role</span>
             </a>
