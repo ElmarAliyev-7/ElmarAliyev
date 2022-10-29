@@ -131,7 +131,7 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Blogs</h6>
                     <a class="collapse-item" href="{{route('admin.blog')}}">Blogs</a>
-                    @if(AppHelper::instance()->checkPermisson(8) == 1)
+                    @if(AppHelper::instance()->checkPermisson(16) == 1)
                         <a class="collapse-item" href="{{route("admin.create-blog")}}">Create Blog</a>
                     @endif
                 </div>

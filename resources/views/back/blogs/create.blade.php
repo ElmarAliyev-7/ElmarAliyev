@@ -10,7 +10,8 @@
             </div>
             <div class="form-group">
                 <label for="exampleInputTitle2">Description</label>
-                <textarea name="description" class="form-control" id="exampleInputTitle2" rows="8" col="5" required></textarea>
+                <textarea name="description" class="form-control" id="exampleInputTitle2" rows="8" col="5" required
+                          placeholder="Enter Description"></textarea>
             </div>
             <div class="form-group">
                 <label for="exampleInputTitle4">Image</label>

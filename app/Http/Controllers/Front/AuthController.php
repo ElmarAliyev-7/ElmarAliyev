@@ -51,7 +51,7 @@ class AuthController extends Controller
                 if($user->role_id == 3){
                     $auth = Auth::guard('site')->attempt(['username' => $username, 'password' => $password]);
                     if ($auth){
-                        toastr()->success('Xoşgəldiniz !' );
+                        toastr()->success('Xoşgəldiniz '. $user->name .' '. $user->surname);
                         return view('front.auth.profile', compact('user'));
                     }
                     return redirect()->route('register')->with('error', 'İstifadəçi adı və ya parol səhvdir');
