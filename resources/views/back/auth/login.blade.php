@@ -46,7 +46,7 @@
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="username" name="username">
+                                                placeholder="username | email" name="username_or_email">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"

@@ -12,11 +12,11 @@ class AuthController extends Controller
     {
         if ($request->isMethod('post'))
         {
-            $username = $request->username;
-            $password = $request->password;
+            $fieldType = filter_var($request->username_or_email, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+
             $auth = Auth::attempt([
-                'username' => $username,
-                'password' => $password,
+                $fieldType => $request->username_or_email,
+                'password' => $request->password,
                 'role'     => function ($query) {
                     $query->where('role_id', '!=', 3); // Standart user can't login to admin panel
                 }
@@ -27,7 +27,7 @@ class AuthController extends Controller
                     ->with('success', 'Welcome '.Auth::user()->name.' '.Auth::user()->surname);
             }
 
-            return redirect()->route('admin.login')->with('error', 'İstifadəçi adı və ya parol səhvdir');
+            return redirect()->back()->with('error', 'İstifadəçi adı və ya parol səhvdir');
         }
         if ($request->isMethod('get'))
         {
