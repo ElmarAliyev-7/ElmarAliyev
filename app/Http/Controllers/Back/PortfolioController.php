@@ -46,7 +46,7 @@ class PortfolioController extends Controller
 
     public function update(Request $request, $id)
     {
-        if ($request->isMethod('post'))
+        if ($request->isMethod('put'))
         {
             try {
                 $project = Portfolio::findOrFail($id);

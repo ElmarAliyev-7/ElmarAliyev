@@ -61,7 +61,7 @@ class BlogController extends Controller
     }
 
     public function update(Request $request, $id){
-        if ($request->isMethod('post'))
+        if ($request->isMethod('put'))
         {
             $blog = Blog::findOrFail($id);
             $blog->title       = $request->title;

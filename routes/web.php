@@ -60,12 +60,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
         //Update HomePage Permission
         Route::group(['middleware' => 'UpdateHomePage'], function () {
-            Route::post('/home',  [BackHomeController::class, 'index'])->name('home-page');
+            Route::put('/home',  [BackHomeController::class, 'index'])->name('home-page');
         });
 
         //Update AboutPage Permission
         Route::group(['middleware' => 'UpdateAboutPage'], function () {
-            Route::post('/about', [BackHomeController::class, 'about'])->name('about-post');
+            Route::put('/about', [BackHomeController::class, 'about'])->name('about-post');
         });
 
         //Create User Permission
@@ -74,7 +74,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         });
         //Update User Permission
         Route::group(['middleware' => 'UpdateUser'], function () {
-            Route::match(['get', 'post'], '/update-user/{id}',[UserController::class, 'update'])->name('update-user');
+            Route::match(['get', 'put'], '/update-user/{id}',[UserController::class, 'update'])->name('update-user');
         });
         //Delete User Permission
         Route::group(['middleware' => 'DeleteUser'], function () {
@@ -96,7 +96,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         });
         //Update Experience & Education
         Route::group(['middleware' => 'UpdateExperience'], function () {
-            Route::match(['get', 'post'], '/update-experience/{id}',[ExperienceController::class, 'update'])->name('update-experience');
+            Route::match(['get', 'put'], '/update-experience/{id}',[ExperienceController::class, 'update'])->name('update-experience');
         });
         //Delete Experience & Education
         Route::group(['middleware' => 'DeleteExperience'], function () {
@@ -109,7 +109,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         });
         //Update Project
         Route::group(['middleware' => 'UpdateProject'], function () {
-            Route::match(['get', 'post'], '/update-project/{id}',[PortfolioController::class, 'update'])->name('update-project');
+            Route::match(['get', 'put'], '/update-project/{id}',[PortfolioController::class, 'update'])->name('update-project');
             Route::get('/sort-projects', [PortfolioController::class, 'sort'])->name('sort-projects');
         });
         //Delete Project
@@ -123,7 +123,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         });
         //Update Blog
         Route::group(['middleware' => 'UpdateBlog'], function () {
-            Route::match(['get', 'post'], '/update-blog/{id}',[BlogController::class, 'update'])->name('update-blog');
+            Route::match(['get', 'put'], '/update-blog/{id}',[BlogController::class, 'update'])->name('update-blog');
         });
         //Delete Blog
         Route::group(['middleware' => 'DeleteBlog'], function () {

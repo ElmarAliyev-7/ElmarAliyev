@@ -4,6 +4,7 @@
 <div class="container">
   <form action="{{route('admin.about-post')}}" method="POST" enctype="multipart/form-data">
     @csrf
+    @method('PUT')
       @if(AppHelper::instance()->checkPermisson(12) == 0)
           <div class="alert alert-warning">You don't have permission for updating data</div>
       @endif

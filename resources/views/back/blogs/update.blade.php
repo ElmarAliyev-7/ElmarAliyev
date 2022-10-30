@@ -4,6 +4,7 @@
     <div class="container">
         <form action="{{route('admin.update-blog',$blog->id)}}" method="POST" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             <div class="form-group">
                 <label for="exampleInputTitle">Title</label>
                 <input type="text" name="title" class="form-control" id="exampleInputTitle" value="{{$blog->title}}" placeholder="Enter Title" required>

@@ -4,6 +4,7 @@
     <div class="container">
         <form action="{{route('admin.update-experience',$experience->id)}}" method="POST" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             <div class="form-group">
                 <label for="exampleInputTitle1">Select Type</label>
                 <select name="type" class="form-control" id="exampleInputTitle1">
