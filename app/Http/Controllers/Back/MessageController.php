@@ -10,14 +10,14 @@ use Illuminate\Support\Facades\DB;
 class MessageController extends Controller
 {
 
-    public function showMessage($id)
+    public function show($id)
     {
         Message::where('id', $id)->update(['seen' => 1]);
         $message = Message::find($id);
         return view('back.messages.show',compact('message'));
     }
 
-    public function deleteMessage($id)
+    public function delete($id)
     {
         Message::find($id)->delete();
         return redirect()->back()->with('success','Message deleted successfully');

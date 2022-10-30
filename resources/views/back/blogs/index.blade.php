@@ -41,9 +41,13 @@
                         </a>
                     @endif
                     @if(AppHelper::instance()->checkPermisson(18) == 1)
-                        <a href="{{route('admin.delete-blog',$blog->id)}}" class="btn btn-danger btn-circle btn-sm">
-                            <i class="fas fa-trash"></i>
-                        </a>
+                        <form method="POST" action="{{ route('admin.delete-blog', $blog->id) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-circle btn-sm">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </form>
                     @endif
                 </td>
             </tr>

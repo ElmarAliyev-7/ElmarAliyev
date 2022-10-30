@@ -28,9 +28,13 @@
                 @endif</td>
                 <td>
                 @if(AppHelper::instance()->checkPermisson(5) == 1)
-                    <a href="{{route('admin.delete-skill',$skill->id)}}" class="btn btn-danger btn-circle btn-sm">
-                        <i class="fas fa-trash"></i>
-                    </a>
+                    <form method="POST" action="{{ route('admin.delete-skill',$skill->id) }}">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-circle btn-sm">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </form>
                 @endif
                 </td>
             </tr>

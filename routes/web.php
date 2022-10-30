@@ -23,8 +23,8 @@ Route::get('/',            [FrontHomeController::class, 'index'])->name('home');
 Route::get('/blogs',       [FrontHomeController::class, 'blogs'])->name('blogs');
 Route::get('/blog/{slug}', [FrontHomeController::class, 'blog'])->name('blog');
 Route::get('/projects',    [FrontHomeController::class, 'projects'])->name('projects');
-Route::post('/contact',    [FrontHomeController::class, 'contact'])->name('contact');
 Route::get('/download-cv', [FrontHomeController::class, 'downloadCv'])->name('download-cv');
+Route::post('/contact',    [FrontHomeController::class, 'contact'])->name('contact');
 
 Route::group(['middleware' => 'isNotSiteLogin'], function(){
     Route::match(['get', 'post'], '/login',      [FrontAuthController::class, 'login'])->name('login');
@@ -61,8 +61,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         //View Message
         Route::group(['middleware' => 'ViewMessage'], function () {
             Route::get('/message',             [DashboardController::class, 'messages'])->name('message');
-            Route::get('/show-message/{id}',   [MessageController::class, 'showMessage'])->name('show-message');
-            Route::get('/delete-all-messages', [MessageController::class, 'bulkDelete'])->name('delete-all-messages');
+            Route::get('/show-message/{id}',   [MessageController::class,   'show'])->name('show-message');
+            Route::get('/delete-all-messages', [MessageController::class,   'bulkDelete'])->name('delete-all-messages');
         });
 
         //Update HomePage Permission
@@ -85,7 +85,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         });
         //Delete User Permission
         Route::group(['middleware' => 'DeleteUser'], function () {
-            Route::get('/delete-user/{id}', [UserController::class, 'delete'])->name('delete-user');
+            Route::delete('/delete-user/{id}', [UserController::class, 'delete'])->name('delete-user');
         });
 
         //Create Skill
@@ -94,7 +94,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         });
         //Delete Skill
         Route::group(['middleware' => 'DeleteSkill'], function () {
-            Route::get('delete-skill/{id}', [SkillController::class, 'delete'])->name('delete-skill');
+            Route::delete('delete-skill/{id}', [SkillController::class, 'delete'])->name('delete-skill');
         });
 
         //Create Experience & Education
@@ -107,7 +107,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         });
         //Delete Experience & Education
         Route::group(['middleware' => 'DeleteExperience'], function () {
-            Route::get('delete-experience/{id}', [ExperienceController::class, 'delete'])->name('delete-exp');
+            Route::delete('delete-experience/{id}', [ExperienceController::class, 'delete'])->name('delete-exp');
         });
 
         //Create Project
@@ -121,7 +121,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         });
         //Delete Project
         Route::group(['middleware' => 'DeleteProject'], function () {
-            Route::get('delete-project/{id}',  [PortfolioController::class, 'delete'])->name('delete-project');
+            Route::delete('delete-project/{id}',  [PortfolioController::class, 'delete'])->name('delete-project');
         });
 
         //Create Blog
@@ -134,12 +134,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         });
         //Delete Blog
         Route::group(['middleware' => 'DeleteBlog'], function () {
-            Route::get('delete-blog/{id}',  [BlogController::class, 'delete'])->name('delete-blog');
+            Route::delete('delete-blog/{id}',  [BlogController::class, 'delete'])->name('delete-blog');
         });
 
         //Delete Message
         Route::group(['middleware' => 'DeleteMessage'], function () {
-            Route::get('/delete-message/{id}', [MessageController::class, 'deleteMessage'])->name('delete-message');
+            Route::delete('/delete-message/{id}', [MessageController::class, 'delete'])->name('delete-message');
         });
     });
 

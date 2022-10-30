@@ -32,9 +32,13 @@
                         </a>
                     @endif
                     @if(AppHelper::instance()->checkPermisson(10) == 1)
-                        <a href="{{route('admin.delete-project',$project->id)}}" class="btn btn-danger btn-circle btn-sm">
-                            <i class="fas fa-trash"></i>
-                        </a>
+                        <form method="POST" action="{{ route('admin.delete-project', $project->id) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-circle btn-sm">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </form>
                     @endif
                 </td>
                 <td class="handle">
