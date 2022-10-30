@@ -6,15 +6,15 @@
     <form action="{{route('admin.create-permission',$role->id)}}" method="post">
         @csrf
         @foreach ($permissions as $permission)
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="flexCheckDefault{{$loop->iteration}}"
-                value="{{$permission->id}}" name="permissions[]" @foreach ($role_perms as $role_perm) @if($role_perm->permission_id == $permission->id) checked @endif @endforeach>
-                <label class="form-check-label" for="flexCheckDefault{{$loop->iteration}}">
-                    <h5>{{$permission->name}}</h5>
-                </label>
-            </div>
+            <input class="form-check-input" type="checkbox" id="flexCheckDefault_{{$loop->iteration}}"
+                   value="{{$permission->id}}" name="permissions[]"
+                   @foreach ($role_perms as $role_perm) @if($role_perm->permission_id == $permission->id) checked @endif @endforeach>
+            <label  for="flexCheckDefault_{{$loop->iteration}}" class="badge @if($permission->type == 1) badge-danger
+            @elseif($permission->type ==2) badge-info @else badge-dark @endif">
+                {{$permission->name}}
+            </label>
         @endforeach
-        <button type="submit" class="btn btn-success">OK</button>
+        <button type="submit" class="btn btn-success btn-sm">OK</button>
     </form>
 </div>
 
