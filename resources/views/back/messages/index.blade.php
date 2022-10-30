@@ -2,7 +2,13 @@
 @section('title','Messages')
 @section('content')
 @if(count($messages) > 0)
-    <a href="{{route('admin.delete-all-messages')}}" class="btn btn-danger btn-sm">Bulk Delete</a> <hr>
+    <form method="POST" action="{{route('admin.delete-all-messages')}}">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btn-danger btn-sm">
+            Bulk Delete <i class="fas fa-trash"></i>
+        </button>
+    </form>  <hr>
 @endif
 <table class="table table-bordered">
     <thead>

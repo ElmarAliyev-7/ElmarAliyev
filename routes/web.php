@@ -58,13 +58,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
             Route::match(['get', 'post'], '/add-permission/{id}',[PermissionController::class, 'index'])->name('create-permission');
         });
 
-        //View Message
-        Route::group(['middleware' => 'ViewMessage'], function () {
-            Route::get('/message',             [DashboardController::class, 'messages'])->name('message');
-            Route::get('/show-message/{id}',   [MessageController::class,   'show'])->name('show-message');
-            Route::get('/delete-all-messages', [MessageController::class,   'bulkDelete'])->name('delete-all-messages');
-        });
-
         //Update HomePage Permission
         Route::group(['middleware' => 'UpdateHomePage'], function () {
             Route::post('/home',  [BackHomeController::class, 'index'])->name('home-page');
@@ -137,10 +130,17 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
             Route::delete('delete-blog/{id}',  [BlogController::class, 'delete'])->name('delete-blog');
         });
 
+        //View Message
+        Route::group(['middleware' => 'ViewMessage'], function () {
+            Route::get('/message',             [DashboardController::class, 'messages'])->name('message');
+            Route::get('/show-message/{id}',   [MessageController::class,   'show'])->name('show-message');
+        });
         //Delete Message
         Route::group(['middleware' => 'DeleteMessage'], function () {
             Route::delete('/delete-message/{id}', [MessageController::class, 'delete'])->name('delete-message');
+            Route::delete('/delete-all-messages', [MessageController::class,  'bulkDelete'])->name('delete-all-messages');
         });
+
     });
 
     Route::group(['middleware' => 'isLogin'], function () {
