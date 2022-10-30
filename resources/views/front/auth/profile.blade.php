@@ -3,6 +3,7 @@
     <div class="container">
         <form action="{{route('update-profile',$user->id)}}" method="POST" id="update-form">
             @csrf
+            @method('PUT')
             <a href="#change-password" onclick="changePassword()">Change Password</a><hr>
             <div class="form-group">
                 <label for="exampleInputName">Name</label>
@@ -25,6 +26,7 @@
 
         <form action="{{route('update-password',$user->id)}}" method="POST" id="change-password" style="display: none;">
             @csrf
+            @method('PATCH')
             <a href="#update-form" onclick="profile()">Profile</a><hr>
             <div class="form-group">
                 <label for="exampleInputPassword1">Password</label>

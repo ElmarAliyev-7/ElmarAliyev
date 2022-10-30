@@ -34,8 +34,8 @@ Route::group(['middleware' => 'isNotSiteLogin'], function(){
 Route::group(['middleware' => 'isSiteLogin'], function () {
     Route::get('/profile',     [FrontAuthController::class, 'profile'])->name('profile');
     Route::get('/logout',      [FrontAuthController::class, 'logOut'])->name('logout');
-    Route::post('/update-profile/{id}', [FrontAuthController::class, 'updateProfile'])->name('update-profile');
-    Route::post('/update-password/{id}', [FrontAuthController::class, 'updatePassword'])->name('update-password');
+    Route::put('/update-profile/{id}', [FrontAuthController::class, 'updateProfile'])->name('update-profile');
+    Route::patch('/update-password/{id}', [FrontAuthController::class, 'updatePassword'])->name('update-password');
 });
 
 //Back Routes
