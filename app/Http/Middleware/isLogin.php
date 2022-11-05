@@ -16,8 +16,8 @@ class isLogin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->check()) {
-            return redirect()->route('admin.dashboard');
+        if (!auth()->check()) {
+            return redirect()->route('admin.login');
         }
         return $next($request);
     }

@@ -16,8 +16,8 @@ class notLogin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!auth()->check()) {
-            return redirect()->route('admin.login');
+        if (auth()->check()) {
+            return redirect()->route('admin.dashboard');
         }
         return $next($request);
     }

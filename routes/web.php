@@ -41,7 +41,7 @@ Route::group(['middleware' => 'isSiteLogin'], function () {
 //Back Routes
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
-    Route::group(['middleware' => 'notLogin'], function () {
+    Route::group(['middleware' => 'isLogin'], function () {
         //Public routes for admins
         Route::get('/',           [DashboardController::class, 'index'])->name('dashboard');
         Route::get('/home',       [DashboardController::class, 'home'])->name('home');
@@ -141,11 +141,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
             Route::delete('/delete-all-messages', [MessageController::class,  'bulkDelete'])->name('delete-all-messages');
         });
 
+        //LogOut
+        Route::get('/logout', [BackAuthController::class, 'logOut'])->name('logout');
     });
 
-    Route::group(['middleware' => 'isLogin'], function () {
+    Route::group(['middleware' => 'notLogin'], function () {
         Route::match(['get', 'post'], '/login',[BackAuthController::class, 'login'])->name('login');
     });
-
-    Route::get('/logout', [BackAuthController::class, 'logOut'])->name('logout');
 });
