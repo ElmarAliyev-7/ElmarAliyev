@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Models\Permission;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class PermissionSeeder extends Seeder
 {
@@ -42,8 +41,12 @@ class PermissionSeeder extends Seeder
             ['id' => 16,'name' => 'Create Blog', 'type' => 3],
             ['id' => 17,'name' => 'Update Blog', 'type' => 3],
             ['id' => 18,'name' => 'Delete Blog', 'type' => 3],
+
+            ['id' => 19,'name' => 'Create Task', 'type' => 2],
+            ['id' => 20,'name' => 'Update Task', 'type' => 2],
+            ['id' => 21,'name' => 'Delete Task', 'type' => 2],
         ];
 
-        DB::table('permissions')->insert($permissions);
+        Permission::insert($permissions);
     }
 }

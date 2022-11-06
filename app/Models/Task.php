@@ -15,4 +15,9 @@ class Task extends Model
       'description',
       'image',
     ];
+
+    public function questions()
+    {
+        return $this->hasMany(Question::class, 'task_id', 'id');
+    }
 }

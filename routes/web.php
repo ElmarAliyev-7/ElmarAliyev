@@ -143,8 +143,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
             Route::delete('/delete-all-messages', [MessageController::class,  'bulkDelete'])->name('delete-all-messages');
         });
 
-        //Create Task
+        //Task
         Route::match(['get', 'post'], '/create-task', [TaskController::class, 'create'])->name('create-task');
+        Route::get('/tasks/{slug}', [TaskController::class, 'show'])->name('show-task');
+        Route::delete('/task/{id}', [TaskController::class, 'delete'])->name('delete-task');
+        //Quesiton
+        Route::post('/create-question', [TaskController::class, 'createQuestion'])->name('create-question');
+        Route::delete('/delete-question', [TaskController::class, 'deleteQuestion'])->name('delete-question');
 
         //LogOut
         Route::get('/logout', [BackAuthController::class, 'logOut'])->name('logout');

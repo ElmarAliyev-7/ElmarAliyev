@@ -7,9 +7,11 @@ use Illuminate\Http\Request;
 use App\Models\Task;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
+use App\Models\Question;
 
 class TaskController extends Controller
 {
+    //Task
     public function create(Request $request)
     {
         if ($request->isMethod('post'))
@@ -45,4 +47,35 @@ class TaskController extends Controller
             return view('back.tasks.create');
         }
     }
+
+    public function show($slug)
+    {
+        $task = Task::with('questions')->where('slug', $slug)->first();
+        return view('back.tasks.show', compact('task'));
+    }
+
+    public function delete($id)
+    {
+        $task = Task::find($id);
+        $image_path = public_path($task->image);
+        if (File::exists($image_path)) {
+            File::delete($image_path);
+        }
+        $task->delete();
+        return redirect()->back()->with('success', 'Deleted successfully');
+    }
+
+    //Questions
+    public function createQuestion(Request $request)
+    {
+        Question::create($request->all());
+        return redirect()->back()->with('success', 'Question added successfully');
+    }
+
+    public function deleteQuestion($id)
+    {
+        Question::find($id)->delete();
+        return redirect()->back()->with('success', 'Question deleted successfully');
+    }
+
 }

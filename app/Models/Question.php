@@ -11,6 +11,12 @@ class Question extends Model
 
     protected $fillable= [
       'name',
+      'link',
       'task_id',
     ];
+
+    public function task()
+    {
+        return $this->belongsTo(Task::class, 'task_id', 'id');
+    }
 }

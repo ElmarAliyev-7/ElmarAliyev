@@ -71,7 +71,7 @@ class DashboardController extends Controller
 
     public function task()
     {
-        $tasks = Task::all();
+        $tasks = Task::with('questions')->get();
         return view('back.tasks.index',compact('tasks'));
     }
 

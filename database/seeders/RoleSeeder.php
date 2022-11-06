@@ -8,6 +8,7 @@ use App\Models\Role;
 use App\Models\Permission;
 use App\Models\RoleAndPermission;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class RoleSeeder extends Seeder
 {
@@ -18,21 +19,26 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        $roles = [
-            ['name' => 'SuperAdmin'],
-            ['name' => 'Admin'],
-            ['name' => 'Standart user']
-        ];
-        DB::table('roles')->insert($roles);
+        Schema::disableForeignKeyConstraints();
+        DB::table('roles')->truncate();
+        DB::table('permissions')->truncate();
+        Schema::enableForeignKeyConstraints();
 
+        $roles = [
+            ['id'=> 1, 'name' => 'SuperAdmin'],
+            ['id'=> 2, 'name' => 'Admin'],
+            ['id'=> 3, 'name' => 'Standart user']
+        ];
+        Role::insert($roles);
 
         //Give All Permisssions to SuperAdmin
         $super_admin_permissions = [];
-        $permissions = Permission::all();
+        $permissions = Permission::select('id')->get();
 
         foreach ($permissions as $permission) {
             array_push($super_admin_permissions, ['role_id' => 1, 'permission_id' => $permission->id]);
         }
-        DB::table('role_and_permissions')->insert($super_admin_permissions);
+
+        RoleAndPermission::insert($super_admin_permissions);
     }
 }
