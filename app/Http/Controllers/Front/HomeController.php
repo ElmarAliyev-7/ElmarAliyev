@@ -13,7 +13,6 @@ use App\Models\Blog;
 use App\Models\Task;
 use App\Models\Message;
 use Illuminate\Support\Facades\Mail;
-use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 
 class HomeController extends Controller
 {
@@ -41,35 +40,38 @@ class HomeController extends Controller
     public function blogs()
     {
         $blogs = Blog::all();
-        return view('front.blogs', compact('blogs'));
+        return view('front.blogs.index', compact('blogs'));
     }
 
     public function blog($slug)
     {
         Blog::where('slug',$slug)->increment('reads',1);
         $blog = Blog::where('slug',$slug)->first();
-        return view('front.single-blog', compact('blog'));
+        return view('front.blogs.show', compact('blog'));
     }
 
 
     public function projects()
     {
         $projects = Portfolio::all();
-        return view('front.projects', compact('projects'));
+        return view('front.projects.index', compact('projects'));
     }
 
     public function tasks()
     {
         $tasks = Task::with('questions')->get();
-        return view('front.tasks', compact('tasks'));
+        return view('front.tasks.index', compact('tasks'));
     }
 
     public function task($slug)
     {
         $task = Task::where('slug',$slug)->first();
-        return view('front.single-task', compact('task'));
+        return view('front.tasks.show', compact('task'));
     }
 
+    public function learnQuestion(Request $request)
+    {return $request;
+    }
     public function contact(Request $request)
     {
         $new_message  = new Message;
@@ -85,7 +87,7 @@ class HomeController extends Controller
                 'msg'    => $request->message,
             ];
             $email = $request->email;
-            Mail::send('front.mail', $data, function($m) use ($email) {
+            Mail::send('front.mail.index', $data, function($m) use ($email) {
                 $m->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'));
                 $m->to(env('MAIL_USERNAME'), env('MAIL_FROM_NAME') )->subject($email);
             });

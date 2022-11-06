@@ -25,7 +25,7 @@
                     {{$loop->iteration}} )
                 </div>
                 <div class="col-10">
-                    {{$question->name}} <span class="text-primary">{{$question->link}}</span>
+                    <b>{{$question->name}}</b> <a href="{{$question->link}}" target="_blank">{{$question->link}}</a>
                 </div>
             </div>
         </div>

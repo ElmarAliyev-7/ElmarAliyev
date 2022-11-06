@@ -21,14 +21,15 @@ use App\Http\Controllers\Back\{
 };
 
 //Front Routes
-Route::get('/',              [FrontHomeController::class, 'index'])->name('home');
-Route::get('/blogs',         [FrontHomeController::class, 'blogs'])->name('blogs');
-Route::get('/blog/{slug}',   [FrontHomeController::class, 'blog'])->name('blog');
-Route::get('/projects',      [FrontHomeController::class, 'projects'])->name('projects');
-Route::get('/tasks',         [FrontHomeController::class, 'tasks'])->name('tasks');
-Route::get('/task/{slug}',   [FrontHomeController::class, 'task'])->name('task');
-Route::get('/download-cv',   [FrontHomeController::class, 'downloadCv'])->name('download-cv');
-Route::post('/contact',      [FrontHomeController::class, 'contact'])->name('contact');
+Route::get('/',                [FrontHomeController::class, 'index'])->name('home');
+Route::get('/blogs',           [FrontHomeController::class, 'blogs'])->name('blogs');
+Route::get('/blog/{slug}',     [FrontHomeController::class, 'blog'])->name('blog');
+Route::get('/projects',        [FrontHomeController::class, 'projects'])->name('projects');
+Route::get('/tasks',           [FrontHomeController::class, 'tasks'])->name('tasks');
+Route::get('/task/{slug}',     [FrontHomeController::class, 'task'])->name('task');
+Route::post('/learn-question', [FrontHomeController::class, 'learnQuestion'])->name('learn-question');
+Route::get('/download-cv',     [FrontHomeController::class, 'downloadCv'])->name('download-cv');
+Route::post('/contact',        [FrontHomeController::class, 'contact'])->name('contact');
 
 Route::group(['middleware' => 'isNotSiteLogin'], function(){
     Route::match(['get', 'post'], '/login',      [FrontAuthController::class, 'login'])->name('login');
@@ -123,6 +124,20 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
             Route::delete('delete-project/{id}',  [PortfolioController::class, 'delete'])->name('delete-project');
         });
 
+        //Create Task
+        Route::group(['middleware' => 'CreateTask'], function () {
+            Route::match(['get', 'post'], '/create-task', [TaskController::class, 'create'])->name('create-task');
+        });
+        //Update Task
+        Route::group(['middleware' => 'UpdateTask'], function () {
+            Route::post('/create-question',        [QuestionController::class, 'create'])->name('create-question');
+            Route::delete('/delete-question/{id}', [QuestionController::class, 'delete'])->name('delete-question');
+        });
+        //Delete Task
+        Route::group(['middleware' => 'DeleteTask'], function () {
+            Route::delete('/task/{id}', [TaskController::class, 'delete'])->name('delete-task');
+        });
+
         //Create Blog
         Route::group(['middleware' => 'CreateBlog'], function () {
             Route::match(['get', 'post'], '/create-blog',[BlogController::class, 'create'])->name('create-blog');
@@ -145,20 +160,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::group(['middleware' => 'DeleteMessage'], function () {
             Route::delete('/delete-message/{id}', [MessageController::class, 'delete'])->name('delete-message');
             Route::delete('/delete-all-messages', [MessageController::class,  'bulkDelete'])->name('delete-all-messages');
-        });
-
-        //Create Task
-        Route::group(['middleware' => 'CreateTask'], function () {
-            Route::match(['get', 'post'], '/create-task', [TaskController::class, 'create'])->name('create-task');
-        });
-        //Update Task
-        Route::group(['middleware' => 'UpdateTask'], function () {
-            Route::post('/create-question',        [QuestionController::class, 'create'])->name('create-question');
-            Route::delete('/delete-question/{id}', [QuestionController::class, 'delete'])->name('delete-question');
-        });
-        //Delete Task
-        Route::group(['middleware' => 'DeleteTask'], function () {
-            Route::delete('/task/{id}', [TaskController::class, 'delete'])->name('delete-task');
         });
 
         //LogOut
