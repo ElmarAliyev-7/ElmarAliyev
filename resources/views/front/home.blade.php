@@ -4,6 +4,7 @@
     @include('front.widgets.service')
     @include('front.widgets.funfact')
     @include('front.widgets.portfolio')
+    @include('front.widgets.task')
     @include('front.widgets.blog')
     @include('front.widgets.contact')
 @endsection

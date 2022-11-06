@@ -153,7 +153,9 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Tasks</h6>
                     <a class="collapse-item" href="{{route('admin.task')}}">Tasks</a>
-                    <a class="collapse-item" href="{{route("admin.create-task")}}">Create Blog</a>
+                    @if(AppHelper::instance()->checkPermisson(19) == 1)
+                        <a class="collapse-item" href="{{route("admin.create-task")}}">Create Task</a>
+                    @endif
                 </div>
             </div>
         </li>

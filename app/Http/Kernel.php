@@ -86,5 +86,8 @@ class Kernel extends HttpKernel
         'DeleteBlog' => \App\Http\Middleware\DeleteBlog::class,
         'isSiteLogin' => \App\Http\Middleware\isSiteLogin::class,
         'isNotSiteLogin' => \App\Http\Middleware\isNotSiteLogin::class,
+        'CreateTask' => \App\Http\Middleware\CreateTask::class,
+        'UpdateTask' => \App\Http\Middleware\UpdateTask::class,
+        'DeleteTask' => \App\Http\Middleware\DeleteTask::class,
     ];
 }

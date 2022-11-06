@@ -17,15 +17,18 @@ use App\Http\Controllers\Back\{
     BlogController,
     MessageController,
     TaskController,
+    QuestionController,
 };
 
 //Front Routes
-Route::get('/',            [FrontHomeController::class, 'index'])->name('home');
-Route::get('/blogs',       [FrontHomeController::class, 'blogs'])->name('blogs');
-Route::get('/blog/{slug}', [FrontHomeController::class, 'blog'])->name('blog');
-Route::get('/projects',    [FrontHomeController::class, 'projects'])->name('projects');
-Route::get('/download-cv', [FrontHomeController::class, 'downloadCv'])->name('download-cv');
-Route::post('/contact',    [FrontHomeController::class, 'contact'])->name('contact');
+Route::get('/',              [FrontHomeController::class, 'index'])->name('home');
+Route::get('/blogs',         [FrontHomeController::class, 'blogs'])->name('blogs');
+Route::get('/blog/{slug}',   [FrontHomeController::class, 'blog'])->name('blog');
+Route::get('/projects',      [FrontHomeController::class, 'projects'])->name('projects');
+Route::get('/tasks',         [FrontHomeController::class, 'tasks'])->name('tasks');
+Route::get('/task/{slug}',   [FrontHomeController::class, 'task'])->name('task');
+Route::get('/download-cv',   [FrontHomeController::class, 'downloadCv'])->name('download-cv');
+Route::post('/contact',      [FrontHomeController::class, 'contact'])->name('contact');
 
 Route::group(['middleware' => 'isNotSiteLogin'], function(){
     Route::match(['get', 'post'], '/login',      [FrontAuthController::class, 'login'])->name('login');
@@ -33,10 +36,10 @@ Route::group(['middleware' => 'isNotSiteLogin'], function(){
 });
 
 Route::group(['middleware' => 'isSiteLogin'], function () {
-    Route::get('/profile',     [FrontAuthController::class, 'profile'])->name('profile');
-    Route::get('/logout',      [FrontAuthController::class, 'logOut'])->name('logout');
-    Route::put('/update-profile/{id}', [FrontAuthController::class, 'updateProfile'])->name('update-profile');
+    Route::get('/profile',                [FrontAuthController::class, 'profile'])->name('profile');
+    Route::put('/update-profile/{id}',    [FrontAuthController::class, 'updateProfile'])->name('update-profile');
     Route::patch('/update-password/{id}', [FrontAuthController::class, 'updatePassword'])->name('update-password');
+    Route::get('/logout',                 [FrontAuthController::class, 'logOut'])->name('logout');
 });
 
 //Back Routes
@@ -44,15 +47,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
     Route::group(['middleware' => 'isLogin'], function () {
         //Public routes for admins
-        Route::get('/',           [DashboardController::class, 'index'])->name('dashboard');
-        Route::get('/home',       [DashboardController::class, 'home'])->name('home');
-        Route::get('/users',      [DashboardController::class, 'users'])->name('users');
-        Route::get('/skills',     [DashboardController::class, 'skills'])->name('skills');
-        Route::get('/about',      [DashboardController::class, 'about'])->name('about');
-        Route::get('/experience', [DashboardController::class, 'experience'])->name('experience');
-        Route::get('/portfolio',  [DashboardController::class, 'portfolio'])->name('portfolio');
-        Route::get('/blogs',      [DashboardController::class, 'blog'])->name('blog');
-        Route::get('/tasks',      [DashboardController::class, 'task'])->name('task');
+        Route::get('/',             [DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/home',         [DashboardController::class, 'home'])->name('home');
+        Route::get('/users',        [DashboardController::class, 'users'])->name('users');
+        Route::get('/skills',       [DashboardController::class, 'skills'])->name('skills');
+        Route::get('/about',        [DashboardController::class, 'about'])->name('about');
+        Route::get('/experience',   [DashboardController::class, 'experience'])->name('experience');
+        Route::get('/portfolio',    [DashboardController::class, 'portfolio'])->name('portfolio');
+        Route::get('/blogs',        [DashboardController::class, 'blog'])->name('blog');
+        Route::get('/tasks',        [DashboardController::class, 'task'])->name('task');
+        Route::get('/tasks/{slug}', [TaskController::class, 'show'])->name('show-task');
 
         //Permission routes for SuperAdmin
         Route::group(['middleware' => 'isSuperAdmin'], function () {
@@ -143,13 +147,19 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
             Route::delete('/delete-all-messages', [MessageController::class,  'bulkDelete'])->name('delete-all-messages');
         });
 
-        //Task
-        Route::match(['get', 'post'], '/create-task', [TaskController::class, 'create'])->name('create-task');
-        Route::get('/tasks/{slug}', [TaskController::class, 'show'])->name('show-task');
-        Route::delete('/task/{id}', [TaskController::class, 'delete'])->name('delete-task');
-        //Quesiton
-        Route::post('/create-question', [TaskController::class, 'createQuestion'])->name('create-question');
-        Route::delete('/delete-question', [TaskController::class, 'deleteQuestion'])->name('delete-question');
+        //Create Task
+        Route::group(['middleware' => 'CreateTask'], function () {
+            Route::match(['get', 'post'], '/create-task', [TaskController::class, 'create'])->name('create-task');
+        });
+        //Update Task
+        Route::group(['middleware' => 'UpdateTask'], function () {
+            Route::post('/create-question',        [QuestionController::class, 'create'])->name('create-question');
+            Route::delete('/delete-question/{id}', [QuestionController::class, 'delete'])->name('delete-question');
+        });
+        //Delete Task
+        Route::group(['middleware' => 'DeleteTask'], function () {
+            Route::delete('/task/{id}', [TaskController::class, 'delete'])->name('delete-task');
+        });
 
         //LogOut
         Route::get('/logout', [BackAuthController::class, 'logOut'])->name('logout');

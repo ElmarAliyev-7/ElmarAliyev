@@ -10,6 +10,7 @@ use App\Models\Portfolio;
 use App\Models\MySkill;
 use App\Models\Experience;
 use App\Models\Blog;
+use App\Models\Task;
 use App\Models\Message;
 use Illuminate\Support\Facades\Mail;
 use SebastianBergmann\CodeCoverage\Report\Xml\Project;
@@ -21,6 +22,7 @@ class HomeController extends Controller
         $about       = About::find(1);
         $skills      = MySkill::with('childs')->get();
         $projects    = Portfolio::orderBy('order','asc')->take(8)->get();
+        $tasks       = Task::take(4)->get();
         $blogs       = Blog::orderBy('id','desc')->take(4)->get();
         $educations  = Experience::where('type',1)->orderBy('id', 'desc')->get();
         $all_exps    = Experience::where('type',0)->orderBy('id', 'desc')->get();
@@ -33,7 +35,7 @@ class HomeController extends Controller
         }
 
         return view('front.home',
-            compact('about' , 'skills', 'educations', 'experiences' ,'projects', 'blogs'));
+            compact('about' , 'skills', 'educations', 'experiences' ,'projects', 'tasks','blogs'));
     }
 
     public function blogs()
@@ -54,6 +56,18 @@ class HomeController extends Controller
     {
         $projects = Portfolio::all();
         return view('front.projects', compact('projects'));
+    }
+
+    public function tasks()
+    {
+        $tasks = Task::with('questions')->get();
+        return view('front.tasks', compact('tasks'));
+    }
+
+    public function task($slug)
+    {
+        $task = Task::where('slug',$slug)->first();
+        return view('front.single-task', compact('task'));
     }
 
     public function contact(Request $request)
