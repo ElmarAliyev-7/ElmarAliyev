@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Back;
 
 use App\Http\Controllers\Controller;
 use App\Models\Portfolio;
-use Illuminate\Http\Request;
+use App\Models\Task;
 use App\Models\MySkill;
 use App\Models\User;
 use App\Models\Role;
@@ -67,6 +67,12 @@ class DashboardController extends Controller
     {
         $blogs = Blog::all();
         return view('back.blogs.index',compact('blogs'));
+    }
+
+    public function task()
+    {
+        $tasks = Task::all();
+        return view('back.tasks.index',compact('tasks'));
     }
 
     public function messages()

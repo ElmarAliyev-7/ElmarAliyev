@@ -141,6 +141,26 @@
         <!-- Divider -->
         <hr class="sidebar-divider">
 
+        <!-- Tasks -->
+        <li class="nav-item
+            @if( (url()->current() == route('admin.task')) || (url()->current() == route('admin.create-task'))) active @endif">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#taskPages"
+               aria-expanded="true" aria-controls="userPages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Tasks</span>
+            </a>
+            <div id="taskPages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Tasks</h6>
+                    <a class="collapse-item" href="{{route('admin.task')}}">Tasks</a>
+                    <a class="collapse-item" href="{{route("admin.create-task")}}">Create Blog</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
         <!-- Nav Item - HomePage -->
         <li class="nav-item @if(url()->current() == route('admin.home')) active @endif">
             <a class="nav-link" href="{{route("admin.home")}}">

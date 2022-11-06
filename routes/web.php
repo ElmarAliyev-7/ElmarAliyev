@@ -16,6 +16,7 @@ use App\Http\Controllers\Back\{
     PortfolioController,
     BlogController,
     MessageController,
+    TaskController,
 };
 
 //Front Routes
@@ -51,6 +52,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('/experience', [DashboardController::class, 'experience'])->name('experience');
         Route::get('/portfolio',  [DashboardController::class, 'portfolio'])->name('portfolio');
         Route::get('/blogs',      [DashboardController::class, 'blog'])->name('blog');
+        Route::get('/tasks',      [DashboardController::class, 'task'])->name('task');
 
         //Permission routes for SuperAdmin
         Route::group(['middleware' => 'isSuperAdmin'], function () {
@@ -140,6 +142,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
             Route::delete('/delete-message/{id}', [MessageController::class, 'delete'])->name('delete-message');
             Route::delete('/delete-all-messages', [MessageController::class,  'bulkDelete'])->name('delete-all-messages');
         });
+
+        //Create Task
+        Route::match(['get', 'post'], '/create-task', [TaskController::class, 'create'])->name('create-task');
 
         //LogOut
         Route::get('/logout', [BackAuthController::class, 'logOut'])->name('logout');
