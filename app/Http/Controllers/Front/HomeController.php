@@ -68,14 +68,25 @@ class HomeController extends Controller
 
     public function task($slug)
     {
-        $user = User::with('questions')->find(Auth::guard('site')->user()->id);
-        $user_questions = [];
-        foreach ($user->questions as $question){
-            array_push( $user_questions, $question->question_id);
-        }
+        $task = Task::with('questions')->where('slug',$slug)->first();
 
-        $task = Task::where('slug',$slug)->first();
-        return view('front.tasks.show', compact('user_questions','task'));
+        $questionIds = Task::query()
+            ->select('q.id')
+            ->from('tasks as t')
+            ->where('t.id', $task->id)
+            ->leftJoin('questions as q', 'q.task_id', 't.id')
+            ->get()->pluck('id');
+
+        $answers = UserQuestion::query()
+            ->select('question_id')
+            ->where('user_id', Auth::guard('site')->user()->id)
+            ->whereIn('question_id', $questionIds)
+            ->get()->pluck('question_id');
+
+        $percent = (count($answers)/ count($questionIds))*100;
+        $answers = json_decode(json_encode($answers), true);
+
+        return view('front.tasks.show', compact('task','answers','percent'));
     }
 
     public function learnQuestion(Request $request)

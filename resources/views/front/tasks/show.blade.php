@@ -19,7 +19,7 @@
 
         <div class="progress">
             <div class="progress-bar" role="progressbar"
-                 style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                 style="width: {{$percent}}%" aria-valuenow="{{$percent}}" aria-valuemin="0" aria-valuemax="100"></div>
         </div><hr>
     </div>
 
@@ -33,7 +33,7 @@
                     <b>{{$question->name}}</b> <a href="{{$question->link}}" target="_blank">{{$question->link}}</a>
                 </div>
                 <div class="col-2">
-                    @if(in_array($question->id , $user_questions))
+                    @if(in_array($question->id , $answers))
                         ✔️
                     @else
                         <form method="post" action="{{route('learn-question')}}">

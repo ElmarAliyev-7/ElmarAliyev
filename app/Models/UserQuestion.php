@@ -13,4 +13,14 @@ class UserQuestion extends Model
       'user_id',
       'question_id',
     ];
+
+    public function users()
+    {
+        return $this->belongsToMany('user_id','users');
+    }
+
+    public function questions()
+    {
+        return $this->belongsToMany('question_id', 'questions');
+    }
 }
