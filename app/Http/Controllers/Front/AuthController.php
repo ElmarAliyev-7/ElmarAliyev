@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\UserQuestion;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -77,7 +78,16 @@ class AuthController extends Controller
     public function profile()
     {
         $user = Auth::guard('site')->user();
-        return view('front.auth.profile', compact('user'));
+
+        $tasks = UserQuestion::query()
+            ->select('*')
+            ->where('user_id', Auth::guard('site')->user()->id)
+            ->leftJoin('questions as q','q.id','question_id')
+            ->leftJoin('tasks as t','t.id','q.task_id')
+            ->groupBy('t.id')
+            ->get();
+
+        return view('front.auth.profile', compact('user', 'tasks'));
     }
 
     public function logOut()
