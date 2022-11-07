@@ -69,14 +69,17 @@ class HomeController extends Controller
     public function task($slug)
     {
         $user = User::with('questions')->find(Auth::guard('site')->user()->id);
+        $user_questions = [];
+        foreach ($user->questions as $question){
+            array_push( $user_questions, $question->question_id);
+        }
+
         $task = Task::where('slug',$slug)->first();
-        return view('front.tasks.show', compact('user','task'));
+        return view('front.tasks.show', compact('user_questions','task'));
     }
 
     public function learnQuestion(Request $request)
     {
-        if($request->user_id == 0)
-            return redirect('login')->with('info', 'You must be Login for check question');
         UserQuestion::create($request->all());
         return redirect()->back()->with('success', 'Question Checked');
     }

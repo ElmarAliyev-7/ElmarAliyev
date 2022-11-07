@@ -16,8 +16,11 @@
                         {{$permission->name}}
                     </label>
                 </div>
+            @if($loop->iteration%3 == 0)
+                <div class="w-100"></div>
+            @endif
             @endforeach
-            <div class="col-12 text-center mt-2">
+            <div class="col-12 text-center mt-4">
                 <button type="submit" class="btn btn-success">Submit</button>
             </div>
         </div>

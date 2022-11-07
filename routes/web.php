@@ -26,8 +26,6 @@ Route::get('/blogs',           [FrontHomeController::class, 'blogs'])->name('blo
 Route::get('/blog/{slug}',     [FrontHomeController::class, 'blog'])->name('blog');
 Route::get('/projects',        [FrontHomeController::class, 'projects'])->name('projects');
 Route::get('/tasks',           [FrontHomeController::class, 'tasks'])->name('tasks');
-Route::get('/task/{slug}',     [FrontHomeController::class, 'task'])->name('task');
-Route::post('/learn-question', [FrontHomeController::class, 'learnQuestion'])->name('learn-question');
 Route::get('/download-cv',     [FrontHomeController::class, 'downloadCv'])->name('download-cv');
 Route::post('/contact',        [FrontHomeController::class, 'contact'])->name('contact');
 
@@ -37,8 +35,10 @@ Route::group(['middleware' => 'isNotSiteLogin'], function(){
 });
 
 Route::group(['middleware' => 'isSiteLogin'], function () {
-    Route::get('/profile',                [FrontAuthController::class, 'profile'])->name('profile');
+    Route::post('/learn-question',        [FrontHomeController::class, 'learnQuestion'])->name('learn-question');
     Route::put('/update-profile/{id}',    [FrontAuthController::class, 'updateProfile'])->name('update-profile');
+    Route::get('/profile',                [FrontAuthController::class, 'profile'])->name('profile');
+    Route::get('/task/{slug}',            [FrontHomeController::class, 'task'])->name('task');
     Route::patch('/update-password/{id}', [FrontAuthController::class, 'updatePassword'])->name('update-password');
     Route::get('/logout',                 [FrontAuthController::class, 'logOut'])->name('logout');
 });

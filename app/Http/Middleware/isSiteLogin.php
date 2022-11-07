@@ -20,6 +20,6 @@ class isSiteLogin
         if(Auth::guard('site')->check()){
             return $next($request);
         }
-        return redirect()->route('home');
+        return redirect()->route('login')->with('warning', 'Please Login');
     }
 }

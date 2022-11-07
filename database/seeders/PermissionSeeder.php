@@ -35,16 +35,16 @@ class PermissionSeeder extends Seeder
             ['id' => 11,'name' => 'Update HomePage', 'type' => 2],
             ['id' => 12,'name' => 'Update AboutPage', 'type' => 2],
 
-            ['id' => 13,'name' => 'Delete Message', 'type' => 2],
-            ['id' => 14,'name' => 'View Messages', 'type' => 2],
+            ['id' => 13,'name' => 'Delete Message', 'type' => 1],
+            ['id' => 14,'name' => 'View Messages', 'type' => 1],
 
             ['id' => 16,'name' => 'Create Blog', 'type' => 3],
             ['id' => 17,'name' => 'Update Blog', 'type' => 3],
             ['id' => 18,'name' => 'Delete Blog', 'type' => 3],
 
-            ['id' => 19,'name' => 'Create Task', 'type' => 2],
-            ['id' => 20,'name' => 'Update Task', 'type' => 2],
-            ['id' => 21,'name' => 'Delete Task', 'type' => 2],
+            ['id' => 19,'name' => 'Create Task', 'type' => 3],
+            ['id' => 20,'name' => 'Update Task', 'type' => 3],
+            ['id' => 21,'name' => 'Delete Task', 'type' => 3],
         ];
 
         Permission::insert($permissions);
