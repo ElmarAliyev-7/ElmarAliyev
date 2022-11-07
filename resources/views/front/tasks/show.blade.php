@@ -24,8 +24,17 @@
                 <div class="col-2">
                     {{$loop->iteration}} )
                 </div>
-                <div class="col-10">
+                <div class="col-8">
                     <b>{{$question->name}}</b> <a href="{{$question->link}}" target="_blank">{{$question->link}}</a>
+                </div>
+                <div class="col-2">
+                    <form method="post" action="{{route('learn-question')}}">
+                        @csrf
+                        <input type="hidden" name="user_id"
+                               value="{{isset(Auth::guard('site')->user()->id) ? Auth::guard('site')->user()->id : 0}}">
+                        <input type="hidden" name="question_id" value="{{$question->id}}">
+                        <button type="submit">Check</button>
+                    </form>
                 </div>
             </div>
         </div>

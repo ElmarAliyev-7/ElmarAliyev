@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 use App\Models\About;
@@ -12,6 +14,7 @@ use App\Models\Experience;
 use App\Models\Blog;
 use App\Models\Task;
 use App\Models\Message;
+use App\Models\UserQuestion;
 use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
@@ -65,12 +68,17 @@ class HomeController extends Controller
 
     public function task($slug)
     {
+        $user = User::with('questions')->find(Auth::guard('site')->user()->id);
         $task = Task::where('slug',$slug)->first();
-        return view('front.tasks.show', compact('task'));
+        return view('front.tasks.show', compact('user','task'));
     }
 
     public function learnQuestion(Request $request)
-    {return $request;
+    {
+        if($request->user_id == 0)
+            return redirect('login')->with('info', 'You must be Login for check question');
+        UserQuestion::create($request->all());
+        return redirect()->back()->with('success', 'Question Checked');
     }
     public function contact(Request $request)
     {

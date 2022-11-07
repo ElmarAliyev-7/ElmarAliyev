@@ -19,4 +19,9 @@ class Question extends Model
     {
         return $this->belongsTo(Task::class, 'task_id', 'id');
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_questions');
+    }
 }
