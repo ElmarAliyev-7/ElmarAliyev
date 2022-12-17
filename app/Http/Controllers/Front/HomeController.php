@@ -3,18 +3,20 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
-use App\Models\About;
-use App\Models\Portfolio;
-use App\Models\MySkill;
-use App\Models\Experience;
-use App\Models\Blog;
-use App\Models\Task;
-use App\Models\Message;
-use App\Models\UserQuestion;
+use App\Models\{
+    About,
+    Portfolio,
+    MySkill,
+    Experience,
+    Blog,
+    Task,
+    Message,
+    UserQuestion,
+};
+
 use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller

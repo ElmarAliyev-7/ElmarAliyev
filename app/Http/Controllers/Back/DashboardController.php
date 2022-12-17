@@ -3,16 +3,18 @@
 namespace App\Http\Controllers\Back;
 
 use App\Http\Controllers\Controller;
-use App\Models\Portfolio;
-use App\Models\Task;
-use App\Models\MySkill;
-use App\Models\User;
-use App\Models\Role;
-use App\Models\HomePage;
-use App\Models\About;
-use App\Models\Experience;
-use App\Models\Message;
-use App\Models\Blog;
+use App\Models\{
+    Portfolio,
+    Task,
+    MySkill,
+    User,
+    Role,
+    HomePage,
+    About,
+    Experience,
+    Message,
+    Blog,
+};
 
 class DashboardController extends Controller
 {
