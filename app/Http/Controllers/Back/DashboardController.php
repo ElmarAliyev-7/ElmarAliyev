@@ -29,8 +29,8 @@ class DashboardController extends Controller
 
     public function users()
     {
-        $users = User::where('id', '!=', 1)->paginate(10);
-        $roles = Role::select('id', 'name')->get();
+        $users = User::with('role')->where('id', '!=', 1)->paginate(10);
+        $roles = Role::get();
         return view('back.users.index', compact('users', 'roles'));
     }
 

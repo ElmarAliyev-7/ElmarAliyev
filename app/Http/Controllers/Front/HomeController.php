@@ -94,6 +94,7 @@ class HomeController extends Controller
         UserQuestion::create($request->all());
         return redirect()->back()->with('success', 'Question Checked');
     }
+
     public function contact(Request $request)
     {
         $new_message  = new Message;
