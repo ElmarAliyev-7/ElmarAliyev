@@ -18,6 +18,6 @@ class Task extends Model
 
     public function questions()
     {
-        return $this->hasMany(Question::class, 'task_id', 'id');
+        return $this->hasMany(Question::class, 'task_id');
     }
 }

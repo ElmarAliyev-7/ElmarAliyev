@@ -16,11 +16,11 @@ class UserQuestion extends Model
 
     public function users()
     {
-        return $this->belongsToMany('user_id','users');
+        return $this->belongsToMany('user_id',User::class);
     }
 
     public function questions()
     {
-        return $this->belongsToMany('question_id', 'questions');
+        return $this->belongsToMany('question_id', Question::class);
     }
 }

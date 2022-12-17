@@ -17,11 +17,11 @@ class Question extends Model
 
     public function task()
     {
-        return $this->belongsTo(Task::class, 'task_id', 'id');
+        return $this->belongsTo(Task::class, 'task_id');
     }
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'user_questions');
+        return $this->belongsToMany(User::class, UserQuestion::class);
     }
 }

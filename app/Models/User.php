@@ -50,10 +50,8 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class, 'role_id');
     }
 
-
-
     public function questions()
     {
-        return $this->hasMany(UserQuestion::class, 'user_id', 'id');
+        return $this->hasMany(UserQuestion::class, 'user_id');
     }
 }
