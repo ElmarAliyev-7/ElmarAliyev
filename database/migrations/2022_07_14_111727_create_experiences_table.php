@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('experiences', function (Blueprint $table) {
             $table->id();
             $table->string('company_name');
+            $table->string('image')->nullable();
             $table->string('duty');
             $table->date('start');
             $table->date('end')->nullable();

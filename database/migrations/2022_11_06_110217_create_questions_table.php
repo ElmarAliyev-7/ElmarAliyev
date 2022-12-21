@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
             $table->mediumText('name');
-            $table->foreignId('task_id')->constrained('tasks')->onDelete('cascade');
+            $table->string('link');
+            $table->unsignedBigInteger('task_id');
             $table->timestamps();
         });
     }
