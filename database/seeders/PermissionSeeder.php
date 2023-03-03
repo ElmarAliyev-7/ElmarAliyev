@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Permission;
+use App\Models\RoleAndPermission;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -15,7 +16,6 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
-
         $permissions = [
             ['id' => 1,'name' => 'Create User', 'type' => 1],
             ['id' => 2,'name' => 'Update User', 'type' => 1],
@@ -48,5 +48,14 @@ class PermissionSeeder extends Seeder
         ];
 
         Permission::insert($permissions);
+
+        //Give All Permisssions to SuperAdmin
+        $super_admin_permissions = [];
+        $permissions = Permission::select('id')->orderBy('id', 'asc')->get();
+
+        foreach ($permissions as $permission) {
+            array_push($super_admin_permissions, ['role_id' => 1, 'permission_id' => $permission->id]);
+        }
+        RoleAndPermission::insert($super_admin_permissions);
     }
 }
