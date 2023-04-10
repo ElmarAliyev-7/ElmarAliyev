@@ -58,7 +58,7 @@ class HomeController extends Controller
 
     public function projects()
     {
-        $projects = Portfolio::all();
+        $projects = Portfolio::orderBy('order','asc')->get();
         return view('front.projects.index', compact('projects'));
     }
 
